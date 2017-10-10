@@ -1,0 +1,107 @@
+<div id='mainbar' role='main' aria-label='blob and question'>
+  <div class="snippet" data-fileid='{{ file.id }}' id="blob">
+      {% include 'common/vote.html' with vote_obj=file %}
+      <div class="postcell">
+         {% include 'projects/common/summary.html' with summary_obj=file %}
+        {% include 'projects/file/code.html' with lines_obj=lines %}
+        {% include 'projects/common/tag.html' with tag_obj=file %}
+        {% include 'common/user_info.html' with user_obj=file %}
+      </div>
+  </div>
+    {% include 'qa/question.html' with question_obj=all_questions %}
+</div>
+<script type="text/javascript">
+    // 显示已有注释的气泡弹窗
+$(function(){
+  $('.annotations-count').each(function(){
+    var lineid = $(this).attr('rel')
+    $(this).qtip({
+            content: {
+                text: $('.line-'+ lineid+'-annotation')
+            },
+            position:{
+                my:'left center',
+                adjust: {
+                    x: 50
+                }
+            },
+            show:'click',
+            hide: 'unfocus',
+            style: {
+                      widget: true,
+                      classes: 'qtip-bootstrap',
+                      width:330,
+
+                  }
+         })
+  })
+})
+// 添加代码注释的气泡弹窗
+$(function(){
+$('.add_line_annotation').each(function(){
+  var lineid = $(this).attr('rel')
+$(this).qtip({
+{#        content: {#}
+{#            text: function(event, api) {#}
+{#                $.ajax({#}
+{#                  url: '/lines/'+lineid+'/annotations/new',#}
+{#                  dataType: "script",#}
+{#                })#}
+{#                .then(function(content) {#}
+{#                    api.set('content.text', $(".new_line_annotation_"+lineid));#}
+{#                }, function(xhr, status, error) {#}
+{#                    api.set('content.text', $('.login_url'));#}
+{#                });#}
+{#                return 'Loading...';#}
+{#            }#}
+{#        },#}
+        content: {
+                text: $('.new_line_annotation_'+ lineid )
+            },
+        position: {
+            my:'left top',
+            viewport: $(window),
+            adjust: {
+                x: 30
+            }
+        },
+        style: 'qtip-wiki',
+        show: {
+            event: 'click',
+            solo: true // Only show one tooltip at a time
+            },
+        hide: 'unfocus',
+        style: {
+                  widget: true,
+                  // classes: 'annotationform',
+                  classes: 'qtip-bootstrap'
+              }
+     });
+   }).click(function(event) { event.preventDefault(); });
+})
+
+// 添加注释按钮的显示隐藏
+$(function(){
+
+    var snippetline = $('.snippet-code-line div')
+    $.each(snippetline,function(n,element){
+      var linenum = n + 1
+      $('#line-'+linenum).hover(function(){
+        $('#addannotation_'+linenum).show();
+      },function(){
+        $('#addannotation_'+linenum).hide();
+      })
+    })
+    var lineannotation = $('.snippet-code-addannotation .line-annotation')
+    $.each(lineannotation,function(n,element){
+      var linenum = n + 1
+      $('#line-'+linenum+'-addannotation').hover(function(){
+        $('#addannotation_'+linenum).show();
+      },function(){
+        $('#addannotation_'+linenum).hide();
+      })
+    })
+
+})
+
+</script>

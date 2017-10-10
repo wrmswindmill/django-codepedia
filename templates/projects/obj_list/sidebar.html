@@ -1,0 +1,7 @@
+{% load staticfiles %}
+<div id="sidebar" role="complementary" aria-label="sidebar">
+    {% include 'common/site_nums.html' %}
+    {% include 'projects/obj_list/hot_blobs.html' with hot_objs=hot_objs %}
+</div>
+
+

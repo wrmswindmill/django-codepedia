@@ -1,0 +1,20 @@
+<div id="mainbar">
+  <div class="subheader">
+    <h1 >All Projects</h1>
+    <div id='tabs' >
+        <a href="">最近更新</a>
+        <a href="">最热工程</a>
+    </div>
+  </div>
+  <div id="hot-tags"></div>
+  <div id='snippets'>
+      {% for project in all_projects %}
+        <div class="snippet-summary" id='project-{{ project.id }}'>
+            {% include 'projects/list/project_stat.html' %}
+            <div class="project_summary">
+               <h3><a href="{% url 'projects:project_detail' project.id %}" class="project-hyperlink">{{ project.name }}</a></h3>
+            </div>
+        </div>
+      {% endfor %}
+  </div>
+</div>

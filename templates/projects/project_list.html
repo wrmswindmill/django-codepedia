@@ -1,0 +1,13 @@
+{% extends 'shared/base.html' %}
+{% load staticfiles   %}
+{% block title %}
+CodePedia-工程列表
+{% endblock %}
+{% block content %}
+    <div class="container">
+        <div id="content" class="snippet-hidden">
+            {% include 'projects/list/mainbar.html' %}
+            {% include 'projects/list/sidebar.html' %}
+        </div>
+    </div>
+{% endblock %}

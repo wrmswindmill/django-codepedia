@@ -1,0 +1,35 @@
+<div class="statscontainer stat-container">
+  <div class="views">
+    <div class="viewsnum">
+      {{ file.views }}
+    </div>
+    <div class="items">
+      views
+    </div>
+  </div>
+  <div class="views" title="votes">
+    <div class="viewsnum">
+        {{ file.get_vote_num }}
+    </div>
+    <div class="items">
+      votes
+    </div>
+  </div>
+  <div class="views" >
+    <div class="viewsnum">
+      {{ file.get_question_num }}
+    </div>
+    <div class="items">
+      questions
+    </div>
+  </div>
+
+  <div class="views">
+    <div class="viewsnum">
+      {{ file.anno_nums }}
+    </div>
+    <div class="items">
+      annotations
+    </div>
+  </div>
+</div>

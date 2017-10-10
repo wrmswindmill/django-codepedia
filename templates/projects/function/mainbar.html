@@ -1,0 +1,13 @@
+<div id='mainbar' role='main' aria-label='blob and question'>
+  <div class="snippet" data-fileid='{{ function.id }}' id="blob">
+      {% include 'common/vote.html' with vote_obj=function %}
+      <div class="postcell">
+        {% include 'projects/common/summary.html' with summary_obj=function %}
+        {% include 'projects/function/code.html'%}
+        {% include 'projects/common/tag.html' with tag_obj=function %}
+        {% include 'common/user_info.html' with user_obj=function %}
+      </div>
+  </div>
+    {% include 'qa/question.html' with question_obj=all_questions %}
+</div>
+

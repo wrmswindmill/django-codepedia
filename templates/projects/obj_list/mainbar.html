@@ -1,0 +1,38 @@
+{% load staticfiles %}
+{% load base_filter %}
+{% block custom_css %}
+     <link rel="stylesheet" type="text/css" href="{%  static 'vendor/site/css/style.css' %}">
+{% endblock %}
+<div id="mainbar">
+  <div class="subheader">
+    <h1 >All Code Files</h1>
+    <div id='tabs' >
+        <a href="">最近更新</a>
+        <a href="">最热代码</a>
+    </div>
+  </div>
+  <div id="hot-tags"></div>
+  <div id='snippets'>
+      {% for obj in obj_list.object_list %}
+        <div class="snippet-summary" id='{% get_model_name obj %}-{{ obj.id }}'>
+            {% include 'projects/obj_list/stats.html' with stat_obj=obj %}
+            <div class="summary">
+                {% get_model_name obj as model %}
+                {% if model == 'file' %}
+                    <h3><a href="{% url 'projects:file_detail' obj.project.id obj.id  %}"  class="snippet-hyperlink">{{ obj.name }}</a></h3>
+                {% else %}
+                    <h3><a href="{% url 'projects:function_detail' obj.project.id obj.file.id obj.id  %}"  class="snippet-hyperlink">{{ obj.name }}</a></h3>
+                {% endif %}
+
+              <div class="excerpt" style="color:#9fa6ad;">
+                  {{ obj.summary }}
+              </div>
+              <div class="started fr">
+                {% include 'common/user_info.html' with user_obj=obj %}
+              </div>
+            </div>
+        </div>
+      {% endfor %}
+  {% include  'common/pagination.html' with page_obj=obj_list %}
+  </div>
+</div>

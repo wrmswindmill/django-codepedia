@@ -1,0 +1,15 @@
+{% extends 'shared/base.html' %}
+{% load staticfiles   %}
+{% block title %}
+CodePedia-Project-{{ project.name  }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div id="content" class="snippet-hidden">
+            {% include 'projects/detail/mainbar.html' %}
+            {% include 'projects/detail/sidebar.html' %}
+        </div>
+    </div>
+
+{% endblock %}

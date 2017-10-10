@@ -1,0 +1,16 @@
+{% extends 'shared/base.html' %}
+{% load staticfiles   %}
+{% block title %}
+CodePedia-Project-{{ file.name  }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div id="content" class="snippet-hidden">
+            {% include 'projects/common/header.html' with header_obj=file %}
+            {% include 'projects/file/mainbar.html' %}
+            {% include 'projects/file/sidebar.html' %}
+        </div>
+    </div>
+{% endblock %}
+

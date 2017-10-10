@@ -1,0 +1,79 @@
+{% load staticfiles %}
+{% load base_filter %}
+{% for line in lines_obj %}
+     {% user_annotation_count request line.id as count %}
+      {% if count.count > 0 %}
+        <div class="spaceline"></div>
+      {% endif %}
+    <div id="line-{{ line.file_linenum }}-addannotation" class='line-annotation line-{{ line.id }}-addanno'>
+      <span id='line-{{ line.id }}-annotation-count' class='annotations-count clear' rel='{{ line.id }}' style="width: 40px;">
+          {% if line.annotations.count > 0 %}
+            <div class="annotation-num">{{ line.annotations.count }}</div>
+          {% endif %}
+          <div class="line-{{ line.id }}-annotation" style="display:none">
+             {% include 'projects/common/annotation.html' %}
+          </div>
+      </span>
+      <a id="addannotation_{{ line.file_linenum }}" rel="{{ line.id }}" class='add_line_annotation' style="display:none">
+          <img src="{% static '/image/add.png' %}" alt="" style="height: 15px;width: 15px;vertical-align:top;margin-top: 2px;">
+      </a>
+    {% user_annotation_count request line.id as count %}
+        <div class="new_line_annotation_{{ line.id }}" style="display: none;">
+            {% if count.count == 0 %}
+                <div id="id_content" class="form-group">
+                    <label for="id_content" class="control-label  requiredField">
+                    Annotation
+                        <span class="asteriskField">*</span>
+                    </label>
+                    <div class="controls ">
+                        <textarea name="content" cols="40" rows="5" class="textarea form-control" required="" id="js-anno-textarea-{{ line.id }}" placeholder="Type your Annotation!!! 点击其他位置即可取消。"></textarea>
+                    </div>
+                </div>
+                <input class="btn btn-green" type="submit" value="Submit" id="js-anno-submit-{{ line.id }}">
+{#                <button type="button"  onclick='cancel()' class='btn btn-default cancel-button pull-right' name="button">Cancel</button>#}
+                <p class="global-errortip js-global-error"></p>
+             {% else %}
+               你已经添加过注释
+            {% endif %}
+        </div>
+        <script type="text/javascript">
+            $('#js-anno-submit-{{ line.id }}').on('click', function(){
+                var content = $("#js-anno-textarea-{{ line.id }}").val();
+                if(content === ""){
+                    alert("注释不能为空")
+                    return
+                }
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url:"{% url 'operations:new_annotation' line.id %}",
+                    data:{'content':content},
+                    async: true,
+                    beforeSend:function(xhr, settings){
+                        xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
+                    },
+                    success: function(data) {
+                        if(data.status === 'fail'){
+                            if(data.msg === '用户未登录'){
+                                window.location.href="/users/login/";
+                            }else{
+                                alert(data.msg)
+                            }
+                        }else if(data.status ==='success'){
+                            alert(data.msg)
+                            $('.qtip-content .new_line_annotation_{{ line.id }}').html('您已经成功添加了注释');
+                            $('.line-{{ line.id }}-num').before('<div class="spacelinenum"></div>');
+                            $('.line-{{ line.id }}-anno').before('<div class="spaceline">    //'+content+'</div>');
+                            $('.line-{{ line.id }}-addanno').before('<div class="spaceline"></div>');
+                        }
+                    },
+                });
+            });
+        </script>
+    </div>
+
+{% endfor %}
+
+
+
+

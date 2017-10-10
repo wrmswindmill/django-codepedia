@@ -1,0 +1,32 @@
+{% load staticfiles %}
+{% block custom_css %}
+     <link rel="stylesheet" type="text/css" href="{%  static 'vendor/site/css/style.css' %}">
+{% endblock %}
+<div id="mainbar">
+  <div class="subheader">
+    <h1 >All Code Files</h1>
+    <div id='tabs' >
+        <a href="">最近更新</a>
+        <a href="">最热代码</a>
+    </div>
+  </div>
+  <div id="hot-tags"></div>
+  <div id='snippets'>
+      {% for file in all_files.object_list %}
+        <div class="snippet-summary" id='blob-{{ file.id }}'>
+            {% include 'projects/detail/stats.html' %}
+            <div class="summary">
+              <h3><a href="{% url 'projects:file_detail' project.id file.id  %}"  class="snippet-hyperlink">{{ file.name }}</a></h3>
+              <div class="excerpt" style="color:#9fa6ad;">
+                  {{ file.summary }}
+              </div>
+              <div class="started fr">
+                {% include 'common/user_info.html' with user_obj=file %}
+              </div>
+            </div>
+        </div>
+      {% endfor %}
+  {% include  'common/pagination.html' with page_obj=all_files %}
+
+  </div>
+</div>

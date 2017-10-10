@@ -1,0 +1,42 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">CodePedia</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li {% if request.path == '/' %}class='active'{% endif %}><a href="{% url 'index' %}">Home</a></li>
+        <li {% if request.path|slice:'8' == '/project' %}class='active'{% endif %}><a href="{% url 'projects:project_list' %}">Project</a></li>
+        <li {% if request.path|slice:'5' == '/file' %}class='active'{% endif %}><a href="{% url 'file_list' %}">File</a></li>
+        <li {% if request.path|slice:'7' == '/method' %}class='active'{% endif %}><a href="{% url 'method_list' %}">Method</a></li>
+        <li {% if request.path|slice:'8' == '/snippet' %}class='active'{% endif %}><a href="">Snippet</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+          {% if  request.user.is_authenticated %}
+                 <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">个人信息 <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li></li>
+                  <li role="separator" class="divider"></li>
+                  <li></li>
+                </ul>
+              </li>
+          {% else %}
+              {#            <li><a href="#" data-toggle="modal" data-target="#signup-modal">注册</a></li>#}
+                <li><a href="{% url 'users:register' %}">注册</a></li>
+              {#            <li><a href="#" data-toggle="modal" data-target="#login-modal">登陆</a></li>#}
+                <li><a href="{% url 'users:login' %}">登陆</a></li>
+          {% endif %}
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,18 @@
+{% load base_filter %}
+<div id="hot-network-snippets" class="module">
+   <h4>
+     <a href="#">
+        Hot Network {% get_model_name hot_objs.first %}
+     </a>
+   </h4>
+    {% for obj in hot_objs %}
+         <div class="spacer">
+            <a>
+              <div class="answer-votes answered-accepted default">
+                  {{ obj.views }}
+              </div>
+            </a>
+             <a href="" class="snippet-title" >{{ obj.name }}</a>
+         </div>
+    {% endfor %}
+</div>

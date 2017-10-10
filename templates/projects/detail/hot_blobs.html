@@ -1,0 +1,17 @@
+<div id="hot-network-snippets" class="module">
+   <h4>
+     <a href="#">
+        Hot Network Blobs
+     </a>
+   </h4>
+    {% for file in hot_blobs %}
+         <div class="spacer">
+            <a>
+              <div class="answer-votes answered-accepted default">
+                  {{ file.views }}
+              </div>
+            </a>
+             <a href="" class="snippet-title" >{{ file.name }}</a>
+         </div>
+    {% endfor %}
+</div>

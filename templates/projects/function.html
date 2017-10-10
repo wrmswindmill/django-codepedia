@@ -1,0 +1,15 @@
+{% extends 'shared/base.html' %}
+{% load staticfiles   %}
+{% block title %}
+CodePedia-Project-{{ function.name  }}
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div id="content" class="snippet-hidden">
+            {% include 'projects/common/header.html' with header_obj=function %}
+            {% include 'projects/function/mainbar.html' %}
+            {% include 'projects/function/sidebar.html' %}
+        </div>
+    </div>
+{% endblock %}
