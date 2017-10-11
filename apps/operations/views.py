@@ -128,10 +128,11 @@ class UserVoteView(View):
 
 
 class UserAnnotationView(View):
-    def post(self, request,line_id):
+    def post(self, request):
         if not request.user.is_authenticated():
             return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
         content = request.POST.get('content', '')
+        line_id = request.POST.get('line_id', '')
         if int(line_id) > 0 and content:
             annotation = Annotation()
             line = Line.objects.get(id=line_id)
@@ -158,10 +159,11 @@ class UserAnnotationView(View):
 
 
 class UserCommentView(View):
-    def post(self, request, annotation_id):
+    def post(self, request):
         if not request.user.is_authenticated():
             return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
         content = request.POST.get('content', '')
+        annotation_id = request.POST.get('annotation_id', '')
         if int(annotation_id) > 0 and content:
             comment = Comment()
             annotation = Annotation.objects.get(id=annotation_id)

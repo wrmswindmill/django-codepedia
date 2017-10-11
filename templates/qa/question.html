@@ -1,79 +1,30 @@
 {% load crispy_forms_tags %}
+{% load base_filter %}
 <div id='question'>
     <div id="questions-header">
       <div class="subheader questions-header">
-        <h2> {{ question_obj.count }} Questions</h2>
-        <div id="tabs">
-          <a href="#">active</a>
-          <a href="#">oldest</a>
-          <a href="#">votes</a>
-        </div>
+        <h2> {{ question_objs.count }} Questions</h2>
       </div>
     </div>
-    {% for question in question_obj %}
-        <div id="question-{{ question.id }}" class="question" data-questionid="{{ question.id }}">
-            {% include 'common/vote.html' with vote_obj=question %}
-            <div class="postcell ">
-                <div class="questionpostcell">
-                    <div class="post-text">
-                      <div class='blockquote questionblock'>
-                          {{ question.get_question_type_display }}：{{ question.content }}
-                      </div>
-                    </div>
-                {% include 'common/user_info.html' with user_obj=question %}
-                </div>
-                <div id="answers">
-                    {% include 'qa/answer.html' with answer_obj=question %}
-                </div>
-
-            </div>
-        </div>
+    {% for question in question_objs %}
+        {% if question.question_type == '1' %}
+            {% include 'qa/option_question.html' with question=question %}
+        {% elif question.question_type == '3' %}
+            {% include 'qa/brief_answers_question.html' with question=question %}
+        {% endif %}
     {% endfor %}
+    <a type="button"  onclick='show_more()' class='show-more-button' name="button" style='margin-bottom:10px;color:#606669'>Show More Questions</a>
+    <a type="button"  onclick='hide_question()' class='hide-button' style='display:none;color:#606669' name="button">Hide All Questions</a>&nbsp;&nbsp;&nbsp;&nbsp;
+    <a type="button"  onclick='hide_last_question()' class='hide-last-button' style='display:none;color:#606669' name="button">Hide Five Questions</a>
     <div>
-        <div id="id_content" class="form-group"> <label for="id_content" class="control-label  requiredField">
-            Please Post Your Question
-            <span class="asteriskField">*</span> </label>
-            <div class="controls ">
-                <textarea name="content" cols="40" rows="5" class="textarea form-control" required="" id="js-que-textarea" placeholder="Type your question!!!"></textarea>
+        <div id="id_content" class="form-group" style="margin-bottom: 5px;">
+            <div class="controls">
+                <textarea name="content" cols="40" rows="4" class="textarea form-control" required="" id="js-que-textarea" placeholder="Type Your Question!!!"></textarea>
             </div>
         </div>
-        <input class="btn btn-green" type="submit" value="Submit" id="js-que-submit">
+        <input class="btn btn-green js-que-submit" type="submit" value="Submit"  onclick="add_question('{% get_model_name q_obj %}',{{ q_obj.id }})">
         <p class="global-errortip js-global-error"></p>
     </div>
 </div>
-{% block custom_js %}
-<script type="text/javascript">
-    //添加问题
-    $('#js-que-submit').on('click', function(){
-        var content = $("#js-que-textarea").val()
-        if(content == ""){
-            alert("问题不能为空")
-            return
-        }
-        $.ajax({
-            cache: false,
-            type: "POST",
-            url:"{% url 'qa:new_file_question' file.id %}",
-            data:{'content':content},
-            async: true,
-            beforeSend:function(xhr, settings){
-                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
-            },
-            success: function(data) {
-                if(data.status == 'fail'){
-                    if(data.msg == '用户未登录'){
-                        window.location.href="/login/";
-                    }else{
-                        alert(data.msg)
-                    }
 
-                }else if(data.status == 'success'){
-                    window.location.reload();//刷新当前页面.
-                }
-            },
-        });
-    });
-    //添加回答
 
-</script>
-{% endblock %}

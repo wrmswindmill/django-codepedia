@@ -1,6 +1,6 @@
 <div id="sidebar">
     {% include 'projects/common/sidebar_state.html' with stat_obj=file %}
-    {% include 'projects/common/sidebar_question.html' with side_question_obj=file question_objs=all_questions %}
+    {% include 'projects/common/sidebar_question.html' with side_question_obj=file question_objs=hot_questions %}
 
   <!-- 查看该代码文件夹的方法 -->
   {% if file.function_set.count > 0 %}

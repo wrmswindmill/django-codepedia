@@ -1,5 +1,5 @@
 {% for answer in answer_obj.answer_set.select_related.all %}
-    <div id="answer-{{ answer.id }}" class="answer" data-answerid="{{ answer.id }}">
+    <div id="answer-{{ answer.id }}" class="answer" data-answerid="{{ answer.id }}" style="display: none">
     {% include 'common/small_vote.html' with vote_obj=answer %}
     <div class="postcell">
       <div class="answerpostcell">
@@ -13,53 +13,20 @@
     </div>
 </div>
 {% endfor %}
- <a class="new_question_button" id="new_answer_{{ answer_obj.id }}"> Answer </a>
- <div class="new_answer_{{ answer_obj.id }}"  style="display: none">
-    <div id="id_content" class="form-group"> <label for="id_content" class="control-label  requiredField">
-        Please Post Your Answer
-        <span class="asteriskField">*</span> </label>
-        <div class="controls ">
-            <textarea name="content" cols="40" rows="5" class="textarea form-control" required="" id="js-ans-textarea-{{ answer_obj.id }}" placeholder="Type your question!!!"></textarea>
+ <div class="new_answer_{{ answer_obj.id }}">
+    <div id="id_content" class="form-group an-form" >
+        <div class="controls">
+            <textarea name="content" rows="1.5" class="textarea form-control" required="true" id="js-ans-textarea-{{ answer_obj.id }}" placeholder="Type Your Answer!"></textarea>
         </div>
     </div>
-    <input class="btn btn-green" type="submit" value="Submit" id="js-ans-submit-{{ answer_obj.id }}">
-     <button type="button"  onclick='cancel()' class='btn btn-default cancel-button pull-right' name="button">Cancel</button>
+    <input class="an-button" type="submit"  value="Submit" id="js-ans-submit-{{ answer_obj.id }}" onclick="submit_answer({{ answer_obj.id }})">
     <p class="global-errortip js-global-error"></p>
-    </div>
+ </div>
+<a type="button"  onclick='show_more_ans({{ answer_obj.id }})' class='show-more-ans-button-{{ answer_obj.id }}' name="button" style='margin-bottom:10px;color:#606669'>Show More Answers</a>
+<a type="button"  onclick='hide_ans({{ answer_obj.id }})' class='hide-ans-button-{{ answer_obj.id }}' style='display:none;color:#606669' name="button">Hide All Answers</a>
+<a type="button"  onclick='show_one_an({{ answer_obj.id }})' class='show_one_an_{{ answer_obj.id }}' style='display:none' name="button"></a>
 <script type="text/javascript">
-    $('#new_answer_'+{{ answer_obj.id }}).on('click',function () {
-        $('.new_answer_'+{{ answer_obj.id }}).show()
-        $('#new_answer_'+{{ answer_obj.id }}).hide()
+    $(function () {
+        $('.show_one_an_{{ answer_obj.id}}').click()
     })
-     //添加回答
-    $('#js-ans-submit-{{ answer_obj.id }}').on('click', function(){
-        var content = $("#js-ans-textarea-{{ answer_obj.id }}").val()
-        question_id = {{ answer_obj.id }}
-        if(content == ""){
-            alert("答案不能为空")
-            return
-        }
-        $.ajax({
-            cache: false,
-            type: "POST",
-            url:"{% url 'qa:new_answer' %}",
-            data:{'content':content,'question_id':question_id},
-            async: true,
-            beforeSend:function(xhr, settings){
-                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
-            },
-            success: function(data) {
-                if(data.status == 'fail'){
-                    if(data.msg == '用户未登录'){
-                        window.location.href="/login/";
-                    }else{
-                        alert(data.msg)
-                    }
-
-                }else if(data.status == 'success'){
-                    window.location.reload();//刷新当前页面.
-                }
-            },
-        });
-    });
 </script>

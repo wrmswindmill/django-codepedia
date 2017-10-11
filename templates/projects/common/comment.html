@@ -17,7 +17,7 @@
             <textarea name="content" cols="40" rows="5" class="textarea form-control" required="" id="js-comment-textarea-{{ comment_obj.id }}" placeholder="Type your comment!!!"></textarea>
         </div>
     </div>
-    <input class="btn btn-green" type="submit" value="Submit" id="js-comment-submit-{{ comment_obj.id }}">
+    <input class="btn btn-green" type="submit" value="Submit"  onclick="submit_comment({{  comment_obj.id }},'{{ request.user.username }}')" id="js-comment-submit-{{ comment_obj.id }}">
     <button type="button"  onclick='cancel()' class='btn btn-default cancel-button pull-right' name="button">Cancel</button>
     <p class="global-errortip js-global-error"></p>
 </div>
@@ -25,39 +25,5 @@
     $('#new_annotation_comment_{{ comment_obj.id }}').on('click',function () {
         $('.new_comment_{{ comment_obj.id }}').show();
         $('#new_annotation_comment_{{ comment_obj.id }}').hide();
-    });
-
-     //添加回答
-    $('#js-comment-submit-{{ comment_obj.id }}').on('click', function(){
-        var content = $("#js-comment-textarea-{{ comment_obj.id }}").val();
-        var name = "{{ request.user.username }}";
-        if(content === ""){
-            alert("评论不能为空")
-            return
-        }
-        $.ajax({
-            cache: false,
-            type: "POST",
-            url:"{% url 'operations:new_comment' comment_obj.id  %}",
-            data:{'content':content},
-            async: true,
-            beforeSend:function(xhr, settings){
-                xhr.setRequestHeader("X-CSRFToken", "{{ csrf_token }}");
-            },
-            success: function(data) {
-                if(data.status == 'fail'){
-                    if(data.msg == '用户未登录'){
-                        window.location.href="/users/login/";
-                    }else{
-                        alert(data.msg)
-                    }
-                }else if(data.status == 'success'){
-                    alert('评论成功')
-                    $('#annotation-{{ comment_obj.id }} .postcell #comments').prepend('<div class="comment"><div class="postcell">'+content+'<span class="pull-right"><a>'+name+'</a>--刚刚</span></div></div>')
-                    $('.new_comment_{{ comment_obj.id }}').hide();
-                    $('#new_annotation_comment_{{ comment_obj.id }}').show();
-                }
-            },
-        });
     });
 </script>

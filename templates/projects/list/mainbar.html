@@ -2,8 +2,8 @@
   <div class="subheader">
     <h1 >All Projects</h1>
     <div id='tabs' >
-        <a href="">最近更新</a>
-        <a href="">最热工程</a>
+        <a {% if sort == '' %}class='sort_item'{% endif %} href="?sort=">最近更新</a>
+        <a {% if sort == 'hot' %}class='sort_item'{% endif %}  href="?sort=hot">最热工程</a>
     </div>
   </div>
   <div id="hot-tags"></div>

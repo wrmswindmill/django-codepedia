@@ -8,7 +8,8 @@ from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 import json
 from django.http import JsonResponse, HttpResponse
 
-# Create your views here.
+
+#新建工程页面
 class NewProjectView(View):
     def get(self, request):
         project_form = NewProjectForm()
@@ -84,16 +85,28 @@ class NewProjectView(View):
             return render(request, 'projects/new.html', {'project_form': project_form})
 
 
+#工程列表页
 class ProjectListView(View):
-    def get(self,request):
+    def get(self, request):
         all_projects = Project.objects.all()
+        # 工程排序
+        sort = request.GET.get('sort', '')
+        if sort:
+            if sort == '':
+                all_projects = all_projects.order_by('-created')
+            elif sort == 'hot':
+                all_projects = all_projects.order_by('-views')
         return render(request, 'projects/project_list.html', {'all_projects': all_projects,
+                                                              'sort':sort,
                                                       })
 
 
+#工程详情页
 class ProjectDetailView(View):
     def get(self, request, project_id):
         project = Project.objects.get(id=project_id)
+        project.views +=1
+        project.save()
         all_files = File.objects.filter(project_id = project.id)
         hot_blobs = File.objects.order_by('-views')[:5]
 
@@ -112,6 +125,7 @@ class ProjectDetailView(View):
                                                       })
 
 
+#文件列表页
 class FileListlView(View):
     def get(self, request):
         all_files = File.objects.all()
@@ -131,6 +145,7 @@ class FileListlView(View):
                                                       })
 
 
+#函数列表页
 class FunctionListlView(View):
     def get(self, request):
         all_functions = Function.objects.all()
@@ -150,6 +165,7 @@ class FunctionListlView(View):
                                                       })
 
 
+#获取工程树形结构
 def tree_method(request, project_id):
     project = Project.objects.get(id=project_id)
     client = Client('http://localhost:7777/pro?wsdl')
@@ -158,6 +174,7 @@ def tree_method(request, project_id):
     return JsonResponse(response)
 
 
+#获取文件的方法
 def find_function(request, project_id, file_id):
     file = File.objects.get(id=file_id)
     functions = file.function_set.all()
@@ -174,6 +191,7 @@ def find_function(request, project_id, file_id):
     return JsonResponse(all_functions)
 
 
+#指定路径下的文件列表
 class ProjectPathFileView(View):
     def get(self, request, project_id):
         project = Project.objects.get(id=project_id)
@@ -193,6 +211,7 @@ class ProjectPathFileView(View):
                                                       })
 
 
+#指定文件下的文件详情
 class PathFileView(View):
     def get(self, request, project_id):
         project = Project.objects.get(id=project_id)
@@ -207,6 +226,7 @@ class PathFileView(View):
                                                       })
 
 
+#文件详情页
 class FileDetailView(View):
     def get(self, request, project_id, file_id):
         project = Project.objects.get(id=project_id)
@@ -215,15 +235,18 @@ class FileDetailView(View):
         file.save()
         lines = Line.objects.filter(file_id=file_id)
         questions = file.questions.all()
+        hot_quetions = file.questions.order_by('vote_up')[:5]
         question_form = QuestionForm()
         return render(request, 'projects/file.html', {'project': project,
                                                       'file': file,
                                                       'lines': lines,
                                                       'all_questions': questions,
                                                       'question_form': question_form,
+                                                      'hot_quetions': hot_quetions,
                                                       })
 
 
+#函数详情页
 class FunctionDetailView(View):
     def get(self, request, project_id, file_id, function_id):
         project = Project.objects.get(id=project_id)
@@ -233,16 +256,19 @@ class FunctionDetailView(View):
         function.save()
         lines = Line.objects.filter(function_id=function_id)
         questions = function.questions.all()
+        hot_quetions = function.questions.order_by('vote_up')[:5]
         question_form = QuestionForm()
         return render(request, 'projects/function.html', {'project': project,
                                                       'file': file,
                                                       'function': function,
                                                       'lines': lines,
                                                       'all_questions': questions,
-                                                      'question_form':question_form
-                                                        })
+                                                      'question_form':question_form,
+                                                      'hot_quetions': hot_quetions,
+                                                    })
 
 
+#函数调用关系
 def callee_tree(request, project_id, file_id, function_id):
     function = Function.objects.get(id=function_id)
     # 函数本身处于caller处

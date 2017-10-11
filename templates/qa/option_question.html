@@ -1,0 +1,39 @@
+{% load base_filter %}
+<div id="question-{{ question.id }}" class="question" data-questionid="{{ question.id }}">
+    {% include 'common/vote.html' with vote_obj=question %}
+    <div class="postcell ">
+      <div class="questionpostcell">
+        <div class="post-text">
+          <div class='blockquote questionblock'>
+            {{ question.content }}
+          </div>
+          <div id="question-{{ question.id }}-answers answers">
+              <table style="width:100%;">
+              {% evaluate_user_answer request question.id as user_stat %}
+                <tbody>
+                {% for choice in question.question_choices.all %}
+                  <tr>
+                    <td class="option-item-p">
+                      <label id='question-{{ question.id }}-answers-{{ choice.choice_position }}' class="option-item">
+                        <input type="checkbox" class='ur_radio'  name="question-{{ question.id }}-answers-check" {% if user_stat.have_answered %}disabled="disabled" {% endif %}value="{{ choice.choice_position }}">
+                               {% num_to_str choice.choice_position %}:    {{ choice.choice_text }}
+                      </label>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+        {% standard_answer question.id as standard %}
+        <div class="question-{{ question.id }}-standard-answer" style="display: none">参考答案为: {{ standard.standard_answers }}</div>
+        {% if user_stat.have_answered %}
+            <div style="color: {% if user_stat.correct %}green{% else %}red;{% endif %}"> 你的答案为：{{ user_stat.user_answer }}  参考答案为: {{ standard.standard_answers }}</div>
+        {% endif %}
+    </div>
+    {% if user_stat.have_answered == False  %}
+        <button onclick="answer_option_question({{ question.id }})" class='pull-right' id="js-question-{{ question.id }}-answer-button">Submit</button>
+    {% endif %}
+</div>

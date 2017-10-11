@@ -1,8 +1,9 @@
 from django.conf.urls import url, include
-from .views import NewFileQuestionView, NewFunctionQuestionView, NewAnswerView
+from .views import NewQuestionView,  NewAnswerView, EvaluateOptionQuestion
 
 urlpatterns = [
-    url(r'^new_question/(?P<file_id>\d+)/$', NewFileQuestionView.as_view(), name='new_file_question'),
-    url(r'^new_question/(?P<funtion_id>\d+)/$', NewFunctionQuestionView.as_view(), name='new_function_question'),
+    url(r'^new_question/$', NewQuestionView.as_view(), name='new_question'),
     url(r'^new_answer/$', NewAnswerView.as_view(), name='new_answer'),
+    url(r'^evaluate_answer/$', EvaluateOptionQuestion.as_view(), name='evaluate_answer'),
+
 ]

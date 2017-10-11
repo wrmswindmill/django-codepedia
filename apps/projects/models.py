@@ -30,6 +30,7 @@ class Project(models.Model):
     tags = TaggableManager()
     files = models.IntegerField(default=0, verbose_name='文件数量')
     functions = models.IntegerField(default=0, verbose_name='方法数量')
+    views = models.IntegerField(default=0, verbose_name='点击数量')
     created = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
 
     class Meta:

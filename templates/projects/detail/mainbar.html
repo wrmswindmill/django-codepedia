@@ -6,8 +6,8 @@
   <div class="subheader">
     <h1 >All Code Files</h1>
     <div id='tabs' >
-        <a href="">最近更新</a>
-        <a href="">最热代码</a>
+        <a {% if sort == '' %}class="active"{% endif %} href="?sort=">最近更新</a>
+        <a {% if sort == 'hot' %}class="active"{% endif %}  href="?sort=hot">最热代码</a>
     </div>
   </div>
   <div id="hot-tags"></div>

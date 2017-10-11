@@ -1,3 +1,4 @@
 <div class="snippet-taglist">
-  <a class="post-tag">{{ tag_obj.project.name }}</a>
+  <a class="post-tag" href="{% url 'projects:project_detail' tag_obj.project.id %}">{{ tag_obj.project.name }}</a>
+  <a class="post-tag">{{ tag_obj.project.tags.all|join:", "}}</a>
 </div>

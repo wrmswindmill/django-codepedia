@@ -713,7 +713,6 @@ h1{
   border-left:12px solid transparent ;
   border-right:12px solid transparent ;
   border-bottom:12px solid #8c8686;
-  // margin-bottom:10px;
 }
 .an-down{
   width:0px;
@@ -721,12 +720,16 @@ h1{
   border-left:12px solid transparent ;
   border-right:12px solid transparent ;
   border-top:12px solid #8c8686;
-  // margin-top:10px;
 }
+.vote-an{
+    text-align: center;
+}
+
 .vote-an span{
   display: block;
-  width:30px;
+  width:40px;
 }
+
 a.voteup:hover,a.vote-down:hover {
   border: 0px;
 }
@@ -1108,4 +1111,105 @@ white-space:nowrap;
     display: inline;
     clear: none;
     margin-top: 10px;
+}
+
+.an-form{
+    width: 90%;
+    display: inline-block;
+    float: left;
+    margin-bottom: 0px !important;
+}
+
+.an-button{
+    width: 10%;
+    display: inline-block;
+    margin-top: 5px;
+}
+.option-item-p{
+    width: 95%;
+    float: right;
+    color: #6a6c6d;
+}
+
+.option-item{
+    font-weight: normal;
+}
+
+.add_anno_img{
+    height: 15px;
+    width: 15px;
+    vertical-align:top;
+    margin-top: 2px;
+}
+.sort_item{
+    border-bottom: 3px solid #0a6aa1 !important;
+    color: #0a6aa1 !important;
+}
+
+.userdetail{
+    background: #fff;
+    margin: 0 10px 10px;
+}
+.userdetail dl{
+    width: 300px;
+    margin-bottom: 5px !important;
+}
+
+.userdetail dl dt{
+    border-radius: 50%;
+    float: left;
+    overflow: hidden;
+    width: 80px;
+    height: 80px;
+}
+.userdetail dl dd{
+    text-align: right;
+    line-height: 20px;
+    width: 190px;
+    float: right;
+    position: absolute;
+    right: 10px;
+
+    color: #333;
+    height: auto;
+    overflow: hidden;
+}
+.userdetail dl dt a{
+    color: #000;
+}
+.userdetail dl dd a{
+    color: #717171;
+    font-size: 16px;
+}
+.userdetail .btn{
+    width: 100%;
+    height: 30px;
+    line-height: 30px;
+    clear: both;
+}
+.userdetail .btn a{
+
+    display: block;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    background: #717171;
+    color: #fff;
+}
+.userdetail .btn a.fl {
+    width: 65%;
+
+}
+.userdetail .btn a.fr {
+    width: 32%;
+
+}
+
+.brand_img{
+    width:40px;
+    height: 40px;
+    display: inline-block;
+    float: left;
+    margin:8px 20px 0 0;
+
 }

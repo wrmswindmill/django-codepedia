@@ -2,12 +2,12 @@
 {% if side_question_obj.questions.count > 0 %}
     <div id="hot-question" class="module">
        <h4>Hot Question</h4>
-        {% for question in all_questions %}
-            <div class="spacer shownum show-question-num" rel="<%= qindex +=1 %>">
+        {% for question in hot_quetions %}
+            <div class="spacer shownum show-question-num" >
               <div class="answer-votes answered-accepted default">
                 {{ question.answer_set.count }}
               </div>
-              <a href="#question-{{ question.id }}" class="snippet-title"> {{ question.content|slice:"33" }}...</a>
+              <a href="#question-{{ question.id }}" class="snippet-title"> {{ question.content|slice:"33" }}</a>
          </div>
         {% endfor %}
     </div>
