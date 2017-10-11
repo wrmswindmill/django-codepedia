@@ -5,7 +5,7 @@ from django.db.models import Q
 from django.views.generic.base import View
 from .forms import RegisterForm, LoginForm
 from django.contrib.auth.hashers import make_password #把明文密码加密
-from utils.email_send import send_type_email
+from .tasks import send_type_email
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
@@ -22,6 +22,7 @@ class CustomBackend(ModelBackend):  #通过邮箱登陆
             return None
 
 
+#用户注册
 class RegisterView(View):
     def get(self, request):
         register_form = RegisterForm()
@@ -50,12 +51,13 @@ class RegisterView(View):
             user_profile.password = make_password(pwd1)
             user_profile.save()
 
-            send_type_email(user_name, 'register')
+            send_type_email.delay(user_name, 'register')
             return render(request, 'shared/login.html')
         else:
             return render(request, 'shared/register.html', {'register_form': register_form})
 
 
+#用户激活
 class ActiveView(View):
     def get(self,request,active_code):
         all_records = EmailVerifyRecord.objects.filter(code= active_code)
@@ -70,6 +72,7 @@ class ActiveView(View):
         return render(request, 'shared/login.html')
 
 
+#用户登陆
 class LoginView(View):
     def get(self, request):
         return render(request, 'shared/login.html', {})
@@ -92,13 +95,22 @@ class LoginView(View):
             return render(request, 'shared/login.html', {'login_form': login_form})
 
 
+#用户登出
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+
+        return HttpResponseRedirect(reverse('index'))
+
+
+#404页面
 def page_not_found(request):
     from django.shortcuts import render_to_response
     response = render_to_response('common/404.html',{})
     response.status_code =404
     return response
 
-
+#500错误
 def page_error(request):
     from django.shortcuts import render_to_response
     response = render_to_response('common/500.html',{})

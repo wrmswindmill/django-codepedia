@@ -1,8 +1,10 @@
 from django.conf import settings as original_settings
 from projects.models import Project, File, Function
 
+
 def settings(request):
     return {'settings': original_settings}
+
 
 def ip_address(request):
     return {'ip_address': request.META['REMOTE_ADDR']}

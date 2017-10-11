@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     'taggit',
     'projects',
     'operations',
-    'django_gravatar',
     'qa',
 
 ]
@@ -100,7 +99,8 @@ WSGI_APPLICATION = 'CodePedia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'code_pedia',
+        # 'NAME': 'code_pedia',
+        'NAME': 'code_test',
         'USER':'root',
         'PASSWORD':'111111',
         'HOST':'127.0.0.1',
@@ -143,12 +143,12 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
-
+#配置静态文件
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-
+# 配置邮件发送
 EMAIL_HOST = 'smtp.yeah.net'
 EMAIL_PORT = 25
 EMAIL_HOST_USER = 'alexkie@yeah.net'
@@ -156,5 +156,13 @@ EMAIL_HOST_PASSWORD = 'Mr8023Mr'
 EMAIL_USE_TLS = False
 EMAIL_FROM = 'alexkie@yeah.net'
 
+#配置用户上传图片
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+#配置Celery异步执行任务
+###配置Broker
+BROKER_URL = 'redis://127.0.0.1:6379/0'
+BROKER_TRANSPORT = 'redis'
+
+
