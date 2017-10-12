@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="88249845-e73d-4e3d-ba7f-109c44e3aa55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CodePedia/urls.py" afterPath="$PROJECT_DIR$/CodePedia/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/common/user_info.html" afterPath="$PROJECT_DIR$/templates/common/user_info.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/shared/navbar.html" afterPath="$PROJECT_DIR$/templates/shared/navbar.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/base.js" afterPath="$PROJECT_DIR$/static/js/base.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,23 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/CodePedia/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="40" column="14" lean-forward="false" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
-              <folding>
-                <element signature="e#643#683#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="base.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/static/js/base.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="375" column="0" lean-forward="false" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
+            <state relative-caret-position="261">
+              <caret line="392" column="36" lean-forward="false" selection-start-line="392" selection-start-column="36" selection-end-line="392" selection-end-column="36" />
               <folding>
                 <element signature="n#!!block;n#cancel#0" expanded="false" />
                 <element signature="e#166#800#0" expanded="false" />
@@ -243,7 +229,6 @@
         <option value="$PROJECT_DIR$/templates/projects/common/tag.html" />
         <option value="$PROJECT_DIR$/templates/projects/detail/mainbar.html" />
         <option value="$PROJECT_DIR$/templates/projects/list/mainbar.html" />
-        <option value="$PROJECT_DIR$/static/js/base.js" />
         <option value="$PROJECT_DIR$/apps/users/adminx.py" />
         <option value="$PROJECT_DIR$/static/css/users.css" />
         <option value="$PROJECT_DIR$/templates/projects/common/anno_stat.html" />
@@ -274,6 +259,7 @@
         <option value="$PROJECT_DIR$/CodePedia/settings.py" />
         <option value="$PROJECT_DIR$/templates/projects/common/sidebar_question.html" />
         <option value="$PROJECT_DIR$/CodePedia/urls.py" />
+        <option value="$PROJECT_DIR$/static/js/base.js" />
       </list>
     </option>
   </component>
@@ -954,32 +940,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="375" column="0" lean-forward="false" selection-start-line="375" selection-start-column="0" selection-end-line="375" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!block;n#cancel#0" expanded="false" />
-            <element signature="e#166#800#0" expanded="false" />
-            <element signature="n#!!block;n#getCookie#0" expanded="false" />
-            <element signature="n#!!block;n#answer_option_question#0" expanded="false" />
-            <element signature="n#!!block;n#add_question#0" expanded="false" />
-            <element signature="n#!!block;n#submit_answer#0" expanded="false" />
-            <element signature="n#!!block;n#submit_annotation#0" expanded="false" />
-            <element signature="n#!!block;n#submit_comment#0" expanded="false" />
-            <element signature="e#7651#8220#0" expanded="false" />
-            <element signature="e#8251#9003#0" expanded="false" />
-            <element signature="e#9027#9232#0" expanded="false" />
-            <element signature="n#!!block;n#show_more#0" expanded="false" />
-            <element signature="n#!!block;n#hide_question#0" expanded="false" />
-            <element signature="n#!!block;n#hide_last_question#0" expanded="false" />
-            <element signature="n#!!block;n#show_one_an#0" expanded="false" />
-            <element signature="n#!!block;n#show_more_ans#0" expanded="false" />
-            <element signature="n#!!block;n#hide_ans#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/apps/qa/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -1006,10 +966,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/CodePedia/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="40" column="14" lean-forward="false" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
+        <state relative-caret-position="198">
+          <caret line="29" column="71" lean-forward="true" selection-start-line="29" selection-start-column="71" selection-end-line="29" selection-end-column="71" />
           <folding>
             <element signature="e#643#683#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="392" column="36" lean-forward="false" selection-start-line="392" selection-start-column="36" selection-end-line="392" selection-end-column="36" />
+          <folding>
+            <element signature="n#!!block;n#cancel#0" expanded="false" />
+            <element signature="e#166#800#0" expanded="false" />
+            <element signature="n#!!block;n#getCookie#0" expanded="false" />
+            <element signature="n#!!block;n#answer_option_question#0" expanded="false" />
+            <element signature="n#!!block;n#add_question#0" expanded="false" />
+            <element signature="n#!!block;n#submit_answer#0" expanded="false" />
+            <element signature="n#!!block;n#submit_annotation#0" expanded="false" />
+            <element signature="n#!!block;n#submit_comment#0" expanded="false" />
+            <element signature="e#7651#8220#0" expanded="false" />
+            <element signature="e#8251#9003#0" expanded="false" />
+            <element signature="e#9027#9232#0" expanded="false" />
+            <element signature="n#!!block;n#show_more#0" expanded="false" />
+            <element signature="n#!!block;n#hide_question#0" expanded="false" />
+            <element signature="n#!!block;n#hide_last_question#0" expanded="false" />
+            <element signature="n#!!block;n#show_one_an#0" expanded="false" />
+            <element signature="n#!!block;n#show_more_ans#0" expanded="false" />
+            <element signature="n#!!block;n#hide_ans#0" expanded="false" />
           </folding>
         </state>
       </provider>

@@ -390,6 +390,7 @@ function add_vote(vote_type, vote_id,vote_value) {
            if(data.status === 'fail'){
                 if(data.msg === '用户未登录'){
                     window.location.href="/users/login/";
+                    alert(data.msg);
                 }else{
                     alert(data.msg);
                 }
