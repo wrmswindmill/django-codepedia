@@ -1,5 +1,5 @@
 from django.conf import settings as original_settings
-from projects.models import Project, File, Function
+from projects.models import Project, File, Function, Annotation
 
 
 def settings(request):
@@ -22,3 +22,9 @@ def get_web_stat(request):
 def get_hot_projects(request):
     hot_projects = Project.objects.all()[:5]
     return {'hot_projects': hot_projects}
+
+
+def get_user_anno(request,line_id):
+    annos = Annotation.objects.filter(content_type_id=20, object_id=line_id, user_id=request.user.id).first()
+    count = Annotation.objects.filter(content_type_id=20, object_id=line_id, user_id=request.user.id).count()
+    return {'user_annos': annos, 'user_anno_count': count}

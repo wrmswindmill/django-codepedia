@@ -1214,3 +1214,16 @@ white-space:nowrap;
     margin:8px 20px 0 0;
 
 }
+
+
+.option_item{
+  width:620px;
+  float: right;
+  color: #6a6c6d;
+}
+.option_name{
+  width:35px;
+}
+.option_text{
+
+}

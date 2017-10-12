@@ -3,7 +3,7 @@
 {% load base_filter %}
 
 {% for line in lines_obj %}
-     {% user_annotation_count request line.id as user_anno %}
+     {% user_annotation_count request.user.id line.id as user_anno %}
       {% if user_anno.count > 0 %}
         <div class="spaceline"></div>
       {% endif %}

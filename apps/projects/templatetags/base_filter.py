@@ -1,13 +1,15 @@
 from django import template
 from projects.models import Annotation
 from qa.models import Answer, QuestionStandardAnswers
+from users.models import UserProfile
 register = template.Library()
 
 
 @register.assignment_tag()
-def user_annotation_count(request, line):
-    annos = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = request.user.id).first()
-    count = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = request.user.id).count()
+def user_annotation_count(user, line):
+    user = UserProfile.objects.get(id = user)
+    annos = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = user.id).first()
+    count = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = user.id).count()
     return {'annos':annos, 'count':count}
 
 

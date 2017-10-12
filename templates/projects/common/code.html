@@ -4,7 +4,7 @@
   <div class="snippet-code-linenum">
     <div class='spaceline'></div>
       {% for line in lines %}
-          {% user_annotation_count request line.id as user_anno %}
+          {% user_annotation_count request.user.id line.id as user_anno %}
           {% if user_anno.count == 1 %}
             <div class="spacelinenum"></div>
           {% endif %}
@@ -14,7 +14,7 @@
   <div class="snippet-code-line">
     <div class='spaceline'>{% if  model == 'file' %}{{ file.note }}{% else %}{{ function.note }}{% endif %}</div>
     {% for line in lines_obj %}
-        {% user_annotation_count request line.id as user_anno %}
+        {% user_annotation_count request.user.id line.id as user_anno %}
            {% if user_anno.count == 1 %}
               <div class="spaceline"><pre style="display: inline">{% set_space line.code %}</pre>//{{ user_anno.annos.content }}</div>
           {% endif %}

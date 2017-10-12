@@ -12,13 +12,16 @@
               {% evaluate_user_answer request question.id as user_stat %}
                 <tbody>
                 {% for choice in question.question_choices.all %}
-                  <tr>
-                    <td class="option-item-p">
+                  <tr class='option_item'>
+                    <td class='option_name'>
                       <label id='question-{{ question.id }}-answers-{{ choice.choice_position }}' class="option-item">
                         <input type="checkbox" class='ur_radio'  name="question-{{ question.id }}-answers-check" {% if user_stat.have_answered %}disabled="disabled" {% endif %}value="{{ choice.choice_position }}">
-                               {% num_to_str choice.choice_position %}:    {{ choice.choice_text }}
+                               {% num_to_str choice.choice_position %}:
                       </label>
                     </td>
+                    <td class='option_text'>
+                        {{ choice.choice_text }}
+                  </td>
                   </tr>
                 {% endfor %}
               </tbody>
