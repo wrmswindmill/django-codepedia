@@ -4,7 +4,7 @@ from django.contrib.contenttypes.models import ContentType
 
 from projects.models import File, Function, Line, Annotation, Comment
 from qa.models import Question, Answer
-from users.models import UserProfile
+from utils.mixin_utils import LoginRequiredMixin
 from .models import UserVote
 
 
@@ -12,7 +12,7 @@ from django.http import HttpResponse
 # Create your views here.
 
 
-class UserVoteView(View):
+class UserVoteView(LoginRequiredMixin,View):
     def post(self, request):
         vote_id = request.POST.get('vote_id', 0)
         vote_type = request.POST.get('vote_type', '')
@@ -127,7 +127,7 @@ class UserVoteView(View):
                 return HttpResponse('{"status":"fail","msg":"失败"}', content_type='application/json')
 
 
-class UserAnnotationView(View):
+class UserAnnotationView(LoginRequiredMixin,View):
     def post(self, request):
         if not request.user.is_authenticated():
             return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
@@ -158,7 +158,7 @@ class UserAnnotationView(View):
             return HttpResponse('{"status":"fail","msg":"注释失败"}', content_type='application/json')
 
 
-class UserCommentView(View):
+class UserCommentView(LoginRequiredMixin,View):
     def post(self, request):
         if not request.user.is_authenticated():
             return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')

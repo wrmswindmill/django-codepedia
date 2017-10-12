@@ -4,10 +4,11 @@ from qa.models import Question, Answer, QuestionStandardAnswers
 from projects.forms import QuestionForm
 from projects.models import Function, File
 from django.http import HttpResponse
+from utils.mixin_utils import LoginRequiredMixin
 # Create your views here.
 
 
-class NewQuestionView(View):
+class NewQuestionView(LoginRequiredMixin, View):
     def post(self, request):
         if not request.user.is_authenticated():
             return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
@@ -32,7 +33,7 @@ class NewQuestionView(View):
             return HttpResponse('{"status":"fail","msg":"提问失败"}', content_type='application/json')
 
 
-class NewAnswerView(View):
+class NewAnswerView(LoginRequiredMixin, View):
     def post(self, request):
         if not request.user.is_authenticated():
             return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
@@ -50,7 +51,7 @@ class NewAnswerView(View):
             return HttpResponse('{"status":"fail","msg":"回答失败，请重新回答"}', content_type='application/json')
 
 
-class EvaluateOptionQuestion(View):
+class EvaluateOptionQuestion(LoginRequiredMixin, View):
     def post(self, request):
         if not request.user.is_authenticated():
             return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
