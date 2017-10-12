@@ -37,8 +37,9 @@ urlpatterns = [
     url(r'^methods/$', FunctionListlView.as_view(), name='method_list'),
     url(r'^qa/', include('qa.urls', namespace='qa')),
     url(r'^operations/', include('operations.urls', namespace='operations')),
+    static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 ]
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 handler404 = 'users.views.page_not_found'
 handler500 = 'users.views.page_error'
