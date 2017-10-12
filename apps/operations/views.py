@@ -133,7 +133,7 @@ class UserVoteView(View):
 class UserAnnotationView(View):
     def post(self, request):
         if not request.user.is_authenticated():
-            return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
+            return HttpResponse(json.dumps({"status":"fail","msg":"用户未登录"}), content_type='application/json')
         content = request.POST.get('content', '')
         line_id = request.POST.get('line_id', '')
         if int(line_id) > 0 and content:
@@ -164,7 +164,7 @@ class UserAnnotationView(View):
 class UserCommentView(View):
     def post(self, request):
         if not request.user.is_authenticated():
-            return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
+            return HttpResponse(json.dumps({"status":"fail","msg":"用户未登录"}), content_type='application/json')
         content = request.POST.get('content', '')
         annotation_id = request.POST.get('annotation_id', '')
         if int(annotation_id) > 0 and content:

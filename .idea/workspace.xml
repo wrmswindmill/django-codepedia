@@ -60,13 +60,11 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/operations/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
-              <caret line="163" column="22" lean-forward="false" selection-start-line="163" selection-start-column="22" selection-end-line="163" selection-end-column="22" />
+            <state relative-caret-position="332">
+              <caret line="166" column="75" lean-forward="false" selection-start-line="166" selection-start-column="75" selection-end-line="166" selection-end-column="75" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
-                <element signature="e#477#5890#0" expanded="false" />
-                <element signature="e#5929#7223#0" expanded="false" />
-                <element signature="e#7259#8271#0" expanded="false" />
+                <element signature="e#510#5890#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -75,12 +73,10 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/qa/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="53" column="29" lean-forward="false" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+            <state relative-caret-position="366">
+              <caret line="57" column="75" lean-forward="false" selection-start-line="57" selection-start-column="75" selection-end-line="57" selection-end-column="75" />
               <folding>
-                <element signature="e#360#1424#0" expanded="false" />
-                <element signature="e#1458#2242#0" expanded="false" />
-                <element signature="e#2285#3654#0" expanded="false" />
+                <element signature="e#0#35#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -451,7 +447,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="53" />
+      <option name="time" value="54" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Python.DjangoServer">
@@ -931,25 +927,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/operations/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="163" column="22" lean-forward="false" selection-start-line="163" selection-start-column="22" selection-end-line="163" selection-end-column="22" />
+        <state relative-caret-position="332">
+          <caret line="166" column="75" lean-forward="false" selection-start-line="166" selection-start-column="75" selection-end-line="166" selection-end-column="75" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
-            <element signature="e#477#5890#0" expanded="false" />
-            <element signature="e#5929#7223#0" expanded="false" />
-            <element signature="e#7259#8271#0" expanded="false" />
+            <element signature="e#510#5890#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/qa/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="53" column="29" lean-forward="false" selection-start-line="53" selection-start-column="29" selection-end-line="53" selection-end-column="29" />
+        <state relative-caret-position="366">
+          <caret line="57" column="75" lean-forward="false" selection-start-line="57" selection-start-column="75" selection-end-line="57" selection-end-column="75" />
           <folding>
-            <element signature="e#360#1424#0" expanded="false" />
-            <element signature="e#1458#2242#0" expanded="false" />
-            <element signature="e#2285#3654#0" expanded="false" />
+            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>

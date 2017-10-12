@@ -5,13 +5,14 @@ from projects.forms import QuestionForm
 from projects.models import Function, File
 from django.http import HttpResponse
 from utils.mixin_utils import LoginRequiredMixin
+import json
 # Create your views here.
 
 
 class NewQuestionView(View):
     def post(self, request):
         if not request.user.is_authenticated():
-            return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
+            return HttpResponse(json.dumps({"status":"fail","msg":"用户未登录"}), content_type='application/json')
         content = request.POST.get('content', '')
         obj_type = request.POST.get('obj_type', '')
         obj_id = request.POST.get('obj_id', '')
@@ -36,7 +37,7 @@ class NewQuestionView(View):
 class NewAnswerView(View):
     def post(self, request):
         if not request.user.is_authenticated():
-            return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
+            return HttpResponse(json.dumps({"status":"fail","msg":"用户未登录"}), content_type='application/json')
         content = request.POST.get('content', '')
         question_id = request.POST.get('question_id', '')
         if int(question_id) > 0 and content:
@@ -54,7 +55,7 @@ class NewAnswerView(View):
 class EvaluateOptionQuestion(View):
     def post(self, request):
         if not request.user.is_authenticated():
-            return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
+            return HttpResponse(json.dumps({"status":"fail","msg":"用户未登录"}), content_type='application/json')
         choices = request.POST.get('choices', '')
         question_id = request.POST.get('question_id', '')
         if int(question_id) > 0 and choices:
