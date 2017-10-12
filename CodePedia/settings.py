@@ -141,14 +141,7 @@ USE_L10N = True
 USE_TZ = False
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
-#配置静态文件
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "production_static")
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, "static"),
-)
+
 
 
 # 配置邮件发送
@@ -162,6 +155,17 @@ EMAIL_FROM = 'alexkie@yeah.net'
 #配置用户上传图片
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.11/howto/static-files/
+#配置静态文件
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "production_static")
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+    MEDIA_ROOT,
+)
 
 #配置Celery异步执行任务
 ###配置Broker

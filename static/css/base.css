@@ -821,7 +821,8 @@ pre.prettyprint{
   height:20px;
   overflow-x:hidden;
   min-width: 580px;
-  // white-space: nowrap;
+    margin: 0;
+    border: 0;
   display: inline-block;
   float: left;
 }
