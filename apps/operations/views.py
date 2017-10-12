@@ -14,7 +14,7 @@ from django.conf import settings
 # Create your views here.
 
 
-class UserVoteView(LoginRequiredMixin,View):
+class UserVoteView(View):
     def post(self, request):
         vote_id = request.POST.get('vote_id', 0)
         vote_type = request.POST.get('vote_type', '')
