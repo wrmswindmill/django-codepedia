@@ -145,7 +145,7 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 #配置静态文件
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_ROOT = os.path.join(BASE_DIR, "/var/wwww/codepedia/static")
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
