@@ -6,12 +6,12 @@ register = template.Library()
 
 
 # @register.assignment_tag(takes_context=True)
-@register.simple_tag(takes_context=True)
-def user_annotation_count(context, line):
-    user = context['request'].user
-    annos = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = user.id).first()
-    count = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = user.id).count()
-    return {'annos':annos, 'count':count}
+@register.simple_tag()
+def user_annotation_count(request, line):
+    user = request.user
+    annos = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = request.user.id).first()
+    has_anno = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = request.user.id)
+    return {'annos':annos, 'has_anno':has_anno}
 
 
 @register.simple_tag()
