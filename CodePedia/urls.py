@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^captcha/', include('captcha.urls')),
     # 配置上传文件的访问函数
     url(r'^media/(?P<path>.*)$', serve, {'document_root': MEDIA_ROOT}),
+    url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_ROOT,}),
     url(r'^users/', include('users.urls', namespace='users')),
     url(r'^projects/', include('projects.urls', namespace='projects')),
     # 所有文件
