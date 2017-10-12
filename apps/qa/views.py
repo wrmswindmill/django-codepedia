@@ -8,7 +8,7 @@ from utils.mixin_utils import LoginRequiredMixin
 # Create your views here.
 
 
-class NewQuestionView(LoginRequiredMixin, View):
+class NewQuestionView(View):
     def post(self, request):
         if not request.user.is_authenticated():
             return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
@@ -33,7 +33,7 @@ class NewQuestionView(LoginRequiredMixin, View):
             return HttpResponse('{"status":"fail","msg":"提问失败"}', content_type='application/json')
 
 
-class NewAnswerView(LoginRequiredMixin, View):
+class NewAnswerView(View):
     def post(self, request):
         if not request.user.is_authenticated():
             return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
@@ -51,7 +51,7 @@ class NewAnswerView(LoginRequiredMixin, View):
             return HttpResponse('{"status":"fail","msg":"回答失败，请重新回答"}', content_type='application/json')
 
 
-class EvaluateOptionQuestion(LoginRequiredMixin, View):
+class EvaluateOptionQuestion(View):
     def post(self, request):
         if not request.user.is_authenticated():
             return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')

@@ -130,7 +130,7 @@ class UserVoteView(View):
                 return HttpResponse('{"status":"fail","msg":"失败"}', content_type='application/json')
 
 
-class UserAnnotationView(LoginRequiredMixin,View):
+class UserAnnotationView(View):
     def post(self, request):
         if not request.user.is_authenticated():
             return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
@@ -161,7 +161,7 @@ class UserAnnotationView(LoginRequiredMixin,View):
             return HttpResponse('{"status":"fail","msg":"注释失败"}', content_type='application/json')
 
 
-class UserCommentView(LoginRequiredMixin,View):
+class UserCommentView(View):
     def post(self, request):
         if not request.user.is_authenticated():
             return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
