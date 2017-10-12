@@ -12,7 +12,7 @@
                   {{ obj.views }}
               </div>
             </a>
-             <a href="" class="snippet-title" >{{ obj.name }}</a>
+             <a href="" class="snippet-title" >{{ obj.name|slice:"33" }}</a>
          </div>
     {% endfor %}
 </div>
