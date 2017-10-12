@@ -6,12 +6,13 @@ from projects.models import File, Function, Line, Annotation, Comment
 from qa.models import Question, Answer
 from utils.mixin_utils import LoginRequiredMixin
 from .models import UserVote
+import json
 
 
 from django.http import HttpResponse
 # Create your views here.
 
-
+# return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
 class UserVoteView(LoginRequiredMixin,View):
     def post(self, request):
         vote_id = request.POST.get('vote_id', 0)
@@ -19,7 +20,7 @@ class UserVoteView(LoginRequiredMixin,View):
         vote_value = request.POST.get('vote_value', 0)
         # 判断用户是否登陆
         if not request.user.is_authenticated():
-            return HttpResponse('{"status":"fail","msg":"用户未登录"}', content_type='application/json')
+            return HttpResponse(json.dumps({"status":"fail","msg":"用户未登录"}), content_type='application/json')
         model = ContentType.objects.get(model=vote_type)
         exist_records = UserVote.objects.filter(user=request.user, vote_id=int(vote_id), vote_type=model.id)
         if exist_records:
