@@ -99,8 +99,7 @@ WSGI_APPLICATION = 'CodePedia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        # 'NAME': 'code_pedia',
-        'NAME': 'code_test',
+        'NAME': 'code_pedia',
         'USER':'root',
         'PASSWORD':'111111',
         'HOST':'127.0.0.1',
