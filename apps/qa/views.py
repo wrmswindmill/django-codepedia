@@ -25,9 +25,11 @@ class NewQuestionView(View):
             if obj_type == 'file':
                 file = File.objects.get(id=obj_id)
                 question.content_object = file
+                question.file_id = file.id
             else:
                 function = Function.objects.get(id=obj_id)
                 question.content_object = function
+                question.function_id = function.id
             question.save()
             return HttpResponse('{"status":"success","msg":"提问成功"}', content_type='application/json')
         else:
