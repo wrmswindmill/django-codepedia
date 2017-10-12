@@ -40,7 +40,7 @@
 
         <div class="new_line_annotation_{{ line.id }}" style="display: none;">
         {% if request.user.is_authenticated %}
-             {% if user_anno.count == 0 %}
+             {% if user_anno.has_anno %}
                 <div id="id_content" class="form-group" style="margin-bottom: 5px;">
                     <div class="controls ">
                         <textarea name="content" cols="40" rows="5"  class="textarea form-control" required="" id="js-anno-textarea-{{ line.id }}-1" placeholder="Type your Annotation!!! 点击其他位置即可取消。"></textarea>
