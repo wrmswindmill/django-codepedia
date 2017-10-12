@@ -14,13 +14,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url,include
-from django.contrib import admin
 import xadmin
-from django.views.generic import TemplateView
-from users.views import ActiveView
 from django.views.static import serve
 from CodePedia.settings import MEDIA_ROOT, STATIC_ROOT
 from projects.views import FileListlView, FunctionListlView
+from django.conf.urls.static import static
+from django.conf import settings
 
 urlpatterns = [
     url(r'^xadmin/', xadmin.site.urls),
@@ -40,6 +39,6 @@ urlpatterns = [
     url(r'^operations/', include('operations.urls', namespace='operations')),
 
 ]
-
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 handler404 = 'users.views.page_not_found'
 handler500 = 'users.views.page_error'
