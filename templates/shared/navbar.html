@@ -16,14 +16,14 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
           {% if  request.user.is_authenticated %}
-                <li><img width="38" height="38" style='margin-top: 5px;' src="{{ MEDIA_URL }}{{ request.user.image }}"/></li>
+                <li><img width="38" height="38" style='margin-top: 5px;' src="{{ MEDIA_ROOT }}{{ request.user.image }}"/></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{ request.user.username }}<span class="caret"></span></a>
                   <ul class="dropdown-menu">
                      <li class="userdetail">
                             <dl>
                                 <dt>
-                                    <img width="80" height="80" src="{{ MEDIA_URL }}{{ request.user.image }}"/>
+                                    <img width="80" height="80" src="{{ MEDIA_ROOT }}{{ request.user.image }}"/>
                                 </dt>
                                 <dd>
                                     <a>{{ request.user.username }}</a>

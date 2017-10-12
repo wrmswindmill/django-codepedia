@@ -38,6 +38,8 @@ urlpatterns = [
     url(r'^qa/', include('qa.urls', namespace='qa')),
     url(r'^operations/', include('operations.urls', namespace='operations')),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 
 handler404 = 'users.views.page_not_found'
 handler500 = 'users.views.page_error'
