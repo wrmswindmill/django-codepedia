@@ -9,8 +9,8 @@ register = template.Library()
 @register.simple_tag()
 def user_annotation_count(request, line):
     user = request.user
-    annos = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = request.user.id).first()
-    has_anno = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = request.user.id)
+    annos = Annotation.objects.filter(object_id=line, user_id = request.user.id).first()
+    has_anno = Annotation.objects.filter(object_id=line, user_id = request.user.id)
     return {'annos':annos, 'has_anno':has_anno}
 
 
