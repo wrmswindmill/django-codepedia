@@ -148,9 +148,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
-STATIC_ROOT = (
-    os.path.join(BASE_DIR, "static"),
-)
+STATIC_ROOT = os.path.join(BASE_DIR, "static"),
+
 # 配置邮件发送
 EMAIL_HOST = 'smtp.yeah.net'
 EMAIL_PORT = 25
