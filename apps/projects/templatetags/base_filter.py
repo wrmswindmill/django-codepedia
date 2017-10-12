@@ -5,8 +5,10 @@ from users.models import UserProfile
 register = template.Library()
 
 
-@register.assignment_tag()
-def user_annotation_count(user, line):
+# @register.assignment_tag(takes_context=True)
+@register.simple_tag(takes_context=True)
+def user_annotation_count(context, line):
+    user = context['request'].user
     annos = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = user.id).first()
     count = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = user.id).count()
     return {'annos':annos, 'count':count}
