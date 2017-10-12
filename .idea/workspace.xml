@@ -3,12 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="88249845-e73d-4e3d-ba7f-109c44e3aa55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CodePedia/context_processor.py" afterPath="$PROJECT_DIR$/CodePedia/context_processor.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/projects/templatetags/base_filter.py" afterPath="$PROJECT_DIR$/apps/projects/templatetags/base_filter.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/base.css" afterPath="$PROJECT_DIR$/static/css/base.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/projects/common/anno_stat.html" afterPath="$PROJECT_DIR$/templates/projects/common/anno_stat.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/projects/common/code.html" afterPath="$PROJECT_DIR$/templates/projects/common/code.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/qa/option_question.html" afterPath="$PROJECT_DIR$/templates/qa/option_question.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,8 +33,8 @@
       <file leaf-file-name="code.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/templates/projects/common/code.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="16" column="48" lean-forward="false" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+            <state relative-caret-position="41">
+              <caret line="6" column="47" lean-forward="false" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -46,8 +43,8 @@
       <file leaf-file-name="anno_stat.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/projects/common/anno_stat.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+            <state relative-caret-position="90">
+              <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#span#0;n#div#1;n#!!top" expanded="true" />
               </folding>
@@ -78,8 +75,8 @@
       <file leaf-file-name="base_filter.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/apps/projects/templatetags/base_filter.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="163">
-              <caret line="11" column="84" lean-forward="false" selection-start-line="11" selection-start-column="84" selection-end-line="11" selection-end-column="84" />
+            <state relative-caret-position="148">
+              <caret line="10" column="91" lean-forward="false" selection-start-line="10" selection-start-column="91" selection-end-line="10" selection-end-column="91" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -230,8 +227,8 @@
         <option value="$PROJECT_DIR$/static/css/base.css" />
         <option value="$PROJECT_DIR$/templates/qa/option_question.html" />
         <option value="$PROJECT_DIR$/CodePedia/context_processor.py" />
-        <option value="$PROJECT_DIR$/apps/projects/templatetags/base_filter.py" />
         <option value="$PROJECT_DIR$/templates/projects/common/anno_stat.html" />
+        <option value="$PROJECT_DIR$/apps/projects/templatetags/base_filter.py" />
         <option value="$PROJECT_DIR$/templates/projects/common/code.html" />
       </list>
     </option>
@@ -904,14 +901,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/projects/detail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/projects/detail/sidebar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="345">
@@ -932,8 +921,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/projects/templatetags/base_filter.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="11" column="84" lean-forward="false" selection-start-line="11" selection-start-column="84" selection-end-line="11" selection-end-column="84" />
+        <state relative-caret-position="148">
+          <caret line="10" column="91" lean-forward="false" selection-start-line="10" selection-start-column="91" selection-end-line="10" selection-end-column="91" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
           </folding>
@@ -942,18 +931,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/projects/common/anno_stat.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+        <state relative-caret-position="90">
+          <caret line="6" column="26" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#div#1;n#span#0;n#div#1;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/templates/projects/detail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/templates/projects/common/code.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="16" column="48" lean-forward="false" selection-start-line="16" selection-start-column="48" selection-end-line="16" selection-end-column="48" />
+        <state relative-caret-position="41">
+          <caret line="6" column="47" lean-forward="false" selection-start-line="6" selection-start-column="47" selection-end-line="6" selection-end-column="47" />
           <folding />
         </state>
       </provider>

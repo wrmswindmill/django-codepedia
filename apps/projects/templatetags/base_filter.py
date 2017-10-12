@@ -7,7 +7,6 @@ register = template.Library()
 
 @register.assignment_tag()
 def user_annotation_count(user, line):
-    user = UserProfile.objects.get(id = user)
     annos = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = user.id).first()
     count = Annotation.objects.filter(content_type_id=20, object_id=line, user_id = user.id).count()
     return {'annos':annos, 'count':count}
