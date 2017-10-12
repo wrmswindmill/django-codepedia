@@ -382,6 +382,7 @@ function add_vote(vote_type, vote_id,vote_value) {
       // url: "{% url 'operations:add_vote' %}",
       url: '/operations/add_vote/',
       data:{'vote_id':vote_id, 'vote_type':vote_type, 'vote_value':vote_value},
+      datatype: json,
       async: true,
       beforeSend:function(xhr, settings){
         xhr.setRequestHeader("X-CSRFToken", csrftoken);
