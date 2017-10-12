@@ -175,5 +175,4 @@ BROKER_TRANSPORT = 'redis'
 APPEND_SLASH = True
 
 
-LOGIN_REDIRECT_URL = 'http://58.20.54.202:30010/users/login/'
 
