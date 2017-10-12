@@ -20,9 +20,9 @@ class Question(models.Model):
     file_id = models.IntegerField(null=True, verbose_name=u"方法")
     vote_up = models.IntegerField(default=0, verbose_name='点赞数量')
     vote_down = models.IntegerField(default=0, verbose_name='点踩数量')
-    sonar_id = models.IntegerField(default=0, verbose_name='Sonar')
-    file_linenum = models.IntegerField(default=0, verbose_name='文件行号')
-    function_linenum = models.IntegerField(default=0, verbose_name='问题行号')
+    sonar_id = models.IntegerField(null=True, verbose_name='Sonar')
+    file_linenum = models.IntegerField(null=True, verbose_name='文件行号')
+    function_linenum = models.IntegerField(null=True, verbose_name='问题行号')
     created = models.DateField(auto_now_add=True, verbose_name=u"提问时间")
 
     class Meta:

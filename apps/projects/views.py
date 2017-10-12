@@ -8,6 +8,7 @@ from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 import json
 from django.http import JsonResponse, HttpResponse
 from .tasks import import_project
+from qa.models import Question
 
 
 #新建工程页面
@@ -199,9 +200,9 @@ class FunctionDetailView(View):
         function = Function.objects.get(id=function_id)
         function.views +=1
         function.save()
-        lines = Line.objects.filter(function_id=function_id)
-        questions = function.questions.all()
-        hot_quetions = function.questions.order_by('vote_up')[:5]
+        lines = Line.objects.filter(function_id=function.id)
+        questions = Question.objects.filter(function_id= function.id)
+        hot_quetions = Question.objects.filter(function_id= function_id).order_by('vote_up')[:5]
         question_form = QuestionForm()
         return render(request, 'projects/function.html', {'project': project,
                                                       'file': file,
