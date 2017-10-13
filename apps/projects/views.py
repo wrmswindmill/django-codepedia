@@ -9,6 +9,7 @@ import json
 from django.http import JsonResponse, HttpResponse
 from .tasks import import_project
 from qa.models import Question
+from utils.choose_question import choose_question_type_1
 
 
 #新建工程页面
@@ -177,10 +178,10 @@ class FileDetailView(View):
     def get(self, request, project_id, file_id):
         project = Project.objects.get(id=project_id)
         file = File.objects.get(id=file_id)
-        file.views +=1
+        file.views += 1
         file.save()
         lines = Line.objects.filter(file_id=file_id)
-        questions = file.questions.all()
+        questions = choose_question_type_1('file', file.id)
         hot_quetions = file.questions.order_by('vote_up')[:5]
         question_form = QuestionForm()
         return render(request, 'projects/file.html', {'project': project,
@@ -201,8 +202,8 @@ class FunctionDetailView(View):
         function.views +=1
         function.save()
         lines = Line.objects.filter(function_id=function.id)
-        questions = Question.objects.filter(function_id= function.id)
-        hot_quetions = Question.objects.filter(function_id= function_id).order_by('vote_up')[:5]
+        questions = choose_question_type_1('function', function.id)
+        hot_quetions = Question.objects.filter(function_id=function_id).order_by('vote_up')[:5]
         question_form = QuestionForm()
         return render(request, 'projects/function.html', {'project': project,
                                                       'file': file,

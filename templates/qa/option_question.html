@@ -5,7 +5,11 @@
       <div class="questionpostcell">
         <div class="post-text">
           <div class='blockquote questionblock'>
-            {{ question.content }}
+            {% if model == 'file' %}
+                {{ question.content }}
+            {% else %}
+                {{ question.function_content }}
+            {% endif %}
           </div>
           <div id="question-{{ question.id }}-answers answers">
               <table style="width:100%;">
@@ -26,7 +30,6 @@
                 {% endfor %}
               </tbody>
             </table>
-
           </div>
         </div>
       </div>

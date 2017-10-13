@@ -1,6 +1,6 @@
 from django import template
 from projects.models import Annotation
-from qa.models import Answer, QuestionStandardAnswers
+from qa.models import Answer, QuestionStandardAnswers, Question
 from users.models import UserProfile
 register = template.Library()
 
@@ -56,6 +56,19 @@ def standard_answer(question_id):
         standard_answers += chr(int(answer) + 64)
         standard_answers += ' '
     return {'standard_answers': standard_answers}
+
+
+@register.assignment_tag()
+def get_line_question(obj,line):
+    model = obj._meta.model_name
+    has_question = False
+    if model == 'file':
+        question = Question.objects.filter(file_id=obj.id, file_linenum=line.file_linenum, question_info=3).first()
+    else:
+        question = Question.objects.filter(function_id=obj.id, function_linenum=line.function_linenum, question_info=3).first()
+    if question:
+        has_question = True
+    return {'question': question, 'has_question': has_question}
 
 
 

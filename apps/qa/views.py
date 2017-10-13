@@ -22,6 +22,7 @@ class NewQuestionView(View):
             question.user = request.user
             question.question_type = '3'
             question.question_source = '2'
+            question.file_linenum = -1
             if obj_type == 'file':
                 file = File.objects.get(id=obj_id)
                 question.content_object = file

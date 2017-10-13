@@ -8,7 +8,7 @@
     </div>
     {% for question in question_objs %}
         {% if question.question_type == '1' %}
-            {% include 'qa/option_question.html' with question=question %}
+            {% include 'qa/option_question.html' with question=question model=model %}
         {% elif question.question_type == '3' %}
             {% include 'qa/brief_answers_question.html' with question=question %}
         {% endif %}

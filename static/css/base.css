@@ -25,12 +25,10 @@ body {
     background: #F5F8FA;
     min-width: 1125px
 }
+
 body{
   background-image: url('http://otkonjtde.bkt.clouddn.com/pattern@2.png');
-  background-position:0 34px;
-  background-repeat: repeat-x;
   background-color: #F5F8FA;
-  background-size: 400px 720px;
 }
 
 .container {
@@ -55,7 +53,7 @@ body{
     box-sizing: content-box;
     margin: 0 auto;
     padding: 15px;
-    width: 1110px;
+    width: 1200px;
     min-height: 450px;
     background-color: #FFF
 }
@@ -72,19 +70,18 @@ body{
 
 
 #mainbar{
-  width:768px;
+  width:850px;
   background-color: #fff;
   border-radius: 2px;
   padding: 12px 10px 20px;
-  border-radius: 2px;
   float:left;
 }
 
 
-.user-info,#snippet,.questionpostcell,.question,.snippet-code,.answerpostcell,.answer,.annotation,.annotationpostcell,.comment,#comments,.line-annotation,.snippet-stats,.spacer,#mainbar{
+.user-info,.questionpostcell,.question,.snippet-code,.answerpostcell,.answer,.annotation,.annotationpostcell,.comment,#comments,.line-annotation,.snippet-stats,.spacer{
   zoom:1;
 }
-.line-anno,.spacer,.module,#mainbar,.snippet,.project_stat{
+.line-anno,.spacer,.module,.project_stat{
   zoom:1;
 }
 
@@ -98,14 +95,14 @@ zoom:1;
   clear: both;
   visibility:hidden;
 }
-.user-info:after,#snippet:after,.questionpostcell:after,.question:after,.snippet-code:after,.answerpostcell:after,.answer:after,.annotation:after,.annotationpostcell:after,.comment:after,#comments:after,.line-annotation:after,.snippet-stats:after,.spacer:after,#mainbar:after{
+.user-info:after,.questionpostcell:after,.question:after,.snippet-code:after,.answerpostcell:after,.answer:after,.annotation:after,.annotationpostcell:after,.comment:after,#comments:after,.line-annotation:after,.snippet-stats:after,.spacer:after{
   content: ".";
   display: block;
   height: 0;
   clear: both;
   visibility:hidden;
 }
-.line-anno:after,.spacer:after,.module:after,#mainbar:after,.snippet:after,.project_stat:after{
+.line-anno:after,.spacer:after,.module:after,.project_stat:after{
   content: ".";
   display: block;
   height: 0;
@@ -747,12 +744,6 @@ vote-up:before{
 
 }
 
-.postcell{
-  float: left;
-  width:687px;
-  vertical-align: top;
-  /*margin-bottom:10px;*/
-}
 
 .questionpostcell{
   border-bottom: 2px dashed #E3E3E3;
@@ -768,13 +759,6 @@ vote-up:before{
   line-height: 1.3;
 }
 
-.blockquote{
-  width: 660px;
-  margin-bottom: 10px;
-  padding: 10px;
-  // background-color: #fff9e3;
-  border-left: 2px solid #ffeb8e;
-}
 .questionblock{
   // min-height: 80px;
 }
@@ -785,12 +769,6 @@ vote-up:before{
 }
 
 
-.snippet-code-linenum{
-  float: left;
-  width:30px;
-  background-color: #f1efec;
-  // padding: 2px;
-}
 
 .line-linenum{
   padding: 0 2px 0 2px;
@@ -803,82 +781,24 @@ vote-up:before{
 /* 滚动槽 */::-webkit-scrollbar-track {    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);  }
 /* 滚动条滑块 */::-webkit-scrollbar-thumb { background: rgba(0,0,0,0);-webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.5 );}
 ::-webkit-scrollbar-thumb:window-inactive {    background: rgba(0,0,0,0);}
-.snippet-code-line{
-  float:left;
-  height: 100%;
-  width: 590px;
-  background-color: #ffffff;
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-pre{
-    font-size: 16px;
-}
-pre.prettyprint{
-  background-color: #ffffff;
-  border-radius: 0px;
-  padding: 0 2px 0 2px;
-  height:20px;
-  overflow-x:hidden;
-  min-width: 580px;
-    margin: 0;
-    border: 0;
-  display: inline-block;
-  float: left;
-}
-pre.prettyprint span{
-  display: inline-block;
 
-}
+
 .inner-container::-webkit-scrollbar {
     display: none;
 }
 -webkit-scrollbar{width:0px}
 
-.snippet-code-addannotation{
-  float:left;
-  width: 60px;
-}
+
 .an_content{
   width:660px;
 }
-.annotation-num{
-  width:40px;
-  height:18px;
-  line-height:18px;
-  border-radius:10px;
-  font-size:12px;
-  background:#f00;
-  color:#ffffff;
-  text-align:center;
-}
 
-.snippet-code{
-  height:auto;
-  width:680px;
-  margin-bottom: 5px;
-  // background-color: #f1efec;
-  background-color: #ffffff;
-}
 
-.annotations-count{
-  background-color: #e8e3e3;
-  border-radius: 5px;
-  color: #9e9b9b;
-  border:1px;
-  font-weight: normal;
-    display: inline-block;
-}
-pre{
-  background-color: #ffffff;
-  font-size: 16px;
-}
 
 .line-annotation{
   font-size: 15px;
   padding: 2px;
   height: 20px;
-  /*// background-color: #f1efec;*/
   background-color: #ffffff;
 }
 
@@ -1019,9 +939,7 @@ a:hover{
 .qtip-bootstrap{
   max-width:1000px;
 }
-.qtip-content{
-  width:323px;
-}
+
 .qtip-content h3{
   font-size: 16px;
   text-align:center;
@@ -1217,7 +1135,7 @@ white-space:nowrap;
 
 
 .option_item{
-  width:620px;
+    width: 95%;
   float: right;
   color: #6a6c6d;
 }

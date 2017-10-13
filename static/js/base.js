@@ -297,7 +297,7 @@ $(function(){
 });
 
 // 显示更多问题
-function show_more(params){
+function show_more(){
   var visible_count = $('#question .question:visible').length-1;
   $.each($('#question .question:gt('+visible_count+'):lt(5)'),function(){
     $(this).show();
@@ -379,7 +379,6 @@ function add_vote(vote_type, vote_id,vote_value) {
     $.ajax({
       cache:false,
       type:"POST",
-      // url: "{% url 'operations:add_vote' %}",
       url: '/operations/add_vote/',
       data:{'vote_id':vote_id, 'vote_type':vote_type, 'vote_value':vote_value},
       dataType: 'json',
@@ -397,14 +396,22 @@ function add_vote(vote_type, vote_id,vote_value) {
                 }
             }else if(data.status === 'success'){
                var obj = $('.'+vote_type+'-'+vote_id+'-vote-count')
-               var count = obj.text()
+               var count = $('.'+vote_type+'-'+vote_id+'-vote-count:first').text()
                if(data.info ==='cancel'){
-                       obj.text(Number(count)+Number(data.value))
+                   $.each(obj,function(){
+                            $(this).text(Number(count)+Number(data.value))
+                       })
+
                }else{
                    if(vote_value === 1){
-                    obj.text(Number(count)+1)
+                       $.each(obj,function(){
+                            $(this).text(Number(count)+1)
+                       })
+
                    }else{
-                     obj.text(Number(count)-1)
+                     $.each(obj,function(){
+                            $(this).text(Number(count)-1)
+                       })
                    }
                }
                 alert(data.msg)

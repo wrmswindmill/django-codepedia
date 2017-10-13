@@ -1,23 +1,21 @@
 {% load base_filter %}
-
-
-    {% for annotation in line.annotations.all %}
-        <div id="annotation-{{ annotation.id }}" class="annotation" data-annotationid="{{ annotation.id }}" >
-         {% include 'common/small_vote.html' with vote_obj=annotation %}
-           <div class="postcell">
-             <div class="annotationpostcell">
-               <div class="post-text">
-                 <div class='blockquote annotationblock'>
-                     {{ annotation.content }}
-                 </div>
-               </div>
-             </div>
-             <div id="comments">
-               {% include 'projects/common/comment.html' with comment_obj=annotation %}
+{% for annotation in line.annotations.all %}
+    <div id="annotation-{{ annotation.id }}" class="annotation" data-annotationid="{{ annotation.id }}" >
+     {% include 'common/small_vote.html' with vote_obj=annotation %}
+       <div class="postcell">
+         <div class="annotationpostcell">
+           <div class="post-text">
+             <div class='blockquote annotationblock'>
+                 {{ annotation.content }}
              </div>
            </div>
-        </div>
-    {% endfor %}
+         </div>
+         <div id="comments">
+           {% include 'projects/common/comment.html' with comment_obj=annotation %}
+         </div>
+       </div>
+    </div>
+{% endfor %}
 
 
 

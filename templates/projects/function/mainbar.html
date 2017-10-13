@@ -1,12 +1,14 @@
-<div id='mainbar' role='main' aria-label='blob and question'>
-  <div class="snippet" data-fileid='{{ function.id }}' id="blob">
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/project/project.css' %}">
+<div id='mainbar' class="clear" role='main' aria-label='blob and question'>
+  <div class="snippet clear" data-fileid='{{ function.id }}' id="blob">
       {% include 'common/vote.html' with vote_obj=function %}
       <div class="postcell">
         {% include 'projects/common/summary.html' with summary_obj=function %}
-        {% include 'projects/common/code.html' with lines_obj=lines model='function' %}
+        {% include 'projects/common/code.html' with lines_obj=lines model='function' line_que_obj=function %}
         {% include 'projects/common/tag.html' with tag_obj=function %}
         {% include 'common/user_info.html' with user_obj=function %}
       </div>
   </div>
-    {% include 'qa/question.html' with question_objs=all_questions q_obj=function  %}
+    {% include 'qa/question.html' with question_objs=all_questions q_obj=function model='function' %}
 </div>
