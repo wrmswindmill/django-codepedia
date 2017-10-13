@@ -38,9 +38,7 @@
                 <img width="20" height="20" src="{% static '/image/quetsion.ico' %}" class="question_img">
              </a>
             <div style="display: none;width:728px;" id="line_{{ line.id }}_question" class="line_question_detail">
-
                     {% include 'qa/option_question.html' with question=line_question.question model=model %}
-
             </div>
         {% endif %}
          {# 添加注释图标#}
@@ -71,18 +69,23 @@
 <script type="text/javascript">
     $(function(){
   $('.line_question').each(function(){
-    var lineid = $(this).attr('rel')
+    var lineid = $(this).attr('rel');
     $(this).qtip({
             content: {
                 text: $('#line_'+ lineid+'_question')
             },
             position:{
-                my:'bottom center',
-                at:'top center'
+                my:'top left',
+{#                at:'center left',#}
+                adjust:{method:'shift',
+                        x:-300}
+
+
             },
             show:'click',
             hide: 'unfocus',
             style: {
+                      widget: true,
                       classes: 'qtip-bootstrap',
                   }
          })

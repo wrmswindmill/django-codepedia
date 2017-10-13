@@ -231,6 +231,54 @@ function submit_comment(annotation_id,name) {
     })
 }
 
+
+ //为问题添加评论
+function submit_question_comment(question_id,name) {
+    var obj= $(".controls #js-que-comment-textarea-"+question_id);
+    $.each(obj,function(){
+        content = $(this).val()
+        if(content !== ''){
+            return false
+        }
+    });
+
+    if (content === "") {
+        alert("评论不能为空");
+        return
+    }
+    //获取cookie
+    var csrftoken = getCookie('csrftoken');
+    $.ajax({
+        cache: false,
+        type: "POST",
+        url: "/qa/new_question_comment/",
+        data: {'content': content,"question_id":question_id},
+        async: true,
+        beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        },
+        success: function (data) {
+            if (data.status === 'fail') {
+                if (data.msg === '用户未登录') {
+                    window.location.href = "/users/login/";
+                } else {
+                    alert(data.msg)
+                }
+            } else if (data.status === 'success') {
+                alert('评论成功');
+                var comment_obj = $('.postcell #question_'+question_id+'_comment');
+                $.each(comment_obj,function(){
+                    $(this).append('<div class="question_comment">'+content+'<span class="pull-right"><a>'+name+'</a>    评论于刚刚</span></div>')
+                })
+                $.each(obj,function() {
+                    $(this).val()
+                })
+
+            }
+        }
+    })
+}
+
 // 显示已有注释的气泡弹窗
 $(function(){
   $('.annotations-count').each(function(){

@@ -1,0 +1,19 @@
+<div class="question_comment_a">问题评论：</div>
+<div id="question_{{ question_comment_obj.id }}_comment">
+    {% for question_comment in question_comment_obj.questioncomment_set.all %}
+        <div class="question_comment" id="question_{{ question_comment_obj.id }}_comment_{{ question_comment.id }}">
+            {{  question_comment.content }} <span class="pull-right"><a>{{ question_comment.user.username }}</a>    评论于{{ question_comment.created }}</span>
+        </div>
+    {% endfor %}
+</div>
+
+
+<div class="new_comment_{{ question_comment_obj.id }}">
+    <div id="id_content" class="form-group an-form" >
+        <div class="controls">
+            <textarea name="content" rows="1.5" class="textarea form-control" required="true" id="js-que-comment-textarea-{{ question_comment_obj.id }}" placeholder="Type Your Question Comment!"></textarea>
+        </div>
+    </div>
+    <input class="an-button" type="submit"  value="Submit" id="js-que-comment-submit-{{ question_comment_obj.id }}" onclick="submit_question_comment({{ question_comment_obj.id }},'{{ request.user.username }}')">
+    <p class="global-errortip js-global-error"></p>
+ </div>

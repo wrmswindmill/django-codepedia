@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views import View
-from qa.models import Question, Answer, QuestionStandardAnswers
+from qa.models import Question, Answer, QuestionStandardAnswers, QuestionComment
 from projects.forms import QuestionForm
 from projects.models import Function, File
 from django.http import HttpResponse
@@ -40,7 +40,7 @@ class NewQuestionView(View):
 class NewAnswerView(View):
     def post(self, request):
         if not request.user.is_authenticated():
-            return HttpResponse(json.dumps({"status":"fail","msg":"用户未登录"}), content_type='application/json')
+            return HttpResponse(json.dumps({"status": "fail", "msg": "用户未登录"}), content_type='application/json')
         content = request.POST.get('content', '')
         question_id = request.POST.get('question_id', '')
         if int(question_id) > 0 and content:
@@ -81,3 +81,19 @@ class EvaluateOptionQuestion(View):
             return HttpResponse('{"status":"fail","msg":"回答失败"}', content_type='application/json')
 
 
+class NewQuestionCommentView(View):
+    def post(self, request):
+        if not request.user.is_authenticated():
+            return HttpResponse(json.dumps({"status": "fail", "msg": "用户未登录"}), content_type='application/json')
+        content = request.POST.get('content', '')
+        question_id = request.POST.get('question_id', '')
+        if int(question_id) > 0 and content:
+            question_comment = QuestionComment()
+            question = Question.objects.get(id=question_id)
+            question_comment.question_id = question.id
+            question_comment.content =  content
+            question_comment.user = request.user
+            question_comment.save()
+            return HttpResponse('{"status":"success","msg":"评论成功"}', content_type='application/json')
+        else:
+            return HttpResponse('{"status":"fail","msg":"评论失败，请重新回答"}', content_type='application/json')

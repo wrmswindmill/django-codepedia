@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.views import View
 from .forms import NewProjectForm, QuestionForm
 from .models import Project, File, Function, Line, CallGraph, Annotation, Comment
-from users.models import UserProfile
 from suds.client import Client
 from pure_pagination import Paginator, EmptyPage, PageNotAnInteger
 import json
@@ -165,11 +164,13 @@ class PathFileView(View):
         path = request.GET.get('path','')
         file = File.objects.get(path=path)
         lines = Line.objects.filter(file_id=file.id)
-        questions = file.questions.all()
+        questions = choose_question_type_1('file', file.id)
+        questions_count = len(questions)
         return render(request, 'projects/file.html', {'project': project,
                                                       'file': file,
                                                       'lines': lines,
                                                       'all_questions': questions,
+                                                      'questions_count': questions_count,
                                                       })
 
 

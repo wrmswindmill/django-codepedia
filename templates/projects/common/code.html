@@ -5,7 +5,9 @@
     <div class='spaceline'></div>
       {% for line in lines %}
           {% user_annotation_count request line.id as user_anno %}
-            <div class="spacelinenum" style="{% if not user_anno.has_anno %}display: none;{% endif %}"></div>
+          {% if user_anno.has_anno %}
+                <div class="spacelinenum"></div>
+          {% endif %}
         <div id="linenum-{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %}" class='line-linenum line-{{ line.id }}-num' rel="{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %}">{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %}</div>
       {% endfor %}
   </div>
@@ -13,7 +15,9 @@
     <div class='spaceline'>{% if  model == 'file' %}{{ file.note }}{% else %}{{ function.note }}{% endif %}</div>
     {% for line in lines_obj %}
         {% user_annotation_count request line.id as user_anno %}
-              <div class="spaceline" style="{% if not user_anno.has_anno %}display: none;{% endif %}"><pre style="display: inline">{% set_space line.code %}</pre>//{{ user_anno.annos.content }}</div>
+            {% if user_anno.has_anno %}
+              <div class="spaceline" ><pre style="display: inline">{% set_space line.code %}</pre>//{{ user_anno.annos.content }}</div>
+            {% endif %}
           <div id="line-{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %}" class='line-anno line-{{ line.id }}-anno'>
             <pre class="prettyprint">{{ line.code }}</pre>
           </div>

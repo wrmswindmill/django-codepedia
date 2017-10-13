@@ -62,7 +62,7 @@ body{
     padding: 0
 }
 
-#mainbar h2,.mainbar h2,#mainbar h3,.mainbar h3,#mainbar h4,.mainbar h4 {
+#mainbar h2,.mainbar h2,#mainbar h3,.mainbar h3,#mainwbar h4,.mainbar h4 {
     font-weight: 400;
      vertical-align: middle;
     margin-top: 0;
@@ -75,6 +75,18 @@ body{
   border-radius: 2px;
   padding: 12px 10px 20px;
   float:left;
+}
+
+.footer{
+    background-color: #222;
+    border-color: #080808;
+    min-height: 30px;
+}
+.footer_container{
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-family: normal;
 }
 
 
@@ -1143,5 +1155,18 @@ white-space:nowrap;
   width:35px;
 }
 .option_text{
+
+}
+.question_comment_a{
+    margin-left: 5%;
+    color: #342929;
+    font-size:14px;
+}
+
+.question_comment{
+    font-size:13px;
+    color: #3f3c3c;
+    border-bottom: 2px dashed #E3E3E3;
+    margin-left: 5%;
 
 }

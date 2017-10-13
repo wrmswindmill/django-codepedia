@@ -10,6 +10,9 @@ def ip_address(request):
     return {'ip_address': request.META['REMOTE_ADDR']}
 
 
+
+
+
 def get_web_stat(request):
     project_nums = Project.objects.all().count()
     file_nums = File.objects.all().count()
@@ -28,3 +31,4 @@ def get_user_anno(request,line_id):
     annos = Annotation.objects.filter(content_type_id=20, object_id=line_id, user_id=request.user.id).first()
     count = Annotation.objects.filter(content_type_id=20, object_id=line_id, user_id=request.user.id).count()
     return {'user_annos': annos, 'user_anno_count': count}
+

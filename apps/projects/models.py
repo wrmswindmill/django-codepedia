@@ -157,8 +157,6 @@ class CallGraph(models.Model):
         verbose_name_plural = verbose_name
 
 
-
-
 class Comment(models.Model):
     content = models.TextField(default='', verbose_name='内容')
     user = models.ForeignKey(UserProfile, verbose_name='用户')

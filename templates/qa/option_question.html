@@ -36,10 +36,12 @@
         {% standard_answer question.id as standard %}
         <div class="question-{{ question.id }}-standard-answer" style="display: none">参考答案为: {{ standard.standard_answers }}</div>
         {% if user_stat.have_answered %}
-            <div style="color: {% if user_stat.correct %}green{% else %}red;{% endif %}"> 你的答案为：{{ user_stat.user_answer }}  参考答案为: {{ standard.standard_answers }}</div>
+            <div style="color: {% if user_stat.correct %}green{% else %}red;{% endif %};margin-left: 5%;"> 你的答案为：{{ user_stat.user_answer }}  参考答案为: {{ standard.standard_answers }}</div>
+             {% include 'qa/option_question_comment.html' with question_comment_obj=question %}
         {% endif %}
     </div>
     {% if user_stat.have_answered == False  %}
         <button onclick="answer_option_question({{ question.id }})" class='pull-right' id="js-question-{{ question.id }}-answer-button">Submit</button>
     {% endif %}
+
 </div>

@@ -79,6 +79,16 @@ class Answer(models.Model):
         return self.vote_up -self.vote_down
 
 
+class QuestionComment(models.Model):
+    content = models.TextField(default='', verbose_name='内容')
+    user = models.ForeignKey(UserProfile, verbose_name='用户')
+    question = models.ForeignKey(Question, verbose_name='问题')
+    created = models.DateField(auto_now_add=True, verbose_name=u"评论时间")
+
+    class Meta:
+        verbose_name = u"问题评论"
+        verbose_name_plural = verbose_name
+
 
 
 
