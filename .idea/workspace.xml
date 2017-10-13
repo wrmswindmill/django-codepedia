@@ -2,23 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="88249845-e73d-4e3d-ba7f-109c44e3aa55" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/apps/qa/migrations/0010_auto_20171013_1943.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/qa/option_question_comment.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/shared/footer.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CodePedia/context_processor.py" afterPath="$PROJECT_DIR$/CodePedia/context_processor.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CodePedia/settings.py" afterPath="$PROJECT_DIR$/CodePedia/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/projects/models.py" afterPath="$PROJECT_DIR$/apps/projects/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/projects/views.py" afterPath="$PROJECT_DIR$/apps/projects/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/qa/models.py" afterPath="$PROJECT_DIR$/apps/qa/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/qa/urls.py" afterPath="$PROJECT_DIR$/apps/qa/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/qa/views.py" afterPath="$PROJECT_DIR$/apps/qa/views.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/css/base.css" afterPath="$PROJECT_DIR$/static/css/base.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/base.js" afterPath="$PROJECT_DIR$/static/js/base.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/projects/common/anno_stat.html" afterPath="$PROJECT_DIR$/templates/projects/common/anno_stat.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/projects/common/code.html" afterPath="$PROJECT_DIR$/templates/projects/common/code.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/qa/option_question.html" afterPath="$PROJECT_DIR$/templates/qa/option_question.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/shared/base.html" afterPath="$PROJECT_DIR$/templates/shared/base.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -110,11 +95,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/CodePedia/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
               <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="base.css" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/static/css/base.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="139">
+              <caret line="131" column="13" lean-forward="false" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -237,13 +232,13 @@
         <option value="$PROJECT_DIR$/apps/qa/views.py" />
         <option value="$PROJECT_DIR$/apps/qa/urls.py" />
         <option value="$PROJECT_DIR$/apps/qa/models.py" />
-        <option value="$PROJECT_DIR$/static/css/base.css" />
         <option value="$PROJECT_DIR$/templates/qa/option_question.html" />
         <option value="$PROJECT_DIR$/templates/qa/option_question_comment.html" />
         <option value="$PROJECT_DIR$/templates/projects/common/code.html" />
         <option value="$PROJECT_DIR$/static/js/base.js" />
         <option value="$PROJECT_DIR$/templates/projects/common/anno_stat.html" />
         <option value="$PROJECT_DIR$/CodePedia/settings.py" />
+        <option value="$PROJECT_DIR$/static/css/base.css" />
       </list>
     </option>
   </component>
@@ -315,12 +310,13 @@
             <path>
               <item name="CodePedia" type="b2602c69:ProjectViewProjectNode" />
               <item name="CodePedia" type="462c0819:PsiDirectoryNode" />
-              <item name="CodePedia" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="CodePedia" type="b2602c69:ProjectViewProjectNode" />
               <item name="CodePedia" type="462c0819:PsiDirectoryNode" />
               <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -832,14 +828,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/css/base.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="1159" column="1" lean-forward="true" selection-start-line="1159" selection-start-column="1" selection-end-line="1159" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/projects/common/code.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="178">
@@ -921,6 +909,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
           <caret line="29" column="13" lean-forward="false" selection-start-line="29" selection-start-column="13" selection-end-line="29" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/base.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="139">
+          <caret line="131" column="13" lean-forward="false" selection-start-line="131" selection-start-column="13" selection-end-line="131" selection-end-column="13" />
           <folding />
         </state>
       </provider>
