@@ -1,0 +1,433 @@
+// 点击cancel 关闭输入框
+function cancel(){
+  $('.cancel-button').parent('div').prev('a').show();
+  $('.cancel-button').parent('div').hide();
+
+}
+
+// 添加注释按钮的显示隐藏
+$(function(){
+    var snippetline = $('.snippet-code-line div');
+    $.each(snippetline,function(n,element){
+      var linenum = n + 1;
+      $('#line-'+linenum).hover(function(){
+        $('#addannotation_'+linenum).show();
+      },function(){
+        $('#addannotation_'+linenum).hide();
+      })
+    })
+
+    var lineannotation = $('.snippet-code-addannotation .line-annotation');
+    $.each(lineannotation,function(n,element){
+      var linenum = n + 1;
+      $('#line-'+linenum+'-addannotation').hover(function(){
+        $('#addannotation_'+linenum).show();
+      },function(){
+        $('#addannotation_'+linenum).hide();
+      })
+    })
+
+});
+
+//获取cookie
+function getCookie(name) {
+     var cookieValue = null;
+     if (document.cookie && document.cookie != '') {
+         var cookies = document.cookie.split(';');
+         for (var i = 0; i < cookies.length; i++) {
+             var cookie = jQuery.trim(cookies[i]);
+             // Does this cookie string begin with the name we want?
+             if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                 cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                 break;
+             }
+         }
+     }
+     return cookieValue;
+ }
+
+//单项选择题提交答案
+function answer_option_question(question_id){
+        var question_id = question_id
+        var option_obj = document.getElementsByName('question-'+question_id+'-answers-check')
+        var user_choices = ''
+        for(var i=0; i< option_obj.length;i++){
+              if(option_obj[i].checked) user_choices += option_obj[i].value
+        }
+        if(user_choices === ""){
+            alert("选择不能为空")
+            return
+        }
+        //获取cookie
+        var csrftoken = getCookie('csrftoken');
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url:"/qa/evaluate_answer/",
+            data:{'choices':user_choices,'question_id':question_id},
+            async: true,
+             beforeSend: function(xhr, settings) {
+              xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            },
+
+            success: function(data) {
+                if(data.status === 'fail'){
+                    if(data.msg === '用户未登录'){
+                        window.location.href="/users/login/";
+                    }else{
+                        alert(data.msg)
+                    }
+                }else if(data.status === 'success'){
+                    alert(data.msg);
+                    $.each(option_obj,function () {
+                        $(this).attr("disabled",true);
+                    });
+                    $('.question-'+question_id+'-standard-answer').show();
+                    $('#js-question-'+question_id+'-answer-button').hide();
+                }
+            }
+        });
+}
+
+// 用户提问
+function add_question(question_obj_type, question_obj_id) {
+    var content = $("#js-que-textarea").val();
+    if(content === ""){
+        alert("问题不能为空")
+        return
+    }
+    //获取cookie
+        var csrftoken = getCookie('csrftoken');
+    $.ajax({
+        cache: false,
+        type: "POST",
+        url:"/qa/new_question/",
+        data:{'content':content,'obj_type':question_obj_type,'obj_id':question_obj_id},
+        async: true,
+        beforeSend:function(xhr, settings){
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        },
+        success: function(data) {
+            if(data.status === 'fail'){
+                if(data.msg ==='用户未登录'){
+                    window.location.href="/users/login/";
+                }else{
+                    alert(data.msg)
+                }
+            }else if(data.status === 'success'){
+                window.location.reload();//刷新当前页面.
+            }
+        }
+    });
+}
+
+// 问答题答案提交
+function submit_answer(answer_obj_id) {
+        var content = $("#js-ans-textarea-"+answer_obj_id).val();
+        question_id = answer_obj_id;
+        if(content === ""){
+            alert("答案不能为空");
+            return
+        }
+         //获取cookie
+        var csrftoken = getCookie('csrftoken');
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url:"/qa/new_answer/",
+            data:{'content':content,'question_id':question_id},
+            async: true,
+            beforeSend:function(xhr, settings){
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            },
+            success: function(data) {
+                if(data.status === 'fail'){
+                    if(data.msg === '用户未登录'){
+                        window.location.href="/users/login/";
+                    }else{
+                        alert(data.msg)
+                    }
+                }else if(data.status === 'success'){
+                   alert(data.msg)
+                    window.location.reload();//刷新当前页面.
+                }
+            }
+        });
+    }
+
+//提交注释
+function submit_annotation(line_id,type) {
+    var content = ''
+    if (type === 0){
+        content = $("#js-anno-textarea-"+line_id+'-0').val();
+    }else{
+        content = $("#js-anno-textarea-"+line_id+'-1').val();
+    }
+    if(content === ""){
+        alert("注释不能为空")
+        return
+    }
+    //获取cookie
+    var csrftoken = getCookie('csrftoken');
+    $.ajax({
+        cache: false,
+        type: "POST",
+        url:"/operations/new_annotation/",
+        data:{'content':content,'line_id':line_id},
+        async: true,
+        beforeSend:function(xhr, settings){
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        },
+        success: function(data) {
+            if(data.status === 'fail'){
+                if(data.msg === '用户未登录'){
+                    window.location.href="/users/login/";
+                }else{
+                    alert(data.msg)
+                }
+            }else if(data.status ==='success'){
+                alert(data.msg)
+                $('.qtip-content .new_line_annotation_'+line_id).html('您已经成功添加了注释');
+                $('.line-'+line_id+'-num').before('<div class="spacelinenum"></div>');
+                $('.line-'+line_id+'-anno').before('<div class="spaceline">    //'+content+'</div>');
+                $('.line-'+line_id+'-addanno').before('<div class="spaceline"></div>');
+            }
+        }
+    });
+}
+
+ //为注释添加评论
+function submit_comment(annotation_id,name) {
+    var content = $("#js-comment-textarea-"+annotation_id).val();
+    if (content === "") {
+        alert("评论不能为空");
+        return
+    }
+    //获取cookie
+    var csrftoken = getCookie('csrftoken');
+    $.ajax({
+        cache: false,
+        type: "POST",
+        url: "/operations/new_comment/",
+        data: {'content': content,"annotation_id":annotation_id},
+        async: true,
+        beforeSend: function (xhr, settings) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        },
+        success: function (data) {
+            if (data.status === 'fail') {
+                if (data.msg === '用户未登录') {
+                    window.location.href = "/users/login/";
+                } else {
+                    alert(data.msg)
+                }
+            } else if (data.status === 'success') {
+                alert('评论成功');
+                $('#annotation-'+annotation_id+' .postcell #comments').prepend('<div class="comment"><div class="postcell">' + content + '<span class="pull-right"><a>' + name + '</a>--刚刚</span></div></div>')
+                $('.new_comment_'+annotation_id).hide();
+                $('#new_annotation_comment_'+annotation_id).show();
+            }
+        }
+    })
+}
+
+// 显示已有注释的气泡弹窗
+$(function(){
+  $('.annotations-count').each(function(){
+    var lineid = $(this).attr('rel')
+    $(this).qtip({
+            content: {
+                text: $('.line-'+ lineid+'-annotation')
+            },
+            position:{
+                my:'left center',
+                adjust: {
+                    x: 50
+                }
+            },
+            show:'click',
+            hide: 'unfocus',
+            style: {
+                      widget: true,
+                      classes: 'qtip-bootstrap',
+                      width:330
+
+                  }
+         })
+  })
+});
+
+// 添加代码注释的气泡弹窗
+$(function(){
+    $('.add_line_annotation').each(function(){
+      var lineid = $(this).attr('rel');
+    $(this).qtip({
+            content: {
+                    text: $('.new_line_annotation_'+ lineid )
+                },
+            position: {
+                my:'left top',
+                viewport: $(window),
+                adjust: {
+                    x: 30
+                }
+            },
+            show: {
+                event: 'click',
+                solo: true // Only show one tooltip at a time
+                },
+            hide: 'unfocus',
+            style: {
+                      widget: true,
+                      classes: 'qtip-bootstrap'
+                  }
+         });
+       }).click(function(event) { event.preventDefault(); });
+});
+
+// 显示问题
+$(function(){
+  $.each($('#question .question:lt(5)'),function(){
+    $(this).show();
+  });
+  var question_count = $('#question .question').length;
+  if (question_count < 5 ) {
+    $('.show-more-button').hide();
+  }
+});
+
+// 显示更多问题
+function show_more(){
+  var visible_count = $('#question .question:visible').length-1;
+  $.each($('#question .question:gt('+visible_count+'):lt(5)'),function(){
+    $(this).show();
+    $('#question .question:visible:last').css('margin-bottom','0px')
+    if ($('#question .question:visible').length == $('#question .question').length ) {
+      var que1 = $('#question .question:visible');
+      if(que1.length >5){
+         $('.hide-last-button').show();
+      }
+
+      $('.hide-button').show();
+      $('.show-more-button').hide();
+    }
+  })
+}
+// 隐藏多余问题,只显示一个
+function hide_question(){
+  $.each($('#question .question:gt(0)'),function(){
+    $('#question .question:visible:last').css('margin-bottom','0px');
+    $(this).hide();
+    $('.show-more-button').show();
+    $('.hide-button').hide();
+    $('.hide-last-button').hide();
+  })
+}
+
+// 隐藏最后五个显示的问题问题
+function hide_last_question(){
+    var que = $('#question .question:visible');
+    $('#question .question:visible').slice(que.length-5,que.length).hide();
+    var que1 = $('#question .question:visible');
+    if(que1.length < 5){
+        $('.hide-last-button').hide();
+        $('.show-more-button').show();
+        $('.hide-button').hide();
+    }
+}
+
+//显示一个问答题答案
+function show_one_an(params){
+  $.each($('#question-'+params+' #answers .answer:lt(1)'),function(){
+    $(this).show();
+   $('#question-'+params+' #answers .answer:visible:last').css('margin-bottom','0px');
+  });
+  var answer_count = $('#question-'+params+' #answers .answer').length;
+  if (answer_count < 2 ) {
+    $('.show-more-ans-button-'+params).hide();
+  }
+}
+
+//显示更多答案
+function show_more_ans(params){
+  var visible_count = $('#question-'+params+' #answers .answer:visible').length-1;
+  $.each($('#question-'+params+' #answers .answer:gt('+visible_count+'):lt(3)'),function(){
+    $(this).show();
+    $('#question-'+params+' #answers .answer:visible:last').css('margin-bottom','0px');
+    if ($('#question-'+params+' #answers .answer:visible').length == $('#question-'+params+' #answers .answer').length ) {
+      $('.hide-ans-button-'+params).show();
+      $('.show-more-ans-button-'+params).hide();
+    }
+  })
+}
+
+//隐藏多余答案
+function hide_ans(params){
+  $.each($('#question-'+params+' #answers .answer:gt(0)'),function(){
+    $('#question-'+params+' #answers .answer:visible:last').css('margin-bottom','0px');
+    $(this).hide();
+
+  });
+  $('.show-more-ans-button-'+params).show();
+  $('.hide-ans-button-'+params).hide();
+}
+
+// 点赞功能
+function add_vote(vote_type, vote_id,vote_value) {
+     //获取cookie
+    var csrftoken = getCookie('csrftoken');
+    $.ajax({
+      cache:false,
+      type:"POST",
+      url: '/operations/add_vote/',
+      data:{'vote_id':vote_id, 'vote_type':vote_type, 'vote_value':vote_value},
+      dataType: 'json',
+      async: true,
+      beforeSend:function(xhr, settings){
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      },
+      success:function (data) {
+           if(data.status === 'fail'){
+                if(data.msg === '用户未登录'){
+                    window.location.href="/users/login/";
+                    alert(data.msg);
+                }else{
+                    alert(data.msg);
+                }
+            }else if(data.status === 'success'){
+               var obj = $('.'+vote_type+'-'+vote_id+'-vote-count')
+               var count = $('.'+vote_type+'-'+vote_id+'-vote-count:first').text()
+               if(data.info ==='cancel'){
+                   $.each(obj,function(){
+                            $(this).text(Number(count)+Number(data.value))
+                       })
+
+               }else{
+                   if(vote_value === 1){
+                       $.each(obj,function(){
+                            $(this).text(Number(count)+1)
+                       })
+
+                   }else{
+                     $.each(obj,function(){
+                            $(this).text(Number(count)-1)
+                       })
+                   }
+               }
+                alert(data.msg)
+            }
+      }
+    });
+}
+
+// 搜索选中当前页面所在树结构的位置
+function getCurrentPath(file){
+    event.preventDefault();
+    $("#method_tree").jstree(true).search(file,false, false, '#j1_1');
+}
+// 获取链接李的属性
+function getUrlParam(name) {
+   var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+   var r = window.location.search.substr(1).match(reg); //匹配目标参数
+   if (r !== null) return unescape(r[2]); return null; //返回参数值
+  }
