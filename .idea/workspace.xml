@@ -51,8 +51,8 @@
       <file leaf-file-name="choose_question.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/utils/choose_question.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="22" column="21" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="22" selection-end-column="21" />
+            <state relative-caret-position="293">
+              <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -907,8 +907,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/utils/choose_question.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="22" column="21" lean-forward="false" selection-start-line="21" selection-start-column="8" selection-end-line="22" selection-end-column="21" />
+        <state relative-caret-position="293">
+          <caret line="21" column="20" lean-forward="true" selection-start-line="21" selection-start-column="20" selection-end-line="21" selection-end-column="20" />
           <folding />
         </state>
       </provider>

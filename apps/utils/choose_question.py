@@ -16,7 +16,8 @@ def choose_question_type_1(model, id):
     all_linenums=set(all_linenums)
     all_questions = []
     for linenum in all_linenums:
-
+        if linenum == 0:
+            question = Question.objects.get(file_id=id, file_linenum=linenum)
         if linenum == -1:
             continue
         if index > 3:
