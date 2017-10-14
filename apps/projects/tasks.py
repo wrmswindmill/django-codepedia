@@ -13,7 +13,6 @@ def import_project(obj_id):
     response = client.service.getMethodAndCallGraph(project_path)
     response = ast.literal_eval(response)
     blobs = response['files']
-    print(blobs[0]['code'])
     methods = response['methods']
     callees = response['callees']
     # 导入文件
@@ -57,9 +56,9 @@ def import_project(obj_id):
             codeline.save()
 
     for callee in callees:
-        callee_function = Function.objects.get(project_id=project_id, function_index=callee['index'])
+        callee_function = Function.objects.filter(project_id=project_id, function_index=callee['index']).first()
         for caller in callee['caller_indexs']:
-            caller_function = Function.objects.get(project_id=project_id, function_index=caller)
+            caller_function = Function.objects.filter(project_id=project_id, function_index=caller).first()
             callgraph = CallGraph()
             callgraph.callee_function = callee_function
             callgraph.caller_function = caller_function

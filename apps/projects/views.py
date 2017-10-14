@@ -9,7 +9,7 @@ from django.http import JsonResponse, HttpResponse
 from .tasks import import_project
 from qa.models import Question
 from utils.choose_question import choose_question_type_1
-
+import ast
 
 #新建工程页面
 class NewProjectView(View):
