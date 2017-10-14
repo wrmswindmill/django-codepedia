@@ -1,5 +1,5 @@
 from .models import Project, Function, File, Line, CallGraph
-import json
+import ast
 from suds.client import Client
 from CodePedia.celery import app
 
@@ -11,7 +11,7 @@ def import_project(obj_id):
     project_id = project.id
     client = Client('http://localhost:7778/pro?wsdl')
     response = client.service.getMethodAndCallGraph(project_path)
-    response = json.loads(response)
+    response = ast.literal_eval(response)
     blobs = response['files']
     print(blobs[0]['code'])
     methods = response['methods']
