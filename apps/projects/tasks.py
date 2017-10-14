@@ -13,6 +13,7 @@ def import_project(obj_id):
     response = client.service.getMethodAndCallGraph(project_path)
     response = json.loads(response)
     blobs = response['files']
+    print(blobs[0]['code'])
     methods = response['methods']
     callees = response['callees']
     # 导入文件
