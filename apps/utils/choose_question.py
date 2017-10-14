@@ -12,7 +12,7 @@ def choose_question_type_1(model, id):
     all_linenums_tuple = list(all_questions_origin.values_list('file_linenum').distinct())
     for linenum in all_linenums_tuple:
         all_linenums.append(linenum[0])
-    index = 0
+    index = 1
     all_linenums=set(all_linenums)
     all_questions = []
     for linenum in all_linenums:
@@ -26,8 +26,8 @@ def choose_question_type_1(model, id):
             question = Question.objects.get(function_id=id, file_linenum=linenum, question_info=index)
             index += 1
         all_questions.append(question)
-        if index == 2:
-            index = 0
+        if index == 3:
+            index = 1
     for linenum in all_linenums:
         if linenum == -1 :
             if model == 'file':
