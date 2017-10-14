@@ -16,18 +16,19 @@ def choose_question_type_1(model, id):
     all_linenums=set(all_linenums)
     all_questions = []
     for linenum in all_linenums:
+
         if linenum == -1:
             continue
+        if index > 3:
+            index = 1
         if model == 'file':
             question =  Question.objects.get(file_id=id, file_linenum=linenum, question_info=index)
-            index += 1
-
         else:
             question = Question.objects.get(function_id=id, file_linenum=linenum, question_info=index)
-            index += 1
+        index += 1
         all_questions.append(question)
-        if index == 3:
-            index = 1
+
+
     for linenum in all_linenums:
         if linenum == -1 :
             if model == 'file':
