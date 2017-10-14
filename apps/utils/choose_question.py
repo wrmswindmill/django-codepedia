@@ -12,26 +12,21 @@ def choose_question_type_1(model, id):
     all_linenums_tuple = list(all_questions_origin.distinct().values_list('file_linenum'))
     for linenum in all_linenums_tuple:
         all_linenums.append(linenum[0])
-    index = 1
+    index = 0
     all_questions = []
     for linenum in all_linenums:
         if linenum == -1:
             continue
         if model == 'file':
-            if Question.objects.get(file_id=id, file_linenum=linenum, question_source=1, question_info=index):
-                question = Question.objects.get(file_id=id, file_linenum=linenum, question_source=1, question_info=index)
-                index += 1
-            else:
-                question = Question.objects.filter(file_id=id, file_linenum=linenum).first()
+            question =  Question.objects.filter(file_id=id, file_linenum=linenum)[index]
+            index += 1
+
         else:
-            if Question.objects.get(function_id=id, file_linenum=linenum, question_source=1, question_info=index):
-                question = Question.objects.get(function_id=id, file_linenum=linenum, question_source=1, question_info=index)
-                index += 1
-            else:
-                question = Question.objects.filter(function_id=id, file_linenum=linenum).first()
+            question = Question.objects.get(function_id=id, file_linenum=linenum)[index]
+            index += 1
         all_questions.append(question)
-        if index == 3:
-            index = 1
+        if index == 2:
+            index = 0
     for linenum in all_linenums:
         if linenum == -1 :
             if model == 'file':
