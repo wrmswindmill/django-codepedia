@@ -35,14 +35,15 @@
         {% get_line_question line_que_obj line as line_question %}
         {% if line_question.has_question %}
              <a id="line_{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %}_question_button" rel="{{ line.id }}" class="line_question">
-                <img width="20" height="20" src="{% static '/image/quetsion.ico' %}" class="question_img">
+                 <div class="question_img"></div>
+{#                 <img width="20" height="20" src="{% static '/image/quetsion.ico' %}" class="">#}
              </a>
             <div style="display: none;width:728px;" id="line_{{ line.id }}_question" class="line_question_detail">
                     {% include 'qa/option_question.html' with question=line_question.question model=model %}
             </div>
         {% endif %}
          {# 添加注释图标#}
-        <a id="addannotation_{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %}" rel="{{ line.id }}" class='add_line_annotation' style="display:none; ">
+        <a id="addannotation_{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %}" rel="{{ line.id }}" class='add_line_annotation' style="display:none;">
           <img src="{% static '/image/add.png' %}" class="add_anno_img">
         </a>
         {#    添加注释框    #}
@@ -78,7 +79,7 @@
                 my:'top left',
 {#                at:'center left',#}
                 adjust:{method:'shift',
-                        x:-300}
+                        x:-350}
 
 
             },

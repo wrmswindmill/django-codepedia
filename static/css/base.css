@@ -813,12 +813,7 @@ vote-up:before{
 
 
 
-.line-annotation{
-  font-size: 15px;
-  padding: 2px;
-  height: 20px;
-  background-color: #ffffff;
-}
+
 
 #questions-header {
     margin-top: 10px;
@@ -845,10 +840,7 @@ vote-up:before{
   width:50px;
 }
 
-.add_line_annotation{
-  float: right;
-    height: 20px;
-}
+
 
 .answerpostcell{
   // margin-bottom: 15px;
@@ -1072,12 +1064,7 @@ white-space:nowrap;
     font-weight: normal;
 }
 
-.add_anno_img{
-    height: 15px;
-    width: 15px;
-    vertical-align:top;
-    margin-top: 2px;
-}
+
 .sort_item{
     border-bottom: 3px solid #0a6aa1 !important;
     color: #0a6aa1 !important;
