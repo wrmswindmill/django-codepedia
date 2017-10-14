@@ -9,10 +9,11 @@ def choose_question_type_1(model, id):
     else:
         all_questions_origin = Question.objects.filter(function_id=id)
     all_linenums = []
-    all_linenums_tuple = list(all_questions_origin.distinct().values_list('file_linenum'))
+    all_linenums_tuple = list(all_questions_origin.values_list('file_linenum').distinct())
     for linenum in all_linenums_tuple:
         all_linenums.append(linenum[0])
     index = 0
+    all_linenums=set(all_linenums)
     all_questions = []
     for linenum in all_linenums:
         if linenum == -1:
