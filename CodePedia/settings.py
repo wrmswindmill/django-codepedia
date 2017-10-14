@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'projects',
     'operations',
     'qa',
+    'gunicorn',
 
 ]
 

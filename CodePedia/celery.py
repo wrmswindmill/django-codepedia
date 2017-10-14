@@ -13,6 +13,6 @@ app.config_from_object('django.conf:settings')
 app.autodiscover_tasks()
 
 
-@app.task(bind=True)
+@app.task(biwnd=True)
 def debug_task(self):
   print('Request: {0!r}'.format(self.request))
