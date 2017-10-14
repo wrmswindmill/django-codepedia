@@ -26,6 +26,7 @@ def import_project(obj_id):
         if 'comment' in blob.keys():
             file.note = blob['comment']
         file.code = blob['code']
+        print(file.code)
         file.file_index = blob['id']
         file.save()
         project.files += 1
