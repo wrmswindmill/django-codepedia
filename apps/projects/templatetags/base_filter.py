@@ -31,6 +31,7 @@ def num_to_str(obj):
     ch = chr(int(obj)+64)
     return ch
 
+
 @register.assignment_tag()
 def evaluate_user_answer(request, question_id):
     answers = Answer.objects.filter(question_id=question_id, user_id=request.user.id).first()
@@ -48,6 +49,7 @@ def evaluate_user_answer(request, question_id):
             correct = True
     return {'user_answer':user_answer,'have_answered':have_answered,"correct":correct}
 
+
 @register.assignment_tag()
 def standard_answer(question_id):
     answers = QuestionStandardAnswers.objects.filter(question_id=question_id).first()
@@ -58,17 +60,33 @@ def standard_answer(question_id):
     return {'standard_answers': standard_answers}
 
 
+@register.simple_tag()
+def set_index_initial():
+    index = 1
+    return index
+
+
+@register.simple_tag()
+def set_index(index):
+    index += 1
+    return index
+
+
 @register.assignment_tag()
-def get_line_question(obj,line):
+def get_line_question(obj, line, index):
     model = obj._meta.model_name
     has_question = False
     if model == 'file':
-        question = Question.objects.filter(file_id=obj.id, file_linenum=line.file_linenum, question_info=3).first()
+        question = Question.objects.filter(file_id=obj.id, file_linenum=line.file_linenum, question_info=index).first()
     else:
-        question = Question.objects.filter(function_id=obj.id, function_linenum=line.function_linenum, question_info=3).first()
+        question = Question.objects.filter(function_id=obj.id, function_linenum=line.function_linenum, question_info=index).first()
     if question:
         has_question = True
-    return {'question': question, 'has_question': has_question}
+        if index == 3:
+            index = 1
+        else:
+            index = index + 1
+    return {'question': question, 'has_question': has_question, 'index': index}
 
 
 

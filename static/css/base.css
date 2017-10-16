@@ -201,13 +201,13 @@ h2{
   float: left;
   margin-bottom: 20px;
   clear:both;
-  width: 728px;
+  width: 100%;
 }
 .snippet-summary{
     overflow: hidden;
     padding: 15px 0;
     float: left;
-    width: 728px;
+    width: 100%;
     border-bottom: 1px solid #eff0f1
 }
 .statscontainer {
@@ -312,7 +312,7 @@ h2{
 
 .summary {
     float: left;
-    width: 590px
+    width: 680px
 }
 .items{
   float:right;

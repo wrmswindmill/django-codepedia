@@ -1,5 +1,6 @@
 {% load static %}
 {% load base_filter %}
+{% set_index_initial  as index %}
 {% for line in lines_obj %}
      {% user_annotation_count request line.id as user_anno %}
      {% if  user_anno.has_anno %}<div class="spaceline" ></div>{% endif %}
@@ -32,11 +33,16 @@
               </div>
           </span>
         {# 查看问题图标 #}
-        {% get_line_question line_que_obj line as line_question %}
+         {% if line_question.index %}
+             {% get_line_question line_que_obj line line_question.index as line_question %}
+         {% else %}
+              {% get_line_question line_que_obj line index as line_question %}
+         {% endif %}
+
         {% if line_question.has_question %}
              <a id="line_{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %}_question_button" rel="{{ line.id }}" class="line_question">
-                 <div class="question_img"></div>
-{#                 <img width="20" height="20" src="{% static '/image/quetsion.ico' %}" class="">#}
+{#                 <div class="question_img"></div>#}
+             {{ line_question.index }}
              </a>
             <div style="display: none;width:728px;" id="line_{{ line.id }}_question" class="line_question_detail">
                     {% include 'qa/option_question.html' with question=line_question.question model=model %}

@@ -24,9 +24,9 @@ def choose_question_type_1(model, id):
             if index > 3:
                 index = 1
             if model == 'file':
-                question =  Question.objects.get(file_id=id, file_linenum=linenum, question_info=index)
+                question = Question.objects.filter(file_id=id, file_linenum=linenum, question_info=index).first()
             else:
-                question = Question.objects.get(function_id=id, file_linenum=linenum, question_info=index)
+                question = Question.objects.filter(function_id=id, file_linenum=linenum, question_info=index).first()
             index += 1
         all_questions.append(question)
 
