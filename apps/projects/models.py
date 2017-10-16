@@ -94,6 +94,7 @@ class Function(models.Model):
     class Meta:
         verbose_name = "函数"
         verbose_name_plural = verbose_name
+        ordering = ['-views']
 
     def __str__(self):
         return '函数{0}_{1}'.format(self.id, self.name)
