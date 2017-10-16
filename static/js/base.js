@@ -191,6 +191,9 @@ function submit_annotation(line_id,type) {
                 $('.line-'+line_id+'-num').before('<div class="spacelinenum"></div>');
                 $('.line-'+line_id+'-anno').before('<div class="spaceline">    //'+content+'</div>');
                 $('.line-'+line_id+'-addanno').before('<div class="spaceline"></div>');
+                 $('#show-'+ line_id+'-annotation').click();
+               $('#show-'+ line_id+'-annotation').removeAttr('onclick');
+               $('#show-'+ line_id+'-annotation').click();
             }
         }
     });
@@ -280,30 +283,30 @@ function submit_question_comment(question_id,name) {
 }
 
 // 显示已有注释的气泡弹窗
-$(function(){
-  $('.annotations-count').each(function(){
-    var lineid = $(this).attr('rel')
-    $(this).qtip({
-            content: {
-                text: $('.line-'+ lineid+'-annotation')
-            },
-            position:{
-                my:'left center',
-                adjust: {
-                    x: 50
-                }
-            },
-            show:'click',
-            hide: 'unfocus',
-            style: {
-                      widget: true,
-                      classes: 'qtip-bootstrap',
-                      width:330
-
-                  }
-         })
-  })
-});
+// $(function(){
+//   $('.annotations-count').each(function(){
+//     var lineid = $(this).attr('rel')
+//     $(this).qtip({
+//             content: {
+//                 text: $('.line-'+ lineid+'-annotation')
+//             },
+//             position:{
+//                 my:'left center',
+//                 adjust: {
+//                     x: 50
+//                 }
+//             },
+//             show:'click',
+//             hide: 'unfocus',
+//             style: {
+//                       widget: true,
+//                       classes: 'qtip-bootstrap',
+//                       width:330
+//
+//                   }
+//          })
+//   })
+// });
 
 // 添加代码注释的气泡弹窗
 $(function(){
@@ -478,4 +481,54 @@ function getUrlParam(name) {
    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
    var r = window.location.search.substr(1).match(reg); //匹配目标参数
    if (r !== null) return unescape(r[2]); return null; //返回参数值
+  }
+
+  //显示注释
+  function show_annotation(line_id,user_id,linenum) {
+     var csrftoken = getCookie('csrftoken');
+    $.ajax({
+      cache:false,
+      type:"POST",
+      url: '/operations/judge_user_annotation/',
+      data:{'line_id':line_id, 'user_id':user_id},
+      dataType: 'json',
+      async: true,
+      beforeSend:function(xhr, settings){
+        xhr.setRequestHeader("X-CSRFToken", csrftoken);
+      },
+      success:function (data) {
+           if(data.status === 'fail'){
+                if(data.msg === '用户未登录'){
+                    window.location.href="/users/login/";
+
+                }else{
+                    alert(data.msg);
+                }
+            }else if(data.status === 'success_1'){
+              $('#show-'+ line_id+'-annotation').removeAttr('onclick');
+               $('#show-'+ line_id+'-annotation').qtip({
+                        content: {
+                            text: $('.line-'+ line_id+'-annotation')
+                        },
+                            position:{
+                                my:'left center',
+                                adjust: {
+                                    x: 50
+                                }
+                            },
+                            show:'click',
+                            hide: 'unfocus',
+                            style: {
+                                      widget: true,
+                                      classes: 'qtip-bootstrap',
+                                      width:330
+                                  }
+                     });
+               $('#show-'+ line_id+'-annotation').click()
+            }else if(data.status === 'success_2'){
+                    $('#addannotation_'+linenum).click()
+           }
+      }
+    });
+
   }

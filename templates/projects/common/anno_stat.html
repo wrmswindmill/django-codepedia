@@ -9,28 +9,28 @@
 
          <span id='line-{{ line.id }}-annotation-count' class='annotations-count clear' rel='{{ line.id }}' >
               {% if line.annotations.count > 0 %}
-                <div class="annotation-num">{{ line.annotations.count }}</div>
+                <div class="annotation-num" onclick="show_annotation({{ line.id }},{{ request.user.id }},{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %})" id="show-{{ line.id }}-annotation">{{ line.annotations.count }}</div>
               {% endif %}
-              <div class="line-{{ line.id }}-annotation" style="display:none">
-                 {% if request.user.is_authenticated %}
-                          {% if user_anno.has_anno or request.user.is_staff %}
-                            {% include 'projects/common/annotation.html' %}
-                          {% else %}
-                            <div class="new_line_annotation_{{ line.id }}_0">
-                                <div id="id_content" class="form-group" style="margin-bottom: 5px;">
-                                    <div class="controls ">
-                                        <textarea name="content" cols="40" rows="5"  class="textarea form-control" required="" id="js-anno-textarea-{{ line.id }}-0" placeholder="Before you watch the annotations your must type your own annotation!!!。"></textarea>
-                                    </div>
-                                </div>
-                                <input class="btn btn-green" type="submit" value="Submit" onclick="submit_annotation({{ line.id }},0)" id="js-anno-submit-{{ line.id }}">
-                                <p class="global-errortip js-global-error"></p>
+
+               {% if request.user.is_authenticated %}
+                   {#   代码注释  #}
+                  <div class="line-{{ line.id }}-annotation" style="display:none">
+                    {% include 'projects/common/annotation.html' %}
+                  </div>
+                    {#  添加代码框  #}
+                    <div class="new_line_annotation_{{ line.id }}_0" style="display:none" >
+                        <div id="id_content" class="form-group" style="margin-bottom: 5px;">
+                            <div class="controls ">
+                                <textarea name="content" cols="40" rows="5"  class="textarea form-control" required="" id="js-anno-textarea-{{ line.id }}-0" placeholder="Before you watch the annotations your must type your own annotation!!!。"></textarea>
                             </div>
-                        {% endif %}
+                        </div>
+                        <input class="btn btn-green" type="submit" value="Submit" onclick="submit_annotation({{ line.id }},0)" id="js-anno-submit-{{ line.id }}">
+                        <p class="global-errortip js-global-error"></p>
+                    </div>
                {% else %}
                     <a class="pull-left" href="{% url 'users:login' %}">登陆</a>
                     <a class="pull-right" href="{% url 'users:register' %}">注册</a>
                {% endif %}
-              </div>
           </span>
         {# 查看问题图标 #}
          {% if line_question.index %}

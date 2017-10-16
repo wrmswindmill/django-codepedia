@@ -5,6 +5,7 @@ from django.contrib.contenttypes.models import ContentType
 from projects.models import File, Function, Line, Annotation, Comment
 from qa.models import Question, Answer
 from utils.mixin_utils import LoginRequiredMixin
+from users.models import UserProfile
 from .models import UserVote
 import json
 
@@ -186,4 +187,21 @@ class UserCommentView(View):
             return HttpResponse('{"status":"success","msg":"注释成功"}', content_type='application/json')
         else:
             return HttpResponse('{"status":"fail","msg":"注释失败"}', content_type='application/json')
+
+
+class JudgeUserAnnotateView(View):
+    def post(self, request):
+        if not request.user.is_authenticated():
+            return HttpResponse(json.dumps({"status": "fail", "msg": "用户未登录"}), content_type='application/json')
+        line_id = request.POST.get('line_id', '')
+        user_id = request.POST.get('user_id', '')
+        user = UserProfile.objects.get(id=int(user_id))
+
+        if int(line_id) >0 and int(user_id)>0:
+            exist_reocord = Annotation.objects.filter(object_id=int(line_id), user_id=int(user_id)).first()
+            if exist_reocord or user.is_staff:
+                return HttpResponse(json.dumps({"status": "success_1", "msg": "已经对这行代码注释过"}), content_type='application/json')
+            else:
+                return HttpResponse(json.dumps({"status": "success_2", "msg": "没有对这行代码注释过"}),
+                                    content_type='application/json')
 
