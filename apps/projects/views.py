@@ -184,7 +184,7 @@ class FileDetailView(View):
         lines = Line.objects.filter(file_id=file_id)
         questions = choose_question_type_1('file', file.id)
         questions_count = len(questions)
-        hot_quetions = file.questions.order_by('vote_up')[:5]
+        hot_quetions = questions[:5]
         question_form = QuestionForm()
         return render(request, 'projects/file.html', {'project': project,
                                                       'file': file,
@@ -207,7 +207,7 @@ class FunctionDetailView(View):
         lines = Line.objects.filter(function_id=function.id)
         questions = choose_question_type_1('function', function.id)
         questions_count = len(questions)
-        hot_quetions = Question.objects.filter(function_id=function_id).order_by('vote_up')[:5]
+        hot_quetions =questions[:5]
         question_form = QuestionForm()
         return render(request, 'projects/function.html', {'project': project,
                                                       'file': file,
