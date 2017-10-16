@@ -23,7 +23,7 @@
                     <form id="email_register_form" method="post" action="{% url 'users:login' %}" autocomplete="off">
                         <ul>
                             <li class="new_register_li form-group {% if login_form.errors.email %}errorput{% endif %}">
-                                <input type="text" class="new_register_input" id="id_email" name="username" value="{{ login_form.email.value }}" placeholder="请输入您的邮箱地址">
+                                <input type="text" class="new_register_input" id="id_email" name="username" value="{{ login_form.email.value }}" placeholder="请输入您的邮箱地址或用户名">
                             </li>
                             <li class="new_register_li form-group {% if login_form.errors.password %} errorput{% endif %}">
                                 <input type="password" class="new_register_input"  id="id_password" name="password"  value="{{ login_form.password1.value }}" placeholder="请输入6-20位非中文字符密码" />

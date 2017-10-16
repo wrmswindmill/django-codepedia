@@ -62,14 +62,11 @@ def standard_answer(question_id):
 
 @register.simple_tag()
 def set_index_initial():
-    index = 1
+    index = 2
     return index
 
 
-@register.simple_tag()
-def set_index(index):
-    index += 1
-    return index
+
 
 
 @register.assignment_tag()

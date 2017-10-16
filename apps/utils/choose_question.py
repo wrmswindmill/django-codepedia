@@ -12,7 +12,7 @@ def choose_question_type_1(model, id):
     all_linenums_tuple = list(all_questions_origin.values_list('file_linenum').distinct())
     for linenum in all_linenums_tuple:
         all_linenums.append(linenum[0])
-    index = 1
+    index = 2
     all_linenums=set(all_linenums)
     all_questions = []
     for linenum in all_linenums:
