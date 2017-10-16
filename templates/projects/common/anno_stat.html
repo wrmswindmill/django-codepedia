@@ -45,7 +45,7 @@
              {{ line_question.index }}
              </a>
             <div style="display: none;width:728px;" id="line_{{ line.id }}_question" class="line_question_detail">
-            {% if line_question.question.question_type == 3 %}
+            {% if line_question.question.question_type == '3' %}
                 {% include 'qa/brief_answers_question.html' with question=line_question.question model=model %}
             {% else %}
                 {% include 'qa/option_question.html' with question=line_question.question model=model %}
