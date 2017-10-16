@@ -138,7 +138,7 @@ class UserAnnotationView(View):
         line_id = request.POST.get('line_id', '')
         if int(line_id) > 0 and content:
             #看用户是否已经添加过注释
-            exist_record = Annotation.objects.filter(line_id=int(line_id),user_id=request.user.id)
+            exist_record = Annotation.objects.filter(object_id=int(line_id), user_id=request.user.id)
             if exist_record:
                 return HttpResponse('{"status":"success","msg":"你已经添加过注释，无法再次添加"}', content_type='application/json')
             else:

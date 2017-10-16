@@ -4,9 +4,6 @@
     <list default="true" id="88249845-e73d-4e3d-ba7f-109c44e3aa55" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/operations/views.py" afterPath="$PROJECT_DIR$/apps/operations/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/apps/projects/views.py" afterPath="$PROJECT_DIR$/apps/projects/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static/js/base.js" afterPath="$PROJECT_DIR$/static/js/base.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/projects/common/anno_stat.html" afterPath="$PROJECT_DIR$/templates/projects/common/anno_stat.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -58,36 +55,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/apps/operations/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="138" column="40" lean-forward="false" selection-start-line="138" selection-start-column="40" selection-end-line="138" selection-end-column="40" />
+            <state relative-caret-position="146">
+              <caret line="140" column="77" lean-forward="false" selection-start-line="140" selection-start-column="77" selection-end-line="140" selection-end-column="77" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
                 <element signature="e#477#5890#0" expanded="false" />
-                <element signature="e#6265#7485#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="base.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/static/js/base.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="83">
-              <caret line="440" column="19" lean-forward="false" selection-start-line="440" selection-start-column="19" selection-end-line="440" selection-end-column="19" />
-              <folding>
-                <element signature="e#166#800#0" expanded="false" />
-                <element signature="n#!!block;n#getCookie#0" expanded="false" />
-                <element signature="n#!!block;n#answer_option_question#0" expanded="false" />
-                <element signature="n#!!block;n#add_question#0" expanded="false" />
-                <element signature="n#!!block;n#submit_answer#0" expanded="false" />
-                <element signature="n#!!block;n#submit_annotation#0" expanded="false" />
-                <element signature="n#!!block;n#submit_comment#0" expanded="false" />
-                <element signature="n#!!block;n#submit_question_comment#0" expanded="false" />
-                <element signature="e#9108#9677#0" expanded="false" />
-                <element signature="e#9708#10460#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -205,8 +180,8 @@
         <option value="$PROJECT_DIR$/apps/projects/models.py" />
         <option value="$PROJECT_DIR$/apps/projects/views.py" />
         <option value="$PROJECT_DIR$/templates/projects/common/anno_stat.html" />
-        <option value="$PROJECT_DIR$/apps/operations/views.py" />
         <option value="$PROJECT_DIR$/static/js/base.js" />
+        <option value="$PROJECT_DIR$/apps/operations/views.py" />
       </list>
     </option>
   </component>
@@ -798,6 +773,25 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/base.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="47">
+          <caret line="438" column="36" lean-forward="false" selection-start-line="438" selection-start-column="36" selection-end-line="438" selection-end-column="36" />
+          <folding>
+            <element signature="e#166#800#0" expanded="false" />
+            <element signature="n#!!block;n#getCookie#0" expanded="false" />
+            <element signature="n#!!block;n#answer_option_question#0" expanded="false" />
+            <element signature="n#!!block;n#add_question#0" expanded="false" />
+            <element signature="n#!!block;n#submit_answer#0" expanded="false" />
+            <element signature="n#!!block;n#submit_annotation#0" expanded="false" />
+            <element signature="n#!!block;n#submit_comment#0" expanded="false" />
+            <element signature="n#!!block;n#submit_question_comment#0" expanded="false" />
+            <element signature="e#9108#9677#0" expanded="false" />
+            <element signature="e#9708#10460#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/apps/projects/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="185">
@@ -813,31 +807,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/apps/operations/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="138" column="40" lean-forward="false" selection-start-line="138" selection-start-column="40" selection-end-line="138" selection-end-column="40" />
+        <state relative-caret-position="146">
+          <caret line="140" column="77" lean-forward="false" selection-start-line="140" selection-start-column="77" selection-end-line="140" selection-end-column="77" />
           <folding>
             <element signature="e#0#35#0" expanded="true" />
             <element signature="e#477#5890#0" expanded="false" />
-            <element signature="e#6265#7485#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/base.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="83">
-          <caret line="440" column="19" lean-forward="false" selection-start-line="440" selection-start-column="19" selection-end-line="440" selection-end-column="19" />
-          <folding>
-            <element signature="e#166#800#0" expanded="false" />
-            <element signature="n#!!block;n#getCookie#0" expanded="false" />
-            <element signature="n#!!block;n#answer_option_question#0" expanded="false" />
-            <element signature="n#!!block;n#add_question#0" expanded="false" />
-            <element signature="n#!!block;n#submit_answer#0" expanded="false" />
-            <element signature="n#!!block;n#submit_annotation#0" expanded="false" />
-            <element signature="n#!!block;n#submit_comment#0" expanded="false" />
-            <element signature="n#!!block;n#submit_question_comment#0" expanded="false" />
-            <element signature="e#9108#9677#0" expanded="false" />
-            <element signature="e#9708#10460#0" expanded="false" />
           </folding>
         </state>
       </provider>
