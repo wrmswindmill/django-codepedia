@@ -202,7 +202,7 @@ class FunctionDetailView(View):
         project = Project.objects.get(id=project_id)
         file = File.objects.get(id=file_id)
         function = Function.objects.get(id=function_id)
-        function.views +=1
+        function.views += 1
         function.save()
         lines = Line.objects.filter(function_id=function.id)
         questions = choose_question_type_1('function', function.id)

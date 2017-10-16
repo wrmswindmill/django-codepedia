@@ -13,7 +13,7 @@
               {% endif %}
               <div class="line-{{ line.id }}-annotation" style="display:none">
                  {% if request.user.is_authenticated %}
-                          {% if user_anno.has_anno %}
+                          {% if user_anno.has_anno or request.user.is_staff %}
                             {% include 'projects/common/annotation.html' %}
                           {% else %}
                             <div class="new_line_annotation_{{ line.id }}_0">

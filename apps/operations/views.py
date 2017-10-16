@@ -137,26 +137,31 @@ class UserAnnotationView(View):
         content = request.POST.get('content', '')
         line_id = request.POST.get('line_id', '')
         if int(line_id) > 0 and content:
-            annotation = Annotation()
-            line = Line.objects.get(id=line_id)
-            file = File.objects.get(id=line.file_id)
+            #看用户是否已经添加过注释
+            exist_record = Annotation.objects.filter(line_id=int(line_id),user_id=request.user.id)
+            if exist_record:
+                return HttpResponse('{"status":"success","msg":"你已经添加过注释，无法再次添加"}', content_type='application/json')
+            else:
+                annotation = Annotation()
+                line = Line.objects.get(id=line_id)
+                file = File.objects.get(id=line.file_id)
 
-            annotation.line_id = line.id
-            annotation.file_id = line.file.id
-            annotation.content_object = line
-            if line.function is not None:
-                annotation.function_id = line.function.id
-            annotation.project_id = line.project.id
-            annotation.content = content
-            annotation.user = request.user
-            annotation.save()
-            file.anno_nums +=1
-            file.save()
-            if line.function_id:
-                function = Function.objects.get(id=line.function_id)
-                function.anno_nums +=1
-                function.save()
-            return HttpResponse('{"status":"success","msg":"注释成功"}', content_type='application/json')
+                annotation.line_id = line.id
+                annotation.file_id = line.file.id
+                annotation.content_object = line
+                if line.function is not None:
+                    annotation.function_id = line.function.id
+                annotation.project_id = line.project.id
+                annotation.content = content
+                annotation.user = request.user
+                annotation.save()
+                file.anno_nums +=1
+                file.save()
+                if line.function_id:
+                    function = Function.objects.get(id=line.function_id)
+                    function.anno_nums +=1
+                    function.save()
+                return HttpResponse('{"status":"success","msg":"注释成功"}', content_type='application/json')
         else:
             return HttpResponse('{"status":"fail","msg":"注释失败"}', content_type='application/json')
 
