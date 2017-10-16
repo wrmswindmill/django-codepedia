@@ -16,7 +16,7 @@ class Question(models.Model):
     question_source = models.CharField(choices=(('1', '系统'), ('2', '用户')), default='1', max_length=3, verbose_name='问题来源')
     question_type = models.CharField(choices=(('1', '选择题'), ('2', '判断题'), ('3', '问答题')), default='1', max_length=3, verbose_name='问题类型')
     question_level = models.CharField(choices=(('jd', '简单'), ('zd', '中等'), ('n', '难')), default='jd', max_length=5, verbose_name='问题级别')
-    question_info = models.CharField(choices=(('1', '错误程度'), ('2', '错误行号'), ('3', '错误类型')), null=True, max_length=3,verbose_name='问题信息')
+    question_info = models.CharField(choices=(('1', '错误程度'), ('2', '错误类型'), ('3', '错误行号')), null=True, max_length=3,verbose_name='问题信息')
     function_id = models.IntegerField(null=True, verbose_name=u"函数")
     file_id = models.IntegerField(null=True, verbose_name=u"文件")
     vote_up = models.IntegerField(default=0, verbose_name='点赞数量')
