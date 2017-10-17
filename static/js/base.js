@@ -490,6 +490,9 @@ function getUrlParam(name) {
 
   //显示注释
 function show_annotation(line_id,user_id,linenum) {
+    if(user_id==='None'){
+        window.location.href="/users/login/";
+    }
  var csrftoken = getCookie('csrftoken');
 $.ajax({
   cache:false,
@@ -518,6 +521,7 @@ $.ajax({
                             at:'right center',
                             adjust: {
                                 x: 30,
+
 
                             }
                         },
