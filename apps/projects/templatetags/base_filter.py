@@ -1,6 +1,9 @@
 from django import template
 from projects.models import Annotation
 from qa.models import Answer, QuestionStandardAnswers, Question
+from operations.models import UserVote
+from django.contrib.contenttypes.models import ContentType
+
 from users.models import UserProfile
 register = template.Library()
 
@@ -66,9 +69,6 @@ def set_index_initial():
     return index
 
 
-
-
-
 @register.assignment_tag()
 def get_line_question(obj, line, index):
     model = obj._meta.model_name
@@ -84,6 +84,16 @@ def get_line_question(obj, line, index):
         else:
             index = index + 1
     return {'question': question, 'has_question': has_question, 'index': index}
+
+
+@register.assignment_tag()
+def judge_user_vote(request, vote_type, vote_id):
+    ctype_id = ContentType.objects.get(model=vote_type).id
+    exist_record = UserVote.objects.filter(user_id = request.user.id, vote_type_id=ctype_id, vote_id=vote_id).first()
+    if  exist_record:
+        return exist_record.vote_value
+    else:
+        return 0
 
 
 

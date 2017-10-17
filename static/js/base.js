@@ -446,22 +446,27 @@ function add_vote(vote_type, vote_id,vote_value) {
                     alert(data.msg);
                 }
             }else if(data.status === 'success'){
-               var obj = $('.'+vote_type+'-'+vote_id+'-vote-count')
+
+               var obj = $('.'+vote_type+'-'+vote_id+'-vote-count');
                var count = $('.'+vote_type+'-'+vote_id+'-vote-count:first').text()
                if(data.info ==='cancel'){
                    $.each(obj,function(){
-                            $(this).text(Number(count)+Number(data.value))
+                       $(this).prev('a').css('border-bottom','15px solid #8c8686');
+                        $(this).text(Number(count)+Number(data.value))
+                       $(this).next('a').css('border-top','15px solid #8c8686');
                        })
 
                }else{
                    if(vote_value === 1){
                        $.each(obj,function(){
+                           $(this).prev('a').css('border-bottom','15px solid #f4e20e');
                             $(this).text(Number(count)+1)
                        })
 
                    }else{
                      $.each(obj,function(){
                             $(this).text(Number(count)-1)
+                            $(this).next('a').css('border-top','15px solid #f4e20e');
                        })
                    }
                }
@@ -510,9 +515,10 @@ $.ajax({
                         text: $('.line-'+ line_id+'-annotation')
                     },
                         position:{
-                            my:'left center',
+                            my:'left top',
                             adjust: {
-                                x: 50
+                                x: 50,
+                                y: -100
                             }
                         },
                         show:'click',
