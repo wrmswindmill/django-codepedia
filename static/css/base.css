@@ -812,9 +812,6 @@ vote-up:before{
 }
 
 
-
-
-
 #questions-header {
     margin-top: 10px;
     width: 728px
@@ -823,7 +820,7 @@ vote-up:before{
   /*margin-top: 10px;*/
 }
 .answer .postcell,.answer #comments,.answerpostcell,.answerblock,.answerpostcell .post-text{
-  width:647px;
+  width:720px;
 }
 .annotation{
   width:320px;

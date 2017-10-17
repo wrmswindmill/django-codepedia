@@ -484,51 +484,50 @@ function getUrlParam(name) {
   }
 
   //显示注释
-  function show_annotation(line_id,user_id,linenum) {
-     var csrftoken = getCookie('csrftoken');
-    $.ajax({
-      cache:false,
-      type:"POST",
-      url: '/operations/judge_user_annotation/',
-      data:{'line_id':line_id, 'user_id':user_id},
-      dataType: 'json',
-      async: true,
-      beforeSend:function(xhr, settings){
-        xhr.setRequestHeader("X-CSRFToken", csrftoken);
-      },
-      success:function (data) {
-           if(data.status === 'fail'){
-                if(data.msg === '用户未登录'){
-                    window.location.href="/users/login/";
-
-                }else{
-                    alert(data.msg);
-                }
-            }else if(data.status === 'success_1'){
-              $('#show-'+ line_id+'-annotation').removeAttr('onclick');
-               $('#show-'+ line_id+'-annotation').qtip({
-                        content: {
-                            text: $('.line-'+ line_id+'-annotation')
+function show_annotation(line_id,user_id,linenum) {
+ var csrftoken = getCookie('csrftoken');
+$.ajax({
+  cache:false,
+  type:"POST",
+  url: '/operations/judge_user_annotation/',
+  data:{'line_id':line_id, 'user_id':user_id},
+  dataType: 'json',
+  async: true,
+  beforeSend:function(xhr, settings){
+    xhr.setRequestHeader("X-CSRFToken", csrftoken);
+  },
+  success:function (data) {
+       if(data.status === 'fail'){
+            if(data.msg === '用户未登录'){
+                window.location.href="/users/login/";
+            }else{
+                alert(data.msg);
+            }
+        }else if(data.status === 'success_1'){
+          $('#show-'+ line_id+'-annotation').removeAttr('onclick');
+           $('#show-'+ line_id+'-annotation').qtip({
+                    content: {
+                        text: $('.line-'+ line_id+'-annotation')
+                    },
+                        position:{
+                            my:'left center',
+                            adjust: {
+                                x: 50
+                            }
                         },
-                            position:{
-                                my:'left center',
-                                adjust: {
-                                    x: 50
-                                }
-                            },
-                            show:'click',
-                            hide: 'unfocus',
-                            style: {
-                                      widget: true,
-                                      classes: 'qtip-bootstrap',
-                                      width:330
-                                  }
-                     });
-               $('#show-'+ line_id+'-annotation').click()
-            }else if(data.status === 'success_2'){
-                    $('#addannotation_'+linenum).click()
-           }
-      }
-    });
-
+                        show:'click',
+                        hide: 'unfocus',
+                        style: {
+                                  widget: true,
+                                  classes: 'qtip-bootstrap',
+                                  width:330
+                              }
+                 });
+           $('#show-'+ line_id+'-annotation').click()
+        }else if(data.status === 'success_2'){
+                $('#addannotation_'+linenum).click()
+       }
   }
+});
+
+}
