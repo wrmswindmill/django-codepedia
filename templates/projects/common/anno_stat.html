@@ -12,7 +12,7 @@
              <td style="width: 30px;">
                  {# 显示代码行的注释及数量#}<span id='line-{{ line.id }}-annotation-count' class='annotations-count clear' rel='{{ line.id }}' >
               {% if line.annotations.count > 0 %}
-                <div class="annotation-num" onclick="show_annotation({{ line.id }},'{{ request.user.id }}',{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %})" id="show-{{ line.id }}-annotation">{{ line.annotations.count }}</div>
+                <div class="annotation-num"  title="该行代码已经存在的注释！"  onclick="show_annotation({{ line.id }},'{{ request.user.id }}',{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %})" id="show-{{ line.id }}-annotation">{{ line.annotations.count }}</div>
               {% endif %}
 
 {#               {% if request.user.is_authenticated %}#}
@@ -45,7 +45,7 @@
 
                 {% if line_question.has_question %}
                      <a id="line_{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %}_question_button" rel="{{ line.id }}" class="line_question">
-                         <div class="question_img"></div>
+                         <div class="question_img" title="该行代码可能存在的问题"></div>
                      </a>
                     <div style="display: none;width:728px;" id="line_{{ line.id }}_question" class="line_question_detail">
                     {% if line_question.question.question_type == '3' %}
