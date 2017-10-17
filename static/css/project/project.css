@@ -113,6 +113,7 @@ pre.prettyprint span{
     vertical-align: top;
      width: 30px;
     height:20px;
+    margin-left: 30px;
 }
 .question_img{
   background-image: url(../../image/question.png);

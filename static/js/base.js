@@ -515,10 +515,10 @@ $.ajax({
                         text: $('.line-'+ line_id+'-annotation')
                     },
                         position:{
-                            my:'left top',
+                            at:'right center',
                             adjust: {
-                                x: 50,
-                                y: -100
+                                x: 30,
+
                             }
                         },
                         show:'click',
