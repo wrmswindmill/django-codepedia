@@ -165,12 +165,20 @@ class PathFileView(View):
         file = File.objects.get(path=path)
         lines = Line.objects.filter(file_id=file.id)
         questions = choose_question_type_1('file', file.id)
+        hot_quetions = questions[:5]
         questions_count = len(questions)
+        last_annotation = Annotation.objects.filter(file_id=file.id).last()
+        if last_annotation:
+            active_time = last_annotation.created
+        else:
+            active_time = file.created
         return render(request, 'projects/file.html', {'project': project,
                                                       'file': file,
                                                       'lines': lines,
                                                       'all_questions': questions,
                                                       'questions_count': questions_count,
+                                                      'hot_quetions': hot_quetions,
+                                                      'active_time': active_time,
                                                       })
 
 
@@ -186,6 +194,11 @@ class FileDetailView(View):
         questions_count = len(questions)
         hot_quetions = questions[:5]
         question_form = QuestionForm()
+        last_annotation = Annotation.objects.filter(file_id=file.id).last()
+        if last_annotation:
+            active_time = last_annotation.created
+        else:
+            active_time = file.created
         return render(request, 'projects/file.html', {'project': project,
                                                       'file': file,
                                                       'lines': lines,
@@ -193,6 +206,7 @@ class FileDetailView(View):
                                                       'question_form': question_form,
                                                       'hot_quetions': hot_quetions,
                                                       'questions_count':questions_count,
+                                                      'active_time': active_time,
                                                       })
 
 
@@ -209,6 +223,11 @@ class FunctionDetailView(View):
         questions_count = len(questions)
         hot_quetions =questions[:5]
         question_form = QuestionForm()
+        last_annotation = Annotation.objects.filter(function_id=function.id).last()
+        if last_annotation:
+            active_time = last_annotation.created
+        else:
+            active_time = file.created
         return render(request, 'projects/function.html', {'project': project,
                                                       'file': file,
                                                       'function': function,
@@ -216,7 +235,8 @@ class FunctionDetailView(View):
                                                       'all_questions': questions,
                                                       'question_form':question_form,
                                                       'hot_quetions': hot_quetions,
-                                                          'questions_count':questions_count,
+                                                      'questions_count':questions_count,
+                                                      'active_time':active_time,
                                                     })
 
 

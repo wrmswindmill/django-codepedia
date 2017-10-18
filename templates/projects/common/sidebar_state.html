@@ -2,14 +2,14 @@
     <div class="label-key">
       <p>Created</p>
       <p>Views</p>
-{#      <p>Active</p>#}
+      <p>Active</p>
       <p>Source</p>
       <p></p>
     </div>
     <div class="label-value">
       <p>  {{ stat_obj.created }}</p>
       <p> {{ stat_obj.views }} </p>
-{#      <p>{{ stat_obj.created }}</p>#}
+      <p>{{ active_time }}</p>
       <p><a href="{{ stat_obj.project.github }}" target="_blank">GitHub/{{ stat_obj.project.name }}</a></p>
       <p><a href="{{ stat_obj.project.ossean }}" target="_blank">OSSEAN/{{ stat_obj.project.name }}</a></p>
     </div>

@@ -24,7 +24,7 @@ class Question(models.Model):
     sonar_id = models.IntegerField(null=True, verbose_name='Sonar')
     file_linenum = models.IntegerField(null=True, verbose_name='文件行号')
     function_linenum = models.IntegerField(null=True, verbose_name='方法行号')
-    created = models.DateField(auto_now_add=True, verbose_name=u"提问时间")
+    created = models.DateTimeField(auto_now_add=True, verbose_name=u"提问时间")
 
     class Meta:
         verbose_name = u"问题"
@@ -42,7 +42,7 @@ class QuestionChoices(models.Model):
     question = models.ForeignKey(Question, verbose_name='问题', related_name='question_choices')
     choice_text = models.TextField(default='', verbose_name='选项内容')
     choice_position = models.CharField(default='', max_length=10, verbose_name='选项位置')
-    created = models.DateField(auto_now_add=True, verbose_name=u"提问时间")
+    created = models.DateTimeField(auto_now_add=True, verbose_name=u"提问时间")
 
     class Meta:
         verbose_name = u"选择题选项"
@@ -52,7 +52,7 @@ class QuestionChoices(models.Model):
 class QuestionStandardAnswers(models.Model):
     question = models.ForeignKey(Question, verbose_name='问题')
     choice_position = models.CharField(default='', max_length=10,  verbose_name='正确选项位置')
-    created = models.DateField(auto_now_add=True, verbose_name=u"提问时间")
+    created = models.DateTimeField(auto_now_add=True, verbose_name=u"提问时间")
 
     class Meta:
         verbose_name = u"标准答案"
@@ -66,7 +66,7 @@ class Answer(models.Model):
     vote_up = models.IntegerField(default=0, verbose_name='点赞数量')
     vote_down = models.IntegerField(default=0, verbose_name='点踩数量')
     correct = models.BooleanField(default=True, verbose_name='正确与否')
-    created = models.DateField(auto_now_add=True, verbose_name=u"回答时间")
+    created = models.DateTimeField(auto_now_add=True, verbose_name=u"回答时间")
 
     class Meta:
         verbose_name = u"回答"
@@ -83,7 +83,7 @@ class QuestionComment(models.Model):
     content = models.TextField(default='', verbose_name='内容')
     user = models.ForeignKey(UserProfile, verbose_name='用户')
     question = models.ForeignKey(Question, verbose_name='问题')
-    created = models.DateField(auto_now_add=True, verbose_name=u"评论时间")
+    created = models.DateTimeField(auto_now_add=True, verbose_name=u"评论时间")
 
     class Meta:
         verbose_name = u"问题评论"

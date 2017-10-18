@@ -118,7 +118,7 @@ class Annotation(models.Model):
     function = models.ForeignKey(Function, verbose_name='函数', null=True,  related_name='function_anno')
     vote_up = models.IntegerField(default=0, verbose_name='点赞数量')
     vote_down = models.IntegerField(default=0, verbose_name='点踩数量')
-    created = models.DateField(auto_now_add=True, verbose_name=u"回答时间")
+    created = models.DateTimeField(auto_now_add=True, verbose_name=u"回答时间")
 
     class Meta:
         verbose_name = u"注释"
@@ -167,7 +167,7 @@ class Comment(models.Model):
     function = models.ForeignKey(Function, verbose_name='函数', null=True, related_name='function_comment')
     vote_up = models.IntegerField(default=0, verbose_name='点赞数量')
     vote_down = models.IntegerField(default=0, verbose_name='点踩数量')
-    created = models.DateField(auto_now_add=True, verbose_name=u"回答时间")
+    created = models.DateTimeField(auto_now_add=True, verbose_name=u"回答时间")
 
     class Meta:
         verbose_name = u"评论"
