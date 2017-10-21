@@ -4,10 +4,10 @@ from django.contrib.contenttypes.models import ContentType
 
 from projects.models import File, Function, Line, Annotation, Comment
 from qa.models import Question, Answer
-from utils.mixin_utils import LoginRequiredMixin
 from users.models import UserProfile
 from .models import UserVote
 import json
+
 
 
 from django.http import HttpResponse, HttpResponseRedirect
@@ -165,6 +165,17 @@ class UserAnnotationView(View):
                 return HttpResponse('{"status":"success","msg":"注释成功"}', content_type='application/json')
         else:
             return HttpResponse('{"status":"fail","msg":"注释失败"}', content_type='application/json')
+
+
+class UpdateAnnotationView(View):
+    def post(self, request):
+        content = request.POST.get('content','')
+        annotation_id = int(request.POST.get('annotation_id', ''))
+        annotation = Annotation.objects.get(id=annotation_id)
+        annotation.content=content
+        annotation.save()
+        return HttpResponse('{"status":"success","msg":"修改成功"}', content_type='application/json')
+
 
 
 class UserCommentView(View):

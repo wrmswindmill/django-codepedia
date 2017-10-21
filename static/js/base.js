@@ -48,14 +48,14 @@ function getCookie(name) {
 
 //单项选择题提交答案
 function answer_option_question(question_id){
-        var question_id = question_id
-        var option_obj = document.getElementsByName('question-'+question_id+'-answers-check')
+        var question_id = question_id;
+        var option_obj = document.getElementsByName('question-'+question_id+'-answers-check');
         var user_choices = ''
         for(var i=0; i< option_obj.length;i++){
               if(option_obj[i].checked) user_choices += option_obj[i].value
         }
         if(user_choices === ""){
-            alert("选择不能为空")
+            alert("选择不能为空");
             return
         }
         //获取cookie
