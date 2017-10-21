@@ -541,3 +541,47 @@ $.ajax({
 });
 
 }
+// #修改注释
+  function edit_annotation(annotation_id,orgin_content){
+            var new_content = $('#js-annotation-'+annotation_id+'-textarea').val();
+            var old_content = orgin_content;
+            if(new_content === old_content){
+                alert('你没有修改注释')
+                return
+            }
+             if(new_content === ''){
+                alert('注释不能为空')
+                 return
+            }
+            var csrftoken = getCookie('csrftoken');
+           $.ajax({
+            cache: false,
+            type: "POST",
+            url:"/operations/edit_annotation/",
+            data:{'content':new_content, 'annotation_id': annotation_id},
+            async: true,
+            beforeSend:function(xhr, settings){
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            },
+            success: function(data) {
+                if(data.status === 'fail'){
+                    if(data.msg ==='用户未登录'){
+                        window.location.href="/users/login/";
+                    }else{
+                        alert(data.msg)
+                    }
+                }else if(data.status === 'success'){
+                    $('#annotation-content-'+annotation_id).text(new_content);
+                    $('.annotation-'+annotation_id+'-edit-form').hide();
+                    $('#annotation-'+annotation_id+'-edit-button').show();
+                    alert(data.msg);
+
+                }
+            }
+        });
+        }
+        //修改按钮
+        function edit_button(annotation_id){
+            $('#annotation-'+annotation_id+'-edit-button').hide();
+             $('.annotation-'+annotation_id+'-edit-form').show()
+        }
