@@ -9,7 +9,8 @@ from .tasks import send_type_email
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-
+import requests
+import json
 
 #通过类实现邮箱登陆
 class CustomBackend(ModelBackend):  #通过邮箱登陆
@@ -72,7 +73,32 @@ class ActiveView(View):
         return render(request, 'shared/login.html')
 
 
-#用户登陆
+# #用户登陆
+# class LoginView(View):
+#     def get(self, request):
+#         return render(request, 'shared/login.html', {})
+#
+#     def post(self, request):
+#         login_form = LoginForm(request.POST)
+#         if login_form.is_valid():
+#             user_name = request.POST.get('username', '')
+#             pass_word = request.POST.get('password', '')
+#             user = authenticate(username=user_name, password=pass_word)
+#             if user is not None:
+#                 if user.is_active:
+#                     login(request, user)
+#                     return HttpResponseRedirect(reverse('index'))
+#                 else:
+#                     return render(request, 'shared/login.html', {'msg': '用户未激活!'})
+#             else:
+#                 return render(request, 'shared/login.html', {'msg': '用户名或密码错误!'})
+#         else:
+#             return render(request, 'shared/login.html', {'login_form': login_form})
+
+
+
+
+# 用户登录
 class LoginView(View):
     def get(self, request):
         return render(request, 'shared/login.html', {})
@@ -82,18 +108,31 @@ class LoginView(View):
         if login_form.is_valid():
             user_name = request.POST.get('username', '')
             pass_word = request.POST.get('password', '')
-            user = authenticate(username=user_name, password=pass_word)
-            if user is not None:
-                if user.is_active:
+            user_params = {'username':user_name,'password':pass_word}
+            trustie_url = 'https://testbdweb.trustie.net/account/codepedia_login'
+            response = requests.get(trustie_url, params=user_params)
+            response = json.loads(response.text)
+            status = response['status']
+            if status == 1:
+                user_message = response['user']['user']
+                email =  user_message['mail']
+                exist_records = UserProfile.objects.filter(email=email).first()
+                if not exist_records:
+                    user = UserProfile()
+                    user.username = user_name
+                    user.password = make_password(pass_word)
+                    user.email = email
+                    user.nick_name = user_message['nickname']
+                    user.is_active = True
+                    user.save()
+                user = authenticate(username=user_name, password=pass_word)
+                if user is not None:
                     login(request, user)
                     return HttpResponseRedirect(reverse('index'))
-                else:
-                    return render(request, 'shared/login.html', {'msg': '用户未激活!'})
             else:
                 return render(request, 'shared/login.html', {'msg': '用户名或密码错误!'})
         else:
             return render(request, 'shared/login.html', {'login_form': login_form})
-
 
 #用户登出
 class LogoutView(View):
