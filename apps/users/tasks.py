@@ -24,11 +24,11 @@ def send_type_email(email,send_type='register'):
 
     if send_type == 'register':
         email_title = 'CodePedia注册激活链接'
-        email_body = '请点击下面的链接激活你的账号: <a>http://127.0.0.1:8000/users/active/{0}</a>'.format(code)
+        email_body = '请点击下面的链接激活你的账号: http://codepedia.trustie.net/users/active/{0}'.format(code)
         send_mail(email_title, email_body, EMAIL_FROM, [email])
     elif send_type == 'forget':
         email_title = 'CodePedia密码重置链接'
-        email_body = '请点击下面的链接重置你的账号: <a>http://127.0.0.1:8000/users/reset/{0}</a>'.format(code)
+        email_body = '请点击下面的链接重置你的账号: ttp://codepedia.trustie.net/users/reset/{0}'.format(code)
         send_mail(email_title, email_body, EMAIL_FROM, [email])
     elif send_type == 'update_email':
         email_title = 'CodePedia邮箱修改链接'
