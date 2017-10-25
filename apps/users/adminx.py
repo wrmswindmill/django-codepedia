@@ -19,5 +19,8 @@ class GlobalSettings(object):
     #折叠菜单
     menu_style = "accordion"
 
+class UserProfileAdmin(object):
+
+
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 xadmin.site.register(views.CommAdminView, GlobalSettings)

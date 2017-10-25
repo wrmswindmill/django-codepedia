@@ -4063,7 +4063,7 @@ footer .footer .line {
     margin-top: 0;
 }
 
-.personal_list .left {
+.personal_list > .left {
     width: 210px;
     float: left;
     background: #f8f8f8;
@@ -6370,13 +6370,13 @@ footer .footer .line {
 }
 
 .personal_des .head {
-    border-bottom: 1px solid #eaeaea;
+    border-bottom: 1px solid #dcdcdc;
     background: #f8f8f8;
 }
 
 .personal_des .inforcon {
-    border: 1px solid #eaeaea;
-    height: auto;
+    border: 1px solid #dcdcdc;
+    height: 400px;
     overflow: hidden;
     width: 943px;
     border-top: 0;
@@ -6387,8 +6387,6 @@ footer .footer .line {
     width: 230px;
     height: 100%;
     text-align: center;
-    border: 0;
-    background: none;
 }
 
 .personal_des .inforcon .left .pic {
@@ -6420,6 +6418,10 @@ footer .footer .line {
     width: 100px;
     margin: 0 auto 10px;
     display: block;
+}
+.inforcon .left  {
+    border-top:1px solid #dcdcdc;
+    border-right:1px solid #dcdcdc;
 }
 
 .personal_des .inforcon .left .upbtn {
