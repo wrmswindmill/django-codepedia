@@ -59,7 +59,7 @@ class GroupAdmin(object):
 
 class UserAdmin(object):
     change_user_password_template = None
-    list_display = ('id', 'username', 'email', 'is_staff','nickname')
+    list_display = ('id', 'username', 'email', 'is_staff','nick_name')
     list_filter = ('is_staff', 'is_superuser', 'is_active')
     search_fields = ('username', 'first_name', 'last_name', 'email')
     ordering = ('username',)
