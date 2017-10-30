@@ -9,7 +9,7 @@ def import_project(obj_id):
     project = Project.objects.get(id=obj_id)
     project_path = project.path
     project_id = project.id
-    client = Client('http://localhost:7778/pro?wsdl', cache=None, timeout=900)
+    client = Client('http://localhost:7778/pro?wsdl', cache=None, timeout=1500)
     response = client.service.getMethodAndCallGraph(project_path)
     response = ast.literal_eval(response)
     blobs = response['files']
