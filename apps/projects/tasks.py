@@ -11,7 +11,7 @@ def import_project(obj_id):
     project_path = project.path
     project_id = project.id
     # transport = Transport(timeout=50000)
-    client = Client('http://localhost:7778/pro?wsdl', cache=None)
+    client = Client('http://localhost:7778/pro?wsdl', cache=None, timeout=50000)
     # with client.options(timeout=50000):
     response = client.service.getMethodAndCallGraph(project_path)
     response = ast.literal_eval(response)
