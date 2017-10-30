@@ -1,8 +1,6 @@
 from .models import Project, Function, File, Line, CallGraph
 import ast
 from CodePedia.celery import app
-from zeep import Client
-from zeep.transports import Transport
 from suds.client import Client
 
 
@@ -13,7 +11,7 @@ def import_project(obj_id):
     project_path = project.path
     project_id = project.id
     # transport = Transport(timeout=50000)
-    client = Client('http://localhost:7778/pro?wsdl',timeout=50000)
+    client = Client('http://localhost:7778/pro?wsdl', timeout=50000)
     # with client.options(timeout=50000):
     response = client.service.getMethodAndCallGraph(project_path)
     response = ast.literal_eval(response)
