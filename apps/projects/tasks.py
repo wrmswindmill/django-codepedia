@@ -13,8 +13,9 @@ def import_project(obj_id):
     project_id = project.id
     transport = Transport(timeout=5000)
     client = Client('http://localhost:7778/pro?wsdl', transport=transport)
-    response = client.service.getMethodAndCallGraph(project_path)
-    response = ast.literal_eval(response)
+    with client.options(timeout=5000):
+        response = client.service.getMethodAndCallGraph(project_path)
+        response = ast.literal_eval(response)
     blobs = response['files']
     methods = response['methods']
     callees = response['callees']
