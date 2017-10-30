@@ -2,6 +2,10 @@ from .models import Project, Function, File, Line, CallGraph
 import ast
 from suds.client import Client
 from CodePedia.celery import app
+import socket
+
+timeout = 900
+socket.setdefaulttimeout(timeout)
 
 
 @app.task
@@ -9,7 +13,7 @@ def import_project(obj_id):
     project = Project.objects.get(id=obj_id)
     project_path = project.path
     project_id = project.id
-    client = Client('http://localhost:7778/pro?wsdl', cache=None, timeout=1500)
+    client = Client('http://localhost:7778/pro?wsdl', cache=None, timeout=900)
     response = client.service.getMethodAndCallGraph(project_path)
     response = ast.literal_eval(response)
     blobs = response['files']
