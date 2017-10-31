@@ -74,7 +74,7 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'users.UserProfile'
 
 MIDDLEWARE = [
-    'django.middleware.cache.UpdateCacheMiddleware',
+    # 'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -84,7 +84,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
     # 'debug_toolbar.middleware.DebugToolbarMiddleware',
-    'django.middleware.cache.FetchFromCacheMiddleware',
+    # 'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'CodePedia.urls'
@@ -130,13 +130,13 @@ DATABASES = {
     }
 }
 
-CACHES = {
-    'default':{
-        'BACKEND':'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION':'127.0.0.1:11211',
-
-    }
-}
+# CACHES = {
+#     'default':{
+#         'BACKEND':'django.core.cache.backends.memcached.MemcachedCache',
+#         'LOCATION':'127.0.0.1:11211',
+#
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -207,8 +207,6 @@ APPEND_SLASH = True
 
 
 import djcelery
-
-
 djcelery. setup_loader()
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 

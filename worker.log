@@ -110,3 +110,4 @@ kombu.exceptions.ContentDisallowed: Refusing to deserialize untrusted content of
 [2017-10-31 17:54:09,634: INFO/MainProcess] missed heartbeat from celery@yujiedeiMac
 [2017-10-31 19:52:23,134: INFO/MainProcess] missed heartbeat from celery@yujiedeiMac
 [2017-10-31 20:21:49,478: INFO/MainProcess] missed heartbeat from celery@yujiedeiMac
+[2017-10-31 22:02:04,155: INFO/MainProcess] missed heartbeat from celery@yujiedeiMac
