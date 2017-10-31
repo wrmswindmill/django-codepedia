@@ -17,7 +17,10 @@ def choose_question_type_1(model, id):
     all_questions = []
     for linenum in all_linenums:
         if linenum == 0:
-            question = Question.objects.get(file_id=id, file_linenum=linenum)
+            if model == 'file':
+                question = Question.objects.get(file_id=id, file_linenum=linenum)
+            else:
+                question = Question.objects.get(function_id=id, file_linenum=linenum)
         elif linenum == -1:
              continue
         else:
@@ -30,9 +33,8 @@ def choose_question_type_1(model, id):
             index += 1
         all_questions.append(question)
 
-
     for linenum in all_linenums:
-        if linenum == -1 :
+        if linenum == -1:
             if model == 'file':
                 questions = Question.objects.filter(file_id=id, file_linenum=-1)
             else:

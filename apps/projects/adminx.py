@@ -18,9 +18,9 @@ class FileAdmin(object):
 
 
 class FunctionAdmin(object):
-    list_display =  ['name', 'project', 'file', 'path', 'views', 'anno_nums', 'summary', 'note', 'has_summary']
+    list_display = ['name', 'project', 'file', 'path', 'views', 'anno_nums', 'summary', 'note', 'has_summary']
     search_field = ['name', 'project', 'file',  'path', 'views', 'anno_nums', 'summary', 'note', 'has_summary']
-    list_filter =  ['name', 'project', 'file', 'path', 'views', 'anno_nums', 'summary', 'note', 'has_summary']
+    list_filter = ['name', 'project', 'file', 'path', 'views', 'anno_nums', 'summary', 'note', 'has_summary']
 
 
 class LineAdmin(object):

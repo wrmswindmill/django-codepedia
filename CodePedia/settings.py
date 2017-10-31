@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'operations',
     'qa',
     'gunicorn',
+    'djcelery',
+     'kombu.transport.django',
 
 ]
 
@@ -180,3 +182,8 @@ APPEND_SLASH = True
 
 
 
+import djcelery
+
+
+djcelery. setup_loader()
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'

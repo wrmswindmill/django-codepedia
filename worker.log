@@ -1,0 +1,107 @@
+[2017-10-30 21:19:51,369: INFO/MainProcess] Connected to redis://localhost:6379//
+[2017-10-30 21:19:51,381: INFO/MainProcess] mingle: searching for neighbors
+[2017-10-30 21:19:52,393: INFO/MainProcess] mingle: all alone
+[2017-10-30 21:19:52,403: WARNING/MainProcess] /Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/celery/fixups/django.py:265: UserWarning: Using settings.DEBUG leads to a memory leak, never use this setting in production environments!
+  warnings.warn('Using settings.DEBUG leads to a memory leak, never '
+[2017-10-30 21:19:52,403: WARNING/MainProcess] worker@yujiedeiMac ready.
+[2017-10-30 21:20:36,145: INFO/MainProcess] sync with celery@yujiedeiMac
+[2017-10-30 21:22:16,080: INFO/MainProcess] sync with celery@yujiedeiMac
+[2017-10-30 22:14:24,873: CRITICAL/MainProcess] Can't decode message body: ContentDisallowed('Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)',) [type:'application/x-python-serialize' encoding:'binary' headers:{}]
+
+body: b'\x80\x02}q\x00(X\x04\x00\x00\x00taskq\x01X\x1d\x00\x00\x00projects.tasks.import_projectq\x02X\x02\x00\x00\x00idq\x03X$\x00\x00\x00dde76017-a930-4ddc-ae15-343486cca768q\x04X\x04\x00\x00\x00argsq\x05KF\x85q\x06X\x06\x00\x00\x00kwargsq\x07}q\x08X\x07\x00\x00\x00retriesq\tK\x00X\x03\x00\x00\x00etaq\nNX\x07\x00\x00\x00expiresq\x0bNX\x03\x00\x00\x00utcq\x0c\x88X\t\x00\x00\x00callbacksq\rNX\x08\x00\x00\x00errbacksq\x0eNX\t\x00\x00\x00timelimitq\x0fNN\x86q\x10X\x07\x00\x00\x00tasksetq\x11NX\x05\x00\x00\x00chordq\x12Nu.' (274b)
+Traceback (most recent call last):
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/messaging.py", line 592, in _receive_callback
+    decoded = None if on_m else message.decode()
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/message.py", line 142, in decode
+    self.content_encoding, accept=self.accept)
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/serialization.py", line 174, in loads
+    raise self._for_untrusted_content(content_type, 'untrusted')
+kombu.exceptions.ContentDisallowed: Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)
+[2017-10-30 22:15:16,233: INFO/MainProcess] Events of group {task} enabled by remote.
+[2017-10-30 22:16:03,951: INFO/MainProcess] sync with celery@yujiedeiMac
+[2017-10-30 22:16:17,507: CRITICAL/MainProcess] Can't decode message body: ContentDisallowed('Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)',) [type:'application/x-python-serialize' encoding:'binary' headers:{}]
+
+body: b'\x80\x02}q\x00(X\x04\x00\x00\x00taskq\x01X\x1d\x00\x00\x00projects.tasks.import_projectq\x02X\x02\x00\x00\x00idq\x03X$\x00\x00\x008e9a3b08-1f93-467c-8582-434ba4325cd2q\x04X\x04\x00\x00\x00argsq\x05KG\x85q\x06X\x06\x00\x00\x00kwargsq\x07}q\x08X\x07\x00\x00\x00retriesq\tK\x00X\x03\x00\x00\x00etaq\nNX\x07\x00\x00\x00expiresq\x0bNX\x03\x00\x00\x00utcq\x0c\x88X\t\x00\x00\x00callbacksq\rNX\x08\x00\x00\x00errbacksq\x0eNX\t\x00\x00\x00timelimitq\x0fNN\x86q\x10X\x07\x00\x00\x00tasksetq\x11NX\x05\x00\x00\x00chordq\x12Nu.' (274b)
+Traceback (most recent call last):
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/messaging.py", line 592, in _receive_callback
+    decoded = None if on_m else message.decode()
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/message.py", line 142, in decode
+    self.content_encoding, accept=self.accept)
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/serialization.py", line 174, in loads
+    raise self._for_untrusted_content(content_type, 'untrusted')
+kombu.exceptions.ContentDisallowed: Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)
+[2017-10-30 22:16:40,456: INFO/MainProcess] sync with celery@yujiedeiMac
+[2017-10-30 22:16:46,346: CRITICAL/MainProcess] Can't decode message body: ContentDisallowed('Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)',) [type:'application/x-python-serialize' encoding:'binary' headers:{}]
+
+body: b'\x80\x02}q\x00(X\x04\x00\x00\x00taskq\x01X\x1d\x00\x00\x00projects.tasks.import_projectq\x02X\x02\x00\x00\x00idq\x03X$\x00\x00\x00946257d7-9d95-4d3e-84e3-0e53af4372b5q\x04X\x04\x00\x00\x00argsq\x05KH\x85q\x06X\x06\x00\x00\x00kwargsq\x07}q\x08X\x07\x00\x00\x00retriesq\tK\x00X\x03\x00\x00\x00etaq\nNX\x07\x00\x00\x00expiresq\x0bNX\x03\x00\x00\x00utcq\x0c\x88X\t\x00\x00\x00callbacksq\rNX\x08\x00\x00\x00errbacksq\x0eNX\t\x00\x00\x00timelimitq\x0fNN\x86q\x10X\x07\x00\x00\x00tasksetq\x11NX\x05\x00\x00\x00chordq\x12Nu.' (274b)
+Traceback (most recent call last):
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/messaging.py", line 592, in _receive_callback
+    decoded = None if on_m else message.decode()
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/message.py", line 142, in decode
+    self.content_encoding, accept=self.accept)
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/serialization.py", line 174, in loads
+    raise self._for_untrusted_content(content_type, 'untrusted')
+kombu.exceptions.ContentDisallowed: Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)
+[2017-10-30 22:21:42,701: CRITICAL/MainProcess] Can't decode message body: ContentDisallowed('Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)',) [type:'application/x-python-serialize' encoding:'binary' headers:{}]
+
+body: b'\x80\x02}q\x00(X\x04\x00\x00\x00taskq\x01X\x1d\x00\x00\x00projects.tasks.import_projectq\x02X\x02\x00\x00\x00idq\x03X$\x00\x00\x000bb9414b-c3d2-41c5-8c19-105faaa80da1q\x04X\x04\x00\x00\x00argsq\x05KI\x85q\x06X\x06\x00\x00\x00kwargsq\x07}q\x08X\x07\x00\x00\x00retriesq\tK\x00X\x03\x00\x00\x00etaq\nNX\x07\x00\x00\x00expiresq\x0bNX\x03\x00\x00\x00utcq\x0c\x88X\t\x00\x00\x00callbacksq\rNX\x08\x00\x00\x00errbacksq\x0eNX\t\x00\x00\x00timelimitq\x0fNN\x86q\x10X\x07\x00\x00\x00tasksetq\x11NX\x05\x00\x00\x00chordq\x12Nu.' (274b)
+Traceback (most recent call last):
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/messaging.py", line 592, in _receive_callback
+    decoded = None if on_m else message.decode()
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/message.py", line 142, in decode
+    self.content_encoding, accept=self.accept)
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/serialization.py", line 174, in loads
+    raise self._for_untrusted_content(content_type, 'untrusted')
+kombu.exceptions.ContentDisallowed: Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)
+[2017-10-30 22:23:39,184: INFO/MainProcess] sync with celery@yujiedeiMac
+[2017-10-30 22:24:34,278: INFO/MainProcess] sync with celery@yujiedeiMac
+[2017-10-30 22:34:39,584: CRITICAL/MainProcess] Can't decode message body: ContentDisallowed('Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)',) [type:'application/x-python-serialize' encoding:'binary' headers:{}]
+
+body: b'\x80\x02}q\x00(X\x04\x00\x00\x00taskq\x01X\x13\x00\x00\x00projects.tasks.demoq\x02X\x02\x00\x00\x00idq\x03X$\x00\x00\x00dbc48ab2-fafc-4fbb-8c1d-28751050b46bq\x04X\x04\x00\x00\x00argsq\x05]q\x06M\xbc\x04aX\x06\x00\x00\x00kwargsq\x07}q\x08X\x07\x00\x00\x00retriesq\tK\x00X\x03\x00\x00\x00etaq\nNX\x07\x00\x00\x00expiresq\x0bNX\x03\x00\x00\x00utcq\x0c\x88X\t\x00\x00\x00callbacksq\rNX\x08\x00\x00\x00errbacksq\x0eNX\t\x00\x00\x00timelimitq\x0fNN\x86q\x10X\x07\x00\x00\x00tasksetq\x11NX\x05\x00\x00\x00chordq\x12Nu.' (266b)
+Traceback (most recent call last):
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/messaging.py", line 592, in _receive_callback
+    decoded = None if on_m else message.decode()
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/message.py", line 142, in decode
+    self.content_encoding, accept=self.accept)
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/serialization.py", line 174, in loads
+    raise self._for_untrusted_content(content_type, 'untrusted')
+kombu.exceptions.ContentDisallowed: Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)
+[2017-10-30 23:09:31,040: CRITICAL/MainProcess] Can't decode message body: ContentDisallowed('Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)',) [type:'application/x-python-serialize' encoding:'binary' headers:{}]
+
+body: b'\x80\x02}q\x00(X\x04\x00\x00\x00taskq\x01X\x13\x00\x00\x00projects.tasks.demoq\x02X\x02\x00\x00\x00idq\x03X$\x00\x00\x0027db587d-9976-4bf5-998d-c80089a3c7e6q\x04X\x04\x00\x00\x00argsq\x05]q\x06M\xbc\x04aX\x06\x00\x00\x00kwargsq\x07}q\x08X\x07\x00\x00\x00retriesq\tK\x00X\x03\x00\x00\x00etaq\nNX\x07\x00\x00\x00expiresq\x0bNX\x03\x00\x00\x00utcq\x0c\x88X\t\x00\x00\x00callbacksq\rNX\x08\x00\x00\x00errbacksq\x0eNX\t\x00\x00\x00timelimitq\x0fNN\x86q\x10X\x07\x00\x00\x00tasksetq\x11NX\x05\x00\x00\x00chordq\x12Nu.' (266b)
+Traceback (most recent call last):
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/messaging.py", line 592, in _receive_callback
+    decoded = None if on_m else message.decode()
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/message.py", line 142, in decode
+    self.content_encoding, accept=self.accept)
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/serialization.py", line 174, in loads
+    raise self._for_untrusted_content(content_type, 'untrusted')
+kombu.exceptions.ContentDisallowed: Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)
+[2017-10-30 23:09:35,308: INFO/MainProcess] sync with celery@yujiedeiMac
+[2017-10-30 23:10:01,053: CRITICAL/MainProcess] Can't decode message body: ContentDisallowed('Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)',) [type:'application/x-python-serialize' encoding:'binary' headers:{}]
+
+body: b'\x80\x02}q\x00(X\x04\x00\x00\x00taskq\x01X\x1b\x00\x00\x00projects.tasks.add_questionq\x02X\x02\x00\x00\x00idq\x03X$\x00\x00\x00165ab500-efec-4348-95da-cc9adac25ac8q\x04X\x04\x00\x00\x00argsq\x05]q\x06M\xbc\x04aX\x06\x00\x00\x00kwargsq\x07}q\x08X\x07\x00\x00\x00retriesq\tK\x00X\x03\x00\x00\x00etaq\nNX\x07\x00\x00\x00expiresq\x0bNX\x03\x00\x00\x00utcq\x0c\x88X\t\x00\x00\x00callbacksq\rNX\x08\x00\x00\x00errbacksq\x0eNX\t\x00\x00\x00timelimitq\x0fNN\x86q\x10X\x07\x00\x00\x00tasksetq\x11NX\x05\x00\x00\x00chordq\x12Nu.' (274b)
+Traceback (most recent call last):
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/messaging.py", line 592, in _receive_callback
+    decoded = None if on_m else message.decode()
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/message.py", line 142, in decode
+    self.content_encoding, accept=self.accept)
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/serialization.py", line 174, in loads
+    raise self._for_untrusted_content(content_type, 'untrusted')
+kombu.exceptions.ContentDisallowed: Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)
+[2017-10-30 23:11:41,214: CRITICAL/MainProcess] Can't decode message body: ContentDisallowed('Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)',) [type:'application/x-python-serialize' encoding:'binary' headers:{}]
+
+body: b'\x80\x02}q\x00(X\x04\x00\x00\x00taskq\x01X\x1b\x00\x00\x00projects.tasks.add_questionq\x02X\x02\x00\x00\x00idq\x03X$\x00\x00\x009a01111b-4f70-4947-ba16-50d3df74734dq\x04X\x04\x00\x00\x00argsq\x05]q\x06M\xbc\x04aX\x06\x00\x00\x00kwargsq\x07}q\x08X\x07\x00\x00\x00retriesq\tK\x00X\x03\x00\x00\x00etaq\nNX\x07\x00\x00\x00expiresq\x0bNX\x03\x00\x00\x00utcq\x0c\x88X\t\x00\x00\x00callbacksq\rNX\x08\x00\x00\x00errbacksq\x0eNX\t\x00\x00\x00timelimitq\x0fNN\x86q\x10X\x07\x00\x00\x00tasksetq\x11NX\x05\x00\x00\x00chordq\x12Nu.' (274b)
+Traceback (most recent call last):
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/messaging.py", line 592, in _receive_callback
+    decoded = None if on_m else message.decode()
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/message.py", line 142, in decode
+    self.content_encoding, accept=self.accept)
+  File "/Users/yujie/anaconda3/envs/django/lib/python3.6/site-packages/kombu/serialization.py", line 174, in loads
+    raise self._for_untrusted_content(content_type, 'untrusted')
+kombu.exceptions.ContentDisallowed: Refusing to deserialize untrusted content of type pickle (application/x-python-serialize)
+[2017-10-31 05:14:25,922: INFO/MainProcess] missed heartbeat from celery@yujiedeiMac
+[2017-10-31 05:45:33,383: INFO/MainProcess] missed heartbeat from celery@yujiedeiMac
+[2017-10-31 06:06:40,234: INFO/MainProcess] missed heartbeat from celery@yujiedeiMac
+[2017-10-31 06:13:25,852: INFO/MainProcess] missed heartbeat from celery@yujiedeiMac
+[2017-10-31 06:57:24,646: INFO/MainProcess] missed heartbeat from celery@yujiedeiMac

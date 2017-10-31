@@ -51,7 +51,7 @@ class QuestionChoices(models.Model):
 
 class QuestionStandardAnswers(models.Model):
     question = models.ForeignKey(Question, verbose_name='问题')
-    choice_position = models.CharField(default='', max_length=10,  verbose_name='正确选项位置')
+    choice_position = models.CharField(default='', max_length=500,  verbose_name='正确选项位置')
     created = models.DateTimeField(auto_now_add=True, verbose_name=u"提问时间")
 
     class Meta:

@@ -44,7 +44,7 @@ class Project(models.Model):
 class File(models.Model):
     project = models.ForeignKey(Project, verbose_name='工程名称')
     user = models.ForeignKey(UserProfile,default='1', verbose_name='用户')
-    name = models.CharField(max_length=100, verbose_name='文件名称')
+    name = models.CharField(max_length=200, verbose_name='文件名称')
     path = models.CharField(max_length=200, verbose_name='文件全路径')
     relpath = models.CharField(max_length=200, verbose_name='文件所处路径')
     views = models.IntegerField(default=0, verbose_name='点击数量')
@@ -57,6 +57,8 @@ class File(models.Model):
     vote_up = models.IntegerField(default=0, verbose_name='点赞数量')
     vote_down = models.IntegerField(default=0, verbose_name='点踩数量')
     code = models.TextField(default='', verbose_name='代码')
+    has_question = models.BooleanField(default=False, verbose_name='是否添加0行问题')
+    has_sonar = models.BooleanField(default=False, verbose_name='是否通过sonar获取问题')
     created = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
 
     class Meta:
@@ -77,7 +79,7 @@ class Function(models.Model):
     project = models.ForeignKey(Project, verbose_name='工程名称')
     user = models.ForeignKey(UserProfile, default='1', verbose_name='用户')
     file = models.ForeignKey(File, verbose_name='文件名称')
-    name = models.CharField(max_length=100, verbose_name='函数名称')
+    name = models.CharField(max_length=200, verbose_name='函数名称')
     path = models.CharField(max_length=200, verbose_name='函数路径')
     views = models.IntegerField(default=0, verbose_name='点击数量')
     anno_nums = models.IntegerField(default=0, verbose_name='注释数量')
@@ -89,6 +91,8 @@ class Function(models.Model):
     vote_up = models.IntegerField(default=0, verbose_name='点赞数量')
     vote_down = models.IntegerField(default=0, verbose_name='点踩数量')
     code = models.TextField(default='', verbose_name='代码')
+    has_question = models.BooleanField(default=False, verbose_name='是否添加0行问题')
+    has_sonar = models.BooleanField(default=False, verbose_name='是否通过sonar获取问题')
     created = models.DateTimeField(auto_now_add=True, verbose_name='添加时间')
 
     class Meta:
@@ -180,6 +184,8 @@ class Comment(models.Model):
         return self.vote_up -self.vote_down
 
 
+class Meta:
+    app_label = u"问答管理"
 
 
 

@@ -59,13 +59,14 @@ class GroupAdmin(object):
 
 class UserAdmin(object):
     change_user_password_template = None
-    list_display = ('id', 'username ', 'email', 'is_staff','nick_name')
+    list_display = ('id', 'username', 'email', 'is_staff', 'nick_name')
     list_filter = ('is_staff', 'is_superuser', 'is_active')
     search_fields = ('username', 'first_name', 'last_name', 'email')
     ordering = ('id', 'username')
     style_fields = {'user_permissions': 'm2m_transfer'}
     model_icon = 'fa fa-user'
     relfield_style = 'fk-ajax'
+    model_icon = 'fa fa-address-book-o'
 
     def get_field_attrs(self, db_field, **kwargs):
         attrs = super(UserAdmin, self).get_field_attrs(db_field, **kwargs)
