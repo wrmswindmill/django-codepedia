@@ -15,7 +15,6 @@
                 <div class="annotation-num"  title="该行代码已经存在的注释！"  onclick="show_annotation({{ line.id }},'{{ request.user.id }}',{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %})" id="show-{{ line.id }}-annotation">{{ line.annotations.count }}</div>
               {% endif %}
 
-{#               {% if request.user.is_authenticated %}#}
                    {#   代码注释  #}
                   <div class="line-{{ line.id }}-annotation" style="display:none">
                     {% include 'projects/common/annotation.html' %}
@@ -30,10 +29,7 @@
                         <input class="btn btn-green" type="submit" value="Submit" onclick="submit_annotation({{ line.id }},0)" id="js-anno-submit-{{ line.id }}">
                         <p class="global-errortip js-global-error"></p>
                     </div>
-{#               {% else %}#}
-{#                    <a class="pull-left" href="{% url 'users:login' %}">登陆</a>#}
-{#                    <a class="pull-right" href="{% url 'users:register' %}">注册</a>#}
-{#               {% endif %}#}
+
           </span>
              </td>
              <td style="width: 30px;">{# 查看问题图标 #}

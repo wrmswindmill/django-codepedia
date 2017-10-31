@@ -65,7 +65,7 @@ def standard_answer(question_id):
 
 @register.simple_tag()
 def set_index_initial():
-    index = 1
+    index = 2
     return index
 
 
@@ -79,7 +79,7 @@ def get_line_question(obj, line, index):
         question = Question.objects.filter(function_id=obj.id, function_linenum=line.function_linenum, question_info=index).first()
     if question:
         has_question = True
-        if index == 3:
+        if index == 2:
             index = 1
         else:
             index = index + 1
