@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 
 import os
 import sys
-
+import socket
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,10 +26,22 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 SECRET_KEY = 'ieb3izb-*39(9(dlptwqs9c53no&vkb!=n8xjdle!s61e3*x)f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG =True
+if socket.gethostname()=='yujiedeiMac':
+    DEBUG = True
+    DATEBASE_NAME = 'code_pedia'
+else:
+    DEBUG = False
+    DATEBASE_NAME = 'code_pedia'
 
-#DEBUG = False
 ALLOWED_HOSTS = ['*']
+
+ADMINS=(
+    ('Admin', 'alexkie@yeah.net')
+)
+MANAGERS = (
+    ('Admin', 'alexkie@yeah.net')
+)
+
 
 AUTHENTICATION_BACKENDS = (
     'users.views.CustomBackend',
@@ -55,12 +67,14 @@ INSTALLED_APPS = [
     'gunicorn',
     'djcelery',
      'kombu.transport.django',
+    'debug_toolbar',
 
 ]
 
 AUTH_USER_MODEL = 'users.UserProfile'
 
 MIDDLEWARE = [
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -68,6 +82,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.common.BrokenLinkEmailsMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'CodePedia.urls'
@@ -107,12 +124,19 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'code_pedia',
-        'USER':'root',
-        'PASSWORD':'111111',
-        'HOST':'127.0.0.1',
+        'USER': 'root',
+        'PASSWORD': '111111',
+        'HOST': '127.0.0.1',
     }
 }
 
+CACHES = {
+    'default':{
+        'BACKEND':'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION':'127.0.0.1:11211',
+
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -187,3 +211,6 @@ import djcelery
 
 djcelery. setup_loader()
 CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+
+#debug_toolbar
+INTERNAL_IPS = ('127.0.0.1',)
