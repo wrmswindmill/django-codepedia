@@ -30,12 +30,24 @@ class Question(models.Model):
         verbose_name = u"问题"
         verbose_name_plural = verbose_name
         ordering = ["file_linenum", "question_info"]
+        indexes =[
+            models.Index(fields=['file_id', 'file_linenum', 'question_info']),
+            models.Index(fields=['function_id', 'file_linenum', 'question_info']),
+            models.Index(fields=['function_id', 'function_linenum', 'question_info']),
+            models.Index(fields=['file_id', 'file_linenum']),
+            models.Index(fields=['function_id', 'file_linenum']),
+            models.Index(fields=['file_id', ]),
+            models.Index(fields=['function_id', ])
+        ]
 
     def __str__(self):
         return '问题{0}'.format(self.id)
 
     def get_vote_num(self):
         return self.vote_up -self.vote_down
+
+
+
 
 
 class QuestionChoices(models.Model):
@@ -71,6 +83,9 @@ class Answer(models.Model):
     class Meta:
         verbose_name = u"回答"
         verbose_name_plural = verbose_name
+        indexes = [
+            models.Index(fields=['question_id', 'user_id', ]),
+        ]
 
     def __str__(self):
         return '回答{0}'.format(self.id)

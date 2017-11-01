@@ -36,6 +36,11 @@ class Project(models.Model):
     class Meta:
         verbose_name = "工程"
         verbose_name_plural = verbose_name
+        indexes = [
+            models.Index(fields=['views', ]),
+            models.Index(fields=['created', ]),
+
+        ]
 
     def __str__(self):
         return self.name
@@ -64,6 +69,11 @@ class File(models.Model):
     class Meta:
         verbose_name = "文件"
         verbose_name_plural = verbose_name
+        indexes = [
+            models.Index(fields=['views', ]),
+            models.Index(fields=['created', ]),
+
+        ]
 
     def __str__(self):
         return '文件{0}_{1}'.format(self.id, self.name)
@@ -73,6 +83,8 @@ class File(models.Model):
 
     def get_question_num(self):
         return self.questions.count()
+
+
 
 
 class Function(models.Model):
@@ -127,6 +139,9 @@ class Annotation(models.Model):
     class Meta:
         verbose_name = u"注释"
         verbose_name_plural = verbose_name
+        indexes = [
+            models.Index(fields=['object_id', 'user_id', ]),
+        ]
 
     def __str__(self):
         return '注释{0}'.format(self.id)
@@ -149,6 +164,7 @@ class Line(models.Model):
     class Meta:
         verbose_name = "代码行"
         verbose_name_plural = verbose_name
+
 
 
 class CallGraph(models.Model):

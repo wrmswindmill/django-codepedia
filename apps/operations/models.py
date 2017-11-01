@@ -31,5 +31,8 @@ class UserVote(models.Model):
     class Meta:
         verbose_name = u"用户点赞"
         verbose_name_plural = verbose_name
+        indexes = [
+            models.Index(fields=['user_id', 'vote_type_id', 'vote_id']),
+        ]
 
 

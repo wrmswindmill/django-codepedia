@@ -190,14 +190,9 @@ class FileDetailView(View):
         file.views += 1
         file.save()
         lines = Line.objects.filter(file_id=file_id)
-        import time
-        time1 = time.time()
-
         questions = choose_question_type_1('file', file.id)
         questions_count = len(questions)
         hot_quetions = questions[:5]
-        time2 = time.time()
-        print(time2-time1)
         question_form = QuestionForm()
         last_annotation = Annotation.objects.filter(file_id=file.id).last()
         if last_annotation:
