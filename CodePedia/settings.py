@@ -26,12 +26,10 @@ sys.path.insert(0, os.path.join(BASE_DIR, 'extra_apps'))
 SECRET_KEY = 'ieb3izb-*39(9(dlptwqs9c53no&vkb!=n8xjdle!s61e3*x)f'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if socket.gethostname()=='yujiedeiMac':
-    DEBUG = True
-    DATEBASE_NAME = 'code_pedia'
-else:
-    DEBUG = False
-    DATEBASE_NAME = 'code_pedia'
+
+DEBUG = True
+DATEBASE_NAME = 'code_pedia'
+
 
 ALLOWED_HOSTS = ['*']
 
@@ -130,13 +128,13 @@ DATABASES = {
     }
 }
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
-        'LOCATION': '127.0.0.1:11211',
-
-    }
-}
+# CACHES = {
+#     'default': {
+#         'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+#         'LOCATION': '127.0.0.1:11211',
+#
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -202,13 +200,13 @@ STATICFILES_DIRS = (
 BROKER_URL = 'redis://127.0.0.1:6379/0'
 BROKER_TRANSPORT = 'redis'
 
-APPEND_SLASH = True
-
-
-
-import djcelery
-djcelery. setup_loader()
-CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+# APPEND_SLASH = True
+#
+#
+#
+# import djcelery
+# djcelery. setup_loader()
+# CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
 #debug_toolbar
 # INTERNAL_IPS = ('127.0.0.1',)
