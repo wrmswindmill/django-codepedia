@@ -53,9 +53,8 @@ class ProjectDetailView(View):
         project = Project.objects.get(id=project_id)
         project.views +=1
         project.save()
-        all_files = File.objects.filter(project_id = project.id)
+        all_files = File.objects.filter(project_id=project.id)
         hot_blobs = File.objects.order_by('-views')[:5]
-
 
         #分页功能
         try:
@@ -191,6 +190,8 @@ class FileDetailView(View):
         file.save()
         lines = Line.objects.filter(file_id=file_id)
         questions = choose_question_type_1('file', file.id)
+        # questions = question_stat['questions']
+        # linenums = question_stat['linenums']
         questions_count = len(questions)
         hot_quetions = questions[:5]
         question_form = QuestionForm()
@@ -207,6 +208,7 @@ class FileDetailView(View):
                                                       'hot_quetions': hot_quetions,
                                                       'questions_count':questions_count,
                                                       'active_time': active_time,
+                                                      # 'linenums':linenums,
                                                       })
 
 

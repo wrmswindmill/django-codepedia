@@ -50,7 +50,7 @@ def evaluate_user_answer(request, question_id):
             user_answer += ' '
         if answers.content == right_answers:
             correct = True
-    return {'user_answer':user_answer,'have_answered':have_answered,"correct":correct}
+    return {'user_answer': user_answer, 'have_answered' : have_answered, "correct" : correct}
 
 
 @register.assignment_tag()

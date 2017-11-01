@@ -8,37 +8,25 @@ def choose_question_type_1(model, id):
         all_questions_origin = Question.objects.filter(file_id=id)
     else:
         all_questions_origin = Question.objects.filter(function_id=id)
-    all_linenums = []
-    all_linenums_tuple = list(all_questions_origin.values_list('file_linenum').distinct())
-    for linenum in all_linenums_tuple:
-        all_linenums.append(linenum[0])
+    all_linenums_tuple = list(all_questions_origin.values_list('file_linenum').order_by('file_linenum').distinct())
+    all_linenums = [list(x)[0] for x in all_linenums_tuple]
     index = 2
-    all_linenums=set(all_linenums)
     all_questions = []
     for linenum in all_linenums:
         if linenum == 0:
-            if model == 'file':
-                question = Question.objects.get(file_id=id, file_linenum=linenum)
-            else:
-                question = Question.objects.get(function_id=id, file_linenum=linenum)
+            question = all_questions_origin.get(file_linenum=0)
         elif linenum == -1:
              continue
         else:
             if index > 3:
                 index = 1
-            if model == 'file':
-                question = Question.objects.filter(file_id=id, file_linenum=linenum, question_info=index).first()
-            else:
-                question = Question.objects.filter(function_id=id, file_linenum=linenum, question_info=index).first()
+            question = all_questions_origin.filter(file_linenum=linenum, question_info=index).first()
             index += 1
         all_questions.append(question)
-
     for linenum in all_linenums:
         if linenum == -1:
-            if model == 'file':
-                questions = Question.objects.filter(file_id=id, file_linenum=-1)
-            else:
-                questions = Question.objects.filter(function_id=id, file_linenum=-1)
+            questions = all_questions_origin.filter(file_linenum=-1)
             for question in questions:
                 all_questions.append(question)
+    # return {'questions': all_questions, 'linenums': all_linenums}
     return all_questions
