@@ -200,13 +200,13 @@ STATICFILES_DIRS = (
 BROKER_URL = 'redis://127.0.0.1:6379/0'
 BROKER_TRANSPORT = 'redis'
 
-# APPEND_SLASH = True
+APPEND_SLASH = True
 #
 #
 #
-# import djcelery
-# djcelery. setup_loader()
-# CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
+import djcelery
+djcelery. setup_loader()
+CELERYBEAT_SCHEDULER = 'djcelery.schedulers.DatabaseScheduler'
 
-#debug_toolbar
+# debug_toolbar
 # INTERNAL_IPS = ('127.0.0.1',)
