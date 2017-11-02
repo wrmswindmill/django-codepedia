@@ -167,6 +167,9 @@ class PathFileView(View):
         hot_quetions = questions[:5]
         questions_count = len(questions)
         last_annotation = Annotation.objects.filter(file_id=file.id).last()
+        all_questions_line_tuple = list(
+            Question.objects.filter(file_id=file_id).values_list('file_linenum').order_by('file_linenum').distinct())
+        all_questions_line = [list(x)[0] for x in all_questions_line_tuple]
         if last_annotation:
             active_time = last_annotation.created
         else:
@@ -178,6 +181,7 @@ class PathFileView(View):
                                                       'questions_count': questions_count,
                                                       'hot_quetions': hot_quetions,
                                                       'active_time': active_time,
+                                                      'all_questions_line': all_questions_line,
                                                       })
 
 
@@ -228,6 +232,8 @@ class FunctionDetailView(View):
         questions_count = len(questions)
         hot_quetions =questions[:5]
         question_form = QuestionForm()
+        all_questions_line_tuple = list(Question.objects.filter(file_id=file_id).values_list('file_linenum').order_by('file_linenum').distinct())
+        all_questions_line = [list(x)[0] for x in all_questions_line_tuple]
         last_annotation = Annotation.objects.filter(function_id=function.id).last()
         if last_annotation:
             active_time = last_annotation.created
@@ -242,6 +248,7 @@ class FunctionDetailView(View):
                                                       'hot_quetions': hot_quetions,
                                                       'questions_count':questions_count,
                                                       'active_time':active_time,
+                                                      'all_questions_line': all_questions_line,
                                                     })
 
 
