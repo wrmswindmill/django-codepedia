@@ -28,7 +28,7 @@ SECRET_KEY = 'ieb3izb-*39(9(dlptwqs9c53no&vkb!=n8xjdle!s61e3*x)f'
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = True
-DATEBASE_NAME = 'code_pedia_1'
+DATEBASE_NAME = 'code_pedia'
 
 
 ALLOWED_HOSTS = ['*']
@@ -121,7 +121,7 @@ WSGI_APPLICATION = 'CodePedia.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'code_pedia_1',
+        'NAME': 'code_pedia',
         'USER': 'root',
         'PASSWORD': '111111',
         'HOST': '127.0.0.1',
