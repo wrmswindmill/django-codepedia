@@ -105,6 +105,32 @@ class QuestionComment(models.Model):
         verbose_name_plural = verbose_name
 
 
+class SonarResult(models.Model):
+    project_id = models.IntegerField(null=True)
+    blob_id = models.IntegerField(null=True)
+    blob_line = models.IntegerField(null=True)
+    function_id = models.IntegerField(null=True)
+    function_line = models.IntegerField(null=True)
+    rule_id = models.IntegerField(null=True)
+    rule_name = models.CharField(max_length=255, null=True)
+    rule_priority = models.IntegerField(null=True)
+    message = models.CharField(max_length=4000, null=True)
+    effort = models.IntegerField(null=True)
+    status = models.CharField(max_length=20, null=True)
+    severity = models.CharField(max_length=10, null=True)
+    has_question = models.IntegerField(null=True)
+
+    class Meta:
+        db_table = 'sonar_results'
+        indexes = [
+            models.Index(fields=['blob_id',]),
+            models.Index(fields=['project_id',]),
+            models.Index(fields=['function_id',]),
+            models.Index(fields=['severity',]),
+            models.Index(fields=['has_question',]),
+        ]
+
+
 
 
 

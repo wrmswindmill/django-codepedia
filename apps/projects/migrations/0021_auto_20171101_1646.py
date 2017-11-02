@@ -14,7 +14,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AddIndex(
             model_name='file',
-            index=models.Index(fields=['views'], name='projects_fi_views_38a5b5_idx'),
+            index=models.Index(fields=['views'], name='projects_fi_views_38a5b5_idx1'),
         ),
         migrations.AddIndex(
             model_name='project',
