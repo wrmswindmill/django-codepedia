@@ -26,15 +26,6 @@ flag = [False for i in range(0, len(all_tables))]
 while False in flag:
     for i in range(0, len(all_tables)):
         table = all_tables[i]
-        # query_sql = '''select * from %s ''' % (table)
-        # cursor.execute(query_sql)
-        # all_items = cursor.fetchall()
-        # for item in all_items:
-        #     sql = "insert into " + table + " values"
-        #     cursor2.execute('insert into %s * from ')
-
-
-
         sql = "select * from " + table + " limit 1"
         cursor2.execute(sql)
         items = cursor2.fetchall()

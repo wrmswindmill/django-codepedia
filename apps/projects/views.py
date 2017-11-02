@@ -195,6 +195,8 @@ class FileDetailView(View):
         questions_count = len(questions)
         hot_quetions = questions[:5]
         question_form = QuestionForm()
+        all_questions_line_tuple = list(Question.objects.filter(file_id=file_id).values_list('file_linenum').order_by('file_linenum').distinct())
+        all_questions_line = [ list(x)[0] for x in all_questions_line_tuple]
         last_annotation = Annotation.objects.filter(file_id=file.id).last()
         if last_annotation:
             active_time = last_annotation.created
@@ -209,6 +211,7 @@ class FileDetailView(View):
                                                       'questions_count':questions_count,
                                                       'active_time': active_time,
                                                       # 'linenums':linenums,
+                                                      'all_questions_line':all_questions_line,
                                                       })
 
 

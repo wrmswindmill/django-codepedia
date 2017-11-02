@@ -33,25 +33,26 @@
           </span>
              </td>
              <td style="width: 30px;">{# 查看问题图标 #}
-                 {% if line_question.index %}
-                     {% get_line_question line_que_obj line line_question.index as line_question %}
-                 {% else %}
-                      {% get_line_question line_que_obj line index as line_question %}
-                 {% endif %}
-
-                {% if line_question.has_question %}
-                     <a id="line_{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %}_question_button" rel="{{ line.id }}" class="line_question">
-                         <div class="question_img" title="该行代码可能存在的问题"></div>
-                     </a>
-                    <div style="display: none;width:728px;" id="line_{{ line.id }}_question" class="line_question_detail">
-                    {% if line_question.question.question_type == '3' %}
-                        {% include 'qa/brief_answers_question.html' with question=line_question.question model=model %}
-                    {% else %}
-                        {% include 'qa/option_question.html' with question=line_question.question model=model %}
+                {% if line.file_linenum in all_questions_line %}
+                     {% if line_question.index %}
+                         {% get_line_question line_que_obj line line_question.index as line_question %}
+                     {% else %}
+                          {% get_line_question line_que_obj line index as line_question %}
+                     {% endif %}
+                    {% if line_question.has_question %}
+                         <a id="line_{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %}_question_button" rel="{{ line.id }}" class="line_question">
+                             <div class="question_img" title="该行代码可能存在的问题"></div>
+                         </a>
+                        <div style="display: none;width:728px;" id="line_{{ line.id }}_question" class="line_question_detail">
+                        {% if line_question.question.question_type == '3' %}
+                            {% include 'qa/brief_answers_question.html' with question=line_question.question model=model %}
+                        {% else %}
+                            {% include 'qa/option_question.html' with question=line_question.question model=model %}
+                        {% endif %}
+                        </div>
                     {% endif %}
-
-                    </div>
                 {% endif %}
+
              </td>
              <td style="width: 20px;">  {# 添加注释图标#}
                 <a id="addannotation_{% if  model == 'file' %}{{ line.file_linenum }}{% else %}{{ line.function_linenum }}{% endif %}" rel="{{ line.id }}" class='add_line_annotation' style="display:none;">
