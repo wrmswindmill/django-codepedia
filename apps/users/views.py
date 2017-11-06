@@ -122,7 +122,12 @@ class LoginView(View):
                     user.username = user_name
                     user.password = make_password(pass_word)
                     user.email = email
-                    user.nick_name = user_message['nickname']
+                    if user_message['nickname']:
+                        user.nick_name = user_message['nickname']
+                    elif user_message['lastname']:
+                        user.nick_name = user_message['lastname']
+                    else:
+                        user.nick_name = user_message['firstname']
                     user.is_active = True
                     user.save()
                 user = authenticate(username=user_name, password=pass_word)
