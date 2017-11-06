@@ -168,7 +168,7 @@ class PathFileView(View):
         questions_count = len(questions)
         last_annotation = Annotation.objects.filter(file_id=file.id).last()
         all_questions_line_tuple = list(
-            Question.objects.filter(file_id=file_id).values_list('file_linenum').order_by('file_linenum').distinct())
+            Question.objects.filter(file_id=file.id).values_list('file_linenum').order_by('file_linenum').distinct())
         all_questions_line = [list(x)[0] for x in all_questions_line_tuple]
         if last_annotation:
             active_time = last_annotation.created
