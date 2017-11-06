@@ -65,7 +65,8 @@ INSTALLED_APPS = [
     'gunicorn',
     'djcelery',
      'kombu.transport.django',
-    # 'debug_toolbar',
+    'django_extensions',
+    'debug_toolbar',
 
 ]
 
@@ -81,7 +82,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
-    # 'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 

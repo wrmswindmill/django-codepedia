@@ -109,7 +109,7 @@ class LoginView(View):
             user_name = request.POST.get('username', '')
             pass_word = request.POST.get('password', '')
             user_params = {'username':user_name,'password':pass_word}
-            trustie_url = 'https://www.educoder.net/account/codepedia_login'
+            trustie_url = 'https://www.trustie.net/account/codepedia_login'
             response = requests.get(trustie_url, params=user_params)
             response = json.loads(response.text)
             status = response['status']
