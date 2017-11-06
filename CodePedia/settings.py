@@ -65,8 +65,8 @@ INSTALLED_APPS = [
     'gunicorn',
     'djcelery',
      'kombu.transport.django',
-    # 'django_extensions',
-    'debug_toolbar',
+    'django_extensions',
+    # 'debug_toolbar',
 
 ]
 
