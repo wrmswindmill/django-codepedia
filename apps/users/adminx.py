@@ -3,7 +3,8 @@ import xadmin
 from xadmin import views
 from xadmin.plugins.auth import  UserAdmin
 
-from .models import EmailVerifyRecord , UserProfile
+
+from .models import EmailVerifyRecord , UserProfile, Grade
 
 
 class BaseSetting(object):
@@ -19,7 +20,9 @@ class GlobalSettings(object):
     #折叠菜单
     menu_style = "accordion"
 
-
+class GradeAdmin(object):
+    list_display = ['name', 'year']
 
 xadmin.site.register(views.BaseAdminView, BaseSetting)
 xadmin.site.register(views.CommAdminView, GlobalSettings)
+xadmin.site.register(Grade, GradeAdmin)

@@ -59,8 +59,8 @@ class GroupAdmin(object):
 
 class UserAdmin(object):
     change_user_password_template = None
-    list_display = ('id', 'username', 'email', 'is_staff', 'nick_name')
-    list_filter = ('is_staff', 'is_superuser', 'is_active')
+    list_display = ('id', 'username', 'nick_name', 'total_annotation', 'last_week_annotation', 'last_three_day_annotation')
+    list_filter = ('is_staff', 'is_superuser', 'is_active', 'grade')
     search_fields = ('username', 'first_name', 'last_name', 'email')
     ordering = ('id', 'username')
     style_fields = {'user_permissions': 'm2m_transfer'}
