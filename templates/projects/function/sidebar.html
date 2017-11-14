@@ -21,7 +21,7 @@
 $(function(){
   $('#method_tree').jstree({ 'core' : {
     'data' : {
-      'url': '{% url 'projects:project_tree' project.id %}',
+      'url': '{% url 'projects:project_tree' function.project_id %}',
       "dataType" : "json"
       }
     }
@@ -32,22 +32,22 @@ $(function(){
     // var path = $(this).jstree(true).get_path(data.node,'/')
     var path = data.instance.get_path(data.selected[0],"/",0)
     //  获取rel属性
-    var suffix = data.node.a_attr.rel
+    var suffix = data.node.a_attr.rel;
 
-    var project_id = {{ project.id  }}
+    var project_id = {{ function.project_id  }};
     // 判断是文件还是文件夹
-    if (typeof(suffix) == 'undefined') {
+    if (typeof(suffix) === 'undefined') {
       // 如果是文件夹目录
-      var href =  '/projects/detail/'+ project_id + '/path_find/?relpath='+path+'&text='+file
-      if(href == '#')
+      var href =  '/projects/detail/'+ project_id + '/path_find/?relpath='+path+'&text='+file;
+      if(href === '#')
         return '';
       window.open(href, "_self");
     } else {
       // 如果是文件
       // 获取rel，即路径
       path = '/'+data.node.a_attr.rel
-        var href =  '/projects/detail/'+ project_id + '/find_file/?path='+path
-             if(href == '#')
+        var href =  '/projects/detail/'+ project_id + '/find_file/?path='+path;
+             if(href === '#')
         return '';
       window.open(href, "_self");
     }

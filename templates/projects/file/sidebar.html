@@ -22,7 +22,7 @@
 $(function(){
   $('#method_tree').jstree({ 'core' : {
     'data' : {
-      'url': '{% url 'projects:project_tree' project.id %}',
+      'url': '{% url 'projects:project_tree' file.project_id %}',
       "dataType" : "json"
       }
     }
@@ -35,7 +35,7 @@ $(function(){
     //  获取rel属性
     var suffix = data.node.a_attr.rel
 
-    var project_id = {{ project.id  }}
+    var project_id = {{ file.project_id  }}
     // 判断是文件还是文件夹
     if (typeof(suffix) == 'undefined') {
       // 如果是文件夹目录
