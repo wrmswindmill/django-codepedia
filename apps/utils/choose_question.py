@@ -73,4 +73,4 @@ def choose_question_type_1(model, id):
             for question in user_questions:
                 all_questions[linenum].append(question)
                 count += 1
-    return {'question': all_questions, 'count': count}
+    return {'question': all_questions, 'count': count, 'all_linenums': all_linenums}
