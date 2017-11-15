@@ -216,3 +216,5 @@ class JudgeUserAnnotateView(View):
                 return HttpResponse(json.dumps({"status": "success_2", "msg": "没有对这行代码注释过"}),
                                     content_type='application/json')
 
+
+

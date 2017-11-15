@@ -1,18 +1,19 @@
 {% for answer in answer_obj.answer_set.select_related.all %}
-    <div id="answer-{{ answer.id }}" class="answer" data-answerid="{{ answer.id }}" style="display: none">
-        {% include 'common/small_vote.html' with vote_obj=answer %}
-        <div class="postcell">
-          <div class="answerpostcell">
-            <div class="post-text">
-              <div class='blockquote answerblock'>
-                 回答： {{ answer.content }}
-              </div>
-            </div>
-            {% include 'common/user_info.html' with user_obj=answer %}
+    <div id="answer-{{ answer.id }}" class="answer" data-answerid="{{ answer.id }}" >
+    {% include 'common/small_vote.html' with vote_obj=answer %}
+    <div class="postcell" style="width: 610px;">
+      <div class="answerpostcell" style="width: 610px;">
+        <div class="post-text">
+          <div class='blockquote answerblock'>
+             回答： {{ answer.content }}
           </div>
         </div>
+        {% include 'common/user_info.html' with user_obj=answer %}
+      </div>
     </div>
+</div>
 {% endfor %}
+
  <div class="new_answer_{{ answer_obj.id }}">
     <div id="id_content" class="form-group an-form" >
         <div class="controls">

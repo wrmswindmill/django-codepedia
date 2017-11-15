@@ -1,0 +1,16 @@
+<div id="question-{{ question.id }}" class="question" data-questionid="{{ question.id }}" >
+    {% include 'common/vote.html' with vote_obj=question %}
+    <div class="postcell">
+        <div class="questionpostcell">
+            <div class="post-text">
+              <div class='blockquote questionblock'>
+                  {{ question.get_question_type_display }}：{{ question.content }}
+              </div>
+            </div>
+        {% include 'common/user_info.html' with user_obj=question %}
+        </div>
+        <div id="answers">
+            {% include 'qa/answer.html' with answer_obj=question %}
+        </div>
+    </div>
+</div>

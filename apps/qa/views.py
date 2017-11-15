@@ -2,17 +2,46 @@ from django.shortcuts import render
 from django.views import View
 from qa.models import Question, Answer, QuestionStandardAnswers, QuestionComment
 from projects.forms import QuestionForm
-from projects.models import Function, File
+from projects.models import Function, File, Line
 from django.http import HttpResponse
 from utils.mixin_utils import LoginRequiredMixin
 import json
 # Create your views here.
 
 
+# class NewQuestionView(View):
+#     def post(self, request):
+#         if not request.user.is_authenticated():
+#             return HttpResponse(json.dumps({"status":"fail","msg":"用户未登录"}), content_type='application/json')
+#         content = request.POST.get('content', '')
+#         obj_type = request.POST.get('obj_type', '')
+#         obj_id = request.POST.get('obj_id', '')
+#         if int(obj_id) > 0 and content:
+#             question = Question()
+#             question.content = content
+#             question.user = request.user
+#             question.question_type = '3'
+#             question.question_source = '2'
+#             question.file_linenum = -1
+#             if obj_type == 'file':
+#                 file = File.objects.get(id=obj_id)
+#                 question.content_object = file
+#                 question.file_id = file.id
+#             else:
+#                 function = Function.objects.get(id=obj_id)
+#                 question.content_object = function
+#                 question.function_id = function.id
+#             question.save()
+#             return HttpResponse('{"status":"success","msg":"提问成功"}', content_type='application/json')
+#         else:
+#             return HttpResponse('{"status":"fail","msg":"提问失败"}', content_type='application/json')
+#
+
+
 class NewQuestionView(View):
     def post(self, request):
         if not request.user.is_authenticated():
-            return HttpResponse(json.dumps({"status":"fail","msg":"用户未登录"}), content_type='application/json')
+            return HttpResponse(json.dumps({"status": "fail", "msg": "用户未登录"}), content_type='application/json')
         content = request.POST.get('content', '')
         obj_type = request.POST.get('obj_type', '')
         obj_id = request.POST.get('obj_id', '')
@@ -22,15 +51,24 @@ class NewQuestionView(View):
             question.user = request.user
             question.question_type = '3'
             question.question_source = '2'
-            question.file_linenum = -1
+            question.file_linenum = 9999
             if obj_type == 'file':
                 file = File.objects.get(id=obj_id)
                 question.content_object = file
                 question.file_id = file.id
-            else:
+            elif obj_type == 'function':
                 function = Function.objects.get(id=obj_id)
                 question.content_object = function
                 question.function_id = function.id
+            elif obj_type == 'line':
+                line = Line.objects.get(id=obj_id)
+                question.content_object = line
+                question.file_linenum = line.file_linenum
+                question.file_id = line.file_id
+                if line.function_linenum:
+                    question.function_linenum = line.function_linenum
+                    question.function_id = line.function_id
+                    question.function_content = content
             question.save()
             return HttpResponse('{"status":"success","msg":"提问成功"}', content_type='application/json')
         else:
@@ -50,7 +88,7 @@ class NewAnswerView(View):
             answer.content =  content
             answer.user = request.user
             answer.save()
-            return HttpResponse('{"status":"success","msg":"回答成功"}', content_type='application/json')
+            return HttpResponse(json.dumps({"status":"success", "msg": "回答成功","id":answer.id}), content_type='application/json')
         else:
             return HttpResponse('{"status":"fail","msg":"回答失败，请重新回答"}', content_type='application/json')
 

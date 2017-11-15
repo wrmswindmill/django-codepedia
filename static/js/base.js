@@ -1,7 +1,9 @@
 // 点击cancel 关闭输入框
 function cancel(){
-  $('.cancel-button').parent('div').prev('a').show();
-  $('.cancel-button').parent('div').hide();
+    var cancelbtn = $('.cancel-button');
+      cancelbtn.parent('div').prev('a').show();
+      cancelbtn.parent('div').prev('a').prev('div').show();
+      cancelbtn.parent('div').hide();
 
 }
 
@@ -15,7 +17,7 @@ $(function(){
       },function(){
         $('#addannotation_'+linenum).hide();
       })
-    })
+    });
 
     var lineannotation = $('.snippet-code-addannotation .line-annotation');
     $.each(lineannotation,function(n,element){
@@ -32,12 +34,12 @@ $(function(){
 //获取cookie
 function getCookie(name) {
      var cookieValue = null;
-     if (document.cookie && document.cookie != '') {
+     if (document.cookie && document.cookie !== '') {
          var cookies = document.cookie.split(';');
          for (var i = 0; i < cookies.length; i++) {
              var cookie = jQuery.trim(cookies[i]);
              // Does this cookie string begin with the name we want?
-             if (cookie.substring(0, name.length + 1) == (name + '=')) {
+             if (cookie.substring(0, name.length + 1) === (name + '=')) {
                  cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                  break;
              }
@@ -157,46 +159,82 @@ function submit_answer(answer_obj_id) {
 
 //提交注释
 function submit_annotation(line_id,type) {
-    var content = ''
+    var content = '';
+    //用户未注释直接点击数字查看别人注释所产生的输入框
     if (type === 0){
         content = $("#js-anno-textarea-"+line_id+'-0').val();
+        var object = $('#0_select_'+line_id).val();
     }else{
+    //用户直接点击添加注释按钮产生的输入框
         content = $("#js-anno-textarea-"+line_id+'-1').val();
+        var object = $('#1_select_'+line_id).val();
     }
     if(content === ""){
-        alert("注释不能为空")
+        alert("注释不能为空");
         return
     }
     //获取cookie
     var csrftoken = getCookie('csrftoken');
-    $.ajax({
+    // 判断是问题还是注释
+
+    // 如果是注释
+    console.log(object);
+    if(object === 'annotation'){
+            $.ajax({
+            cache: false,
+            type: "POST",
+            url:"/operations/new_annotation/",
+            data:{'content':content,'line_id':line_id},
+            async: true,
+            beforeSend:function(xhr, settings){
+                xhr.setRequestHeader("X-CSRFToken", csrftoken);
+            },
+            success: function(data) {
+                if(data.status === 'fail'){
+                    if(data.msg === '用户未登录'){
+                        window.location.href="/users/login/";
+                    }else{
+                        alert(data.msg)
+                    }
+                }else if(data.status ==='success'){
+                    alert(data.msg);
+                    $('.qtip-content .new_line_annotation_'+line_id).html('您已经成功添加了注释');
+                    $('.line-'+line_id+'-num').before('<div class="spacelinenum"></div>');
+                    $('.line-'+line_id+'-anno').before('<div class="spaceline">    //'+content+'</div>');
+                    $('.line-'+line_id+'-addanno').before('<div class="spaceline"></div>');
+                    var showbutton =  $('#show-'+ line_id+'-annotation');
+                     showbutton.click();
+                     showbutton.removeAttr('onclick');
+                     showbutton.click();
+                }
+            }
+        });
+    }else{
+        //如果是提问
+         $.ajax({
         cache: false,
         type: "POST",
-        url:"/operations/new_annotation/",
-        data:{'content':content,'line_id':line_id},
+        url:"/qa/new_question/",
+        data:{'content':content,'obj_type':'line','obj_id':line_id},
         async: true,
         beforeSend:function(xhr, settings){
             xhr.setRequestHeader("X-CSRFToken", csrftoken);
         },
         success: function(data) {
             if(data.status === 'fail'){
-                if(data.msg === '用户未登录'){
+                if(data.msg ==='用户未登录'){
                     window.location.href="/users/login/";
                 }else{
                     alert(data.msg)
                 }
-            }else if(data.status ==='success'){
-                alert(data.msg)
-                $('.qtip-content .new_line_annotation_'+line_id).html('您已经成功添加了注释');
-                $('.line-'+line_id+'-num').before('<div class="spacelinenum"></div>');
-                $('.line-'+line_id+'-anno').before('<div class="spaceline">    //'+content+'</div>');
-                $('.line-'+line_id+'-addanno').before('<div class="spaceline"></div>');
-                 $('#show-'+ line_id+'-annotation').click();
-               $('#show-'+ line_id+'-annotation').removeAttr('onclick');
-               $('#show-'+ line_id+'-annotation').click();
+            }else if(data.status === 'success'){
+                alert('提问成功');
+                window.location.reload();//刷新当前页面.
             }
         }
     });
+    }
+
 }
 
  //为注释添加评论
@@ -233,7 +271,6 @@ function submit_comment(annotation_id,name) {
         }
     })
 }
-
 
  //为问题添加评论
 function submit_question_comment(question_id,name) {
@@ -338,6 +375,9 @@ $(function(){
 
 // 显示问题
 $(function(){
+    $.each($('#question .question'),function () {
+        $(this).hide()
+    })
   $.each($('#question .question:lt(5)'),function(){
     $(this).show();
   });
@@ -401,15 +441,16 @@ function show_one_an(params){
 
 //显示更多答案
 function show_more_ans(params){
-  var visible_count = $('#question-'+params+' #answers .answer:visible').length-1;
-  $.each($('#question-'+params+' #answers .answer:gt('+visible_count+'):lt(3)'),function(){
-    $(this).show();
-    $('#question-'+params+' #answers .answer:visible:last').css('margin-bottom','0px');
-    if ($('#question-'+params+' #answers .answer:visible').length == $('#question-'+params+' #answers .answer').length ) {
-      $('.hide-ans-button-'+params).show();
-      $('.show-more-ans-button-'+params).hide();
-    }
-  })
+  var visible_count = $('#question-'+params+' #answers:first .answer:visible').length;
+  console.log(visible_count);
+      $.each($('#question-'+params+' #answers:first .answer:gt('+visible_count+'):lt(3)'),function(){
+            $(this).show();
+            $('#question-'+params+' #answers .answer:visible:last').css('margin-bottom','0px');
+            if ($('#question-'+params+' #answers .answer:visible').length === $('#question-'+params+' #answers .answer').length ) {
+              $('.hide-ans-button-'+params).show();
+              $('.show-more-ans-button-'+params).hide();
+            }
+          });
 }
 
 //隐藏多余答案
@@ -488,7 +529,7 @@ function getUrlParam(name) {
    if (r !== null) return unescape(r[2]); return null; //返回参数值
   }
 
-  //显示注释
+//显示注释
 function show_annotation(line_id,user_id,linenum) {
     if(user_id==='None'){
         window.location.href="/users/login/";
@@ -541,8 +582,9 @@ $.ajax({
 });
 
 }
+
 // #修改注释
-  function edit_annotation(annotation_id,orgin_content){
+function edit_annotation(annotation_id,orgin_content){
             var new_content = $('#js-annotation-'+annotation_id+'-textarea').val();
             var old_content = orgin_content;
             if(new_content === old_content){
@@ -580,8 +622,10 @@ $.ajax({
             }
         });
         }
-        //修改按钮
-        function edit_button(annotation_id){
-            $('#annotation-'+annotation_id+'-edit-button').hide();
-             $('.annotation-'+annotation_id+'-edit-form').show()
-        }
+
+//修改按钮
+function edit_button(annotation_id){
+    $('#annotation-content-'+annotation_id).hide()
+    $('#annotation-'+annotation_id+'-edit-button').hide();
+     $('.annotation-'+annotation_id+'-edit-form').show()
+}

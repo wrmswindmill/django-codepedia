@@ -193,30 +193,30 @@ class FileDetailView(View):
         file.views += 1
         file.save()
         lines = Line.objects.filter(file_id=file_id)
-        questions = choose_question_type_1('file', file.id)
-        # questions = question_stat['questions']
-        # linenums = question_stat['linenums']
-        questions_count = len(questions)
-        hot_quetions = questions[:5]
+        questions_info = choose_question_type_1('file', file.id)
+        all_questions = questions_info['question']
+        questions_count = questions_info['count']
+        # hot_quetions = questions[:5]
         question_form = QuestionForm()
         all_questions_line_tuple = list(Question.objects.filter(file_id=file_id).values_list('file_linenum').order_by('file_linenum').distinct())
-        all_questions_line = [ list(x)[0] for x in all_questions_line_tuple]
+        all_questions_line = [list(x)[0] for x in all_questions_line_tuple]
         last_annotation = Annotation.objects.filter(file_id=file.id).last()
+
         if last_annotation:
             active_time = last_annotation.created
         else:
             active_time = file.created
-        return render(request, 'projects/file.html', {'project': project,
-                                                      'file': file,
-                                                      'lines': lines,
-                                                      'all_questions': questions,
-                                                      'question_form': question_form,
-                                                      'hot_quetions': hot_quetions,
-                                                      'questions_count':questions_count,
-                                                      'active_time': active_time,
-                                                      # 'linenums':linenums,
-                                                      'all_questions_line':all_questions_line,
-                                                      })
+        return render(request, 'projects/file.html', locals())
+        # return render(request, 'projects/file.html', {'project': project,
+        #                                               'file': file,
+        #                                               'lines': lines,
+        #                                               'all_questions': questions,
+        #                                               'question_form': question_form,
+        #                                               # 'hot_quetions': hot_quetions,
+        #                                               'questions_count':questions_count,
+        #                                               'active_time': active_time,
+        #                                               'questions_line': all_questions_line,
+        #                                               })
 
 
 #函数详情页

@@ -6,12 +6,15 @@
         <h2> {{ questions_count }} Questions</h2>
       </div>
     </div>
-    {% for question in question_objs %}
-        {% if question.question_type == '1' %}
-            {% include 'qa/option_question.html' with question=question model=model %}
-        {% elif question.question_type == '3' %}
-            {% include 'qa/brief_answers_question.html' with question=question %}
-        {% endif %}
+    {% for key,value in question_objs.items %}
+        {% for question in value %}
+            {% if question.question_type == '1' %}
+                {% include 'qa/option_question.html' with question=question model=model %}
+            {% elif question.question_type == '3' %}
+                {% include 'qa/brief_answers_question.html' with question=question %}
+            {% endif %}
+        {% endfor %}
+
     {% endfor %}
     <a type="button"  onclick='show_more()' class='show-more-button' name="button" style='margin-bottom:10px;color:#606669'>Show More Questions</a>
     <a type="button"  onclick='hide_question()' class='hide-button' style='display:none;color:#606669' name="button">Hide All Questions</a>&nbsp;&nbsp;&nbsp;&nbsp;
