@@ -218,7 +218,7 @@ class FunctionDetailView(View):
         function.views += 1
         function.save()
         lines = Line.objects.filter(function_id=function.id)
-        questions_info = choose_question_type_1('file', file.id)
+        questions_info = choose_question_type_1('function', function.id)
         all_questions = questions_info['question']
         questions_count = questions_info['count']
         all_questions_line = questions_info['all_linenums']
@@ -229,7 +229,7 @@ class FunctionDetailView(View):
         hot_quetions = hot_quetions[:5]
         question_form = QuestionForm()
         last_annotation = Annotation.objects.filter(file_id=file.id).last()
-        return render(request, 'projects/file.html', locals())
+        return render(request, 'projects/function.html', locals())
 
 
 #函数调用关系

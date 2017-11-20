@@ -7,7 +7,7 @@
               <div class="answer-votes answered-accepted default">
                 {{ question.answer_set.count }}
               </div>
-              <a href="#question-{{ question.id }}" class="snippet-title"> {{ question.content|slice:"15" }}</a>
+              <a href="#question-{{ question.id }}" class="snippet-title">{% if side_question_obj == file %} {{ question.content|slice:"15" }}{% else %}{{ question.function_content|slice:"15" }}{% endif %} </a>
          </div>
         {% endfor %}
     </div>
