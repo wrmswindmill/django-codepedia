@@ -122,9 +122,9 @@ class LoginView(View):
                     user.username = user_name
                     user.password = make_password(pass_word)
                     user.email = email
-                    if user_message.has_key('lastname'):
+                    if 'lastname' in user_message:
                         user.nick_name = user_message['lastname']
-                    elif user_message.has_key('nickname'):
+                    elif 'nickname' in user_message:
                         user.nick_name = user_message['nickname']
                     else:
                         user.nick_name = user_message['firstname']
